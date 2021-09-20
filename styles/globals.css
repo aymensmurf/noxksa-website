@@ -1,0 +1,107 @@
+@font-face {
+  font-family: "CoHeadline";
+  src: url("/fonts/CoHeadline/Co-Headline-W23-Arabic-Regular.ttf");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "CodecColdTrial";
+  src: url("/fonts/CodecColdTrial/Codec-Cold-Bold-trial.ttf");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "CodecColdTrial";
+  src: url("/fonts/CodecColdTrial/Codec-Cold-Regular-trial.ttf");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "CoHeadline", sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  font-size: 20px;
+  font-weight: 400;
+  color: #333333;
+  font-family: "CoHeadline", sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0px 15px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.jc-sb {
+  justify-content: space-between;
+}
+
+.jc-end {
+  justify-content: flex-end;
+}
+
+.jc-start {
+  justify-content: flex-start;
+}
+
+.ai-c {
+  align-items: center;
+}
+
+.word-animation {
+  animation: word 2000ms ease-in-out infinite;
+}
+
+@keyframes word {
+  0% {
+    opacity: 0%;
+  }
+
+  10% {
+    opacity: 100%;
+  }
+
+  90% {
+    opacity: 100%;
+  }
+
+  100% {
+    opacity: 0%;
+  }
+}
