@@ -1,5 +1,5 @@
 import Layout from "../layout/Layout";
-import { AboutUs, Home, OurClients } from "../components/index";
+import { AboutUs, ContactUs, CreativeStudio, Home, JoinUs, OurClients, OurServices } from "../components/index";
 
 const Index = () => {
     return (
@@ -7,6 +7,10 @@ const Index = () => {
             <Home />
             <AboutUs />
             <OurClients />
+            <OurServices />
+            <CreativeStudio />
+            <JoinUs />
+            <ContactUs />
         </Layout>
     )
 }

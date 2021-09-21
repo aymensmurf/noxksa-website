@@ -1,10 +1,10 @@
-import Titleleft from "../shared/BannerLeft";
+import BannerLeft from "../shared/BannerLeft";
 
 const OurClients = () => {
     return (
         <>
             <section>
-                <Titleleft title="Our Clients" />
+                <BannerLeft title="Our Clients" />
 
                 <div className="container flex ai-c flex-wrap" style={{ gap: 30, marginTop: 110 }}>
                     <img src="/img/clients/gea.png" alt="General Entertainment Authority" />

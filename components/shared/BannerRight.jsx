@@ -17,7 +17,7 @@ const BannerRight = ({ title }) => {
                     color: #f7006c;
                     line-height: 90px;
                     font-family: "CodecColdTrial", sans-serif;
-                    margin-top: 10px;
+                    margin-top: 36px;
                 }
 
                 img {
