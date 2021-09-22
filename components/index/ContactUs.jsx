@@ -4,6 +4,7 @@ import BannerRight from '../shared/BannerRight'
 const ContactUs = () => {
     return (
         <>
+            <a name="contact-us" />
             <section>
                 <BannerRight title="Contact Us" />
 

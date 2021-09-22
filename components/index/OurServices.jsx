@@ -5,6 +5,7 @@ import ImageRight from "../shared/ImageRight";
 const OurService = () => {
     return (
         <>
+            <a name="our-services" />
             <section>
                 <BannerRight title="Our Services" />
 

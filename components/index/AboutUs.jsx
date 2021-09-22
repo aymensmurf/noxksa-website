@@ -3,6 +3,7 @@ import BannerRight from "../shared/BannerRight";
 const AboutUs = () => {
     return (
         <>
+            <a name="about-us" />
             <section>
                 <BannerRight title="Who we are" />
 

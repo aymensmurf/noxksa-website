@@ -3,6 +3,7 @@ import Image from 'next/image'
 const JoinUs = () => {
     return (
         <>
+            <a name="join-the-team" />
             <section className="flex flex-column ai-c jc-c" style={{ textAlign: 'center', gap: 10 }}>
                 <h2>Join us</h2>
 

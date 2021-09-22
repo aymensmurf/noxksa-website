@@ -5,6 +5,7 @@ import { ALBUMS } from "../../utils/consts";
 const CreativeStudio = () => {
     return (
         <>
+            <a name="creative-studio" />
             <section>
                 <BannerLeft title="Creative Studio" />
 

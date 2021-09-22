@@ -1,33 +1,91 @@
+import { useEffect } from 'react';
 import Image from 'next/image';
 
 const Nav = () => {
+    useEffect(() => {
+        let doc = document.documentElement;
+        let w = window;
+
+        let prevScroll = w.scrollY || doc.scrollTop;
+        let curScroll;
+        let direction = 0;
+        let prevDirection = 0;
+
+        let header = document.getElementById('header');
+
+        let checkScroll = function () {
+            curScroll = w.scrollY || doc.scrollTop;
+
+            if (curScroll <= 40) {
+                header.classList.remove('bg-color');
+            }
+
+            if (curScroll > prevScroll) {
+                direction = 2;
+            }
+            else if (curScroll < prevScroll) {
+                direction = 1;
+            }
+
+            if (direction !== prevDirection) {
+                toggleHeader(direction, curScroll);
+            }
+
+            prevScroll = curScroll;
+        };
+
+        let toggleHeader = function (direction, curScroll) {
+            if (direction === 2 && curScroll > 40) {
+                header.classList.add('hide');
+                prevDirection = direction;
+            } else if (direction === 1) {
+                header.classList.remove('hide');
+                header.classList.add('bg-color');
+                prevDirection = direction;
+            }
+        };
+
+        window.addEventListener('scroll', checkScroll);
+    }, [])
+
     return (
         <>
-            <header>
+            <header id="header">
                 <nav className="container flex jc-sb ai-c">
-                    <Image src="/img/logo.png" alt="NOX Entertainment" width={261} height={74} objectFit="contain" />
+                    <a href="/">
+                        <Image src="/img/logo.png" alt="NOX Entertainment" width={261} height={74} objectFit="contain" />
+                    </a>
 
                     <div>
                         <ul>
-                            <li>About Us</li>
-                            <li>Our Clients</li>
-                            <li>Our Services</li>
-                            <li>Creative Studio</li>
-                            <li>Join The Team</li>
-                            <li>Contact Us</li>
+                            <li><a href="/#about-us">About Us</a></li>
+                            <li><a href="/#our-clients">Our Clients</a></li>
+                            <li><a href="/#our-services">Our Services</a></li>
+                            <li><a href="/#creative-studio">Creative Studio</a></li>
+                            <li><a href="/#join-the-team">Join The Team</a></li>
+                            <li><a href="/#contact-us">Contact Us</a></li>
                         </ul>
                     </div>
                 </nav>
             </header>
 
             <style jsx>{`
-                header {
+                #header {
                     padding: 20px 0px;
-                    position: absolute;
+                    background-color: transparent;
+                    position: fixed;
                     top: 0;
-                    left: 0;
                     width: 100%;
+                    transition: all .5s ease;
                     z-index: 99;
+                }
+
+                #header.hide {
+                    top: -143px;
+                }
+
+                #header.bg-color {
+                    background-color: #46356A;
                 }
 
                 ul {

@@ -4,6 +4,7 @@ import BannerLeft from "../shared/BannerLeft";
 const OurClients = () => {
     return (
         <>
+            <a name="our-clients" />
             <section>
                 <BannerLeft title="Our Clients" />
 
