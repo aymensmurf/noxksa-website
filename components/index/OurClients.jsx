@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import BannerLeft from "../shared/BannerLeft";
 
 const OurClients = () => {
@@ -7,31 +8,26 @@ const OurClients = () => {
                 <BannerLeft title="Our Clients" />
 
                 <div className="container flex ai-c flex-wrap" style={{ gap: 30, marginTop: 110 }}>
-                    <img src="/img/clients/gea.png" alt="General Entertainment Authority" />
-                    <img src="/img/clients/moe.png" alt="Ministry of Education" />
-                    <img src="/img/clients/sc.png" alt="Saudi Customs" />
-                    <img src="/img/clients/mod.png" alt="Ministry of Defense" />
-                    <img src="/img/clients/hotma.png" alt="AlHaya ElOlya LiTawir Madinet ElRiyad" />
-                    <img src="/img/clients/rcfau.png" alt="Royal Commission for Al-Ula" />
-                    <img src="/img/clients/pif.png" alt="Public Investment Fund" />
-                    <img src="/img/clients/ww.png" alt="Winter Wonderland" />
-                    <img src="/img/clients/rb.png" alt="Riyad Bank" />
-                    <img src="/img/clients/ss.png" alt="ElSondok ElSinaai" />
-                    <img src="/img/clients/sa.png" alt="Saudi Aramco" />
-                    <img src="/img/clients/ama.png" alt="Amanet Mintakit Assir" />
-                    <img src="/img/clients/nupco.png" alt="NUPCO" />
-                    <img src="/img/clients/aec.png" alt="Advanced Electroincs Company" />
+                    <Image src="/img/clients/gea.png" alt="General Entertainment Authority" width={170} height="100%" objectFit='contain' />
+                    <Image src="/img/clients/moe.png" alt="Ministry of Education" width={170} height="100%" objectFit='contain' />
+                    <Image src="/img/clients/sc.png" alt="Saudi Customs" width={170} height="100%" objectFit='contain' />
+                    <Image src="/img/clients/mod.png" alt="Ministry of Defense" width={170} height="100%" objectFit='contain' />
+                    <Image src="/img/clients/hotma.png" alt="AlHaya ElOlya LiTawir Madinet ElRiyad" width={170} height="100%" objectFit='contain' />
+                    <Image src="/img/clients/rcfau.png" alt="Royal Commission for Al-Ula" width={170} height="100%" objectFit='contain' />
+                    <Image src="/img/clients/pif.png" alt="Public Investment Fund" width={170} height="100%" objectFit='contain' />
+                    <Image src="/img/clients/ww.png" alt="Winter Wonderland" width={170} height="100%" objectFit='contain' />
+                    <Image src="/img/clients/rb.png" alt="Riyad Bank" width={170} height="100%" objectFit='contain' />
+                    <Image src="/img/clients/ss.png" alt="ElSondok ElSinaai" width={170} height="100%" objectFit='contain' />
+                    <Image src="/img/clients/sa.png" alt="Saudi Aramco" width={170} height="100%" objectFit='contain' />
+                    <Image src="/img/clients/ama.png" alt="Amanet Mintakit Assir" width={170} height="100%" objectFit='contain' />
+                    <Image src="/img/clients/nupco.png" alt="NUPCO" width={170} height="100%" objectFit='contain' />
+                    <Image src="/img/clients/aec.png" alt="Advanced Electroincs Company" width={170} height="100%" objectFit='contain' />
                 </div>
             </section>
 
             <style jsx>{`
                 section {
                     padding-top: 160px;
-                }
-
-                img {
-                    width: 170px;
-                    object-fit: contain;
                 }
             `}</style>
         </>

@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 const JoinUs = () => {
     return (
         <>
@@ -9,7 +11,7 @@ const JoinUs = () => {
                     <button>Organizer</button>
                 </div>
 
-                <img src="/img/team.png" alt="Join Us" />
+                <Image src="/img/team.png" alt="Join Us" width={1250} height={518} objectFit="contain" />
             </section>
 
             <style jsx>{`
@@ -26,12 +28,6 @@ const JoinUs = () => {
                     color: #fff;
                     font-size: 59px;
                     font-weight: 200;
-                }
-
-                img {
-                    width: 1250px;
-                    height: 518px;
-                    object-fit: contain;
                 }
             `}</style>
         </>

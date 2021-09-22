@@ -1,9 +1,11 @@
+import Image from 'next/image';
+
 const Nav = () => {
     return (
         <>
             <header>
                 <nav className="container flex jc-sb ai-c">
-                    <img src="/img/logo.png" alt="NOX Entertainment" className="logo" />
+                    <Image src="/img/logo.png" alt="NOX Entertainment" width={261} height={74} objectFit="contain" />
 
                     <div>
                         <ul>
@@ -26,12 +28,6 @@ const Nav = () => {
                     left: 0;
                     width: 100%;
                     z-index: 99;
-                }
-
-                .logo {
-                    width: 261px;
-                    height: 74px;
-                    object-fit: contain;
                 }
 
                 ul {

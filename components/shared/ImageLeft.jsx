@@ -1,8 +1,10 @@
-const ImageLeft = ({ text, img, style, imgStyle }) => {
+import Image from 'next/image'
+
+const ImageLeft = ({ text, img, style, width, height }) => {
     return (
         <>
             <div className="container grid" style={{ ...style }}>
-                <img src={img} alt="Our services" style={{ ...imgStyle }} />
+                <Image src={img} alt="Our services" width={width} height={height} objectFit="contain" />
 
                 <div>
                     <h2>{text}</h2>
@@ -25,10 +27,6 @@ const ImageLeft = ({ text, img, style, imgStyle }) => {
                     font-family: "CoHeadline", sans-serif;
                     font-weight: 400;
                     line-height: 70px;
-                }
-
-                img {
-                    object-fit: contain;
                 }
             `}</style>
         </>

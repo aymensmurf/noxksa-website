@@ -1,4 +1,6 @@
-const ImageRight = ({ text, img, style, imgStyle }) => {
+import Image from 'next/image'
+
+const ImageRight = ({ text, img, style, width, height }) => {
     return (
         <>
             <div className="container grid" style={{ ...style }}>
@@ -8,7 +10,7 @@ const ImageRight = ({ text, img, style, imgStyle }) => {
                     <button>Show All Programs</button>
                 </div>
 
-                <img src={img} alt="Our services" style={{ ...imgStyle }} />
+                <Image src={img} alt="Our services" width={width} height={height} objectFit="contain" />
             </div>
 
             <style jsx>{`
@@ -25,11 +27,6 @@ const ImageRight = ({ text, img, style, imgStyle }) => {
                     font-family: "CoHeadline", sans-serif;
                     font-weight: 400;
                     line-height: 70px;
-                }
-
-                img {
-                    object-fit: contain;
-                    justify-self: flex-end;
                 }
             `}</style>
         </>

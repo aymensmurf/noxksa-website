@@ -1,28 +1,18 @@
 const Footer = () => {
     return (
         <>
-            <footer>
-                <div className="grid">
-                    <img src="/img/footer.png" alt="Nox Ksa" />
-
-                    <p>© Copyright 2020 Ktheeb Company. All Rights Reserved.</p>
-                </div>
+            <footer className="flex ai-c jc-end">
+                <p>© Copyright 2020 Ktheeb Company. All Rights Reserved.</p>
             </footer>
 
             <style jsx>{`
                 footer {
-                    padding-top: 100px;
-                }
-
-                .grid {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: 60px;
-                }
-
-                img {
-                    width: 100%;
-                    object-fit: contain;
+                    margin-top: 100px;
+                    height: 87px;
+                    background-image: url("/img/footer.png");
+                    background-repeat: no-repeat;
+                    background-position: center left;
+                    background-size: contain;
                 }
 
                 p {

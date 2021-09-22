@@ -1,15 +1,24 @@
+import Image from 'next/image'
+
 const BannerLeft = ({ title }) => {
     return (
         <>
-            <div style={{ position: 'relative' }}>
-                <img src="/img/banner-left.png" alt="Banner left" />
-
-                <div className="container flex ai-c jc-end" style={{ height: 168 }}>
+            <div className="banner-left">
+                <div className="container flex ai-c jc-end" style={{ height: '100%' }}>
                     <h1>{title}</h1>
                 </div>
             </div>
 
             <style jsx>{`
+                .banner-left {
+                    position: relative;
+                    height: 168px;
+                    background-image: url("/img/banner-left.png");
+                    background-repeat: no-repeat;
+                    background-position: center left;
+                    background-size: contain;
+                }
+
                 h1 {
                     position: relative;
                     font-size: 6.7vw;
@@ -18,14 +27,6 @@ const BannerLeft = ({ title }) => {
                     line-height: 90px;
                     font-family: "CodecColdTrial", sans-serif;
                     margin-top: 10px;
-                }
-
-                img {
-                    height: 168px;
-                    object-fit: contain;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
                 }
             `}</style>
         </>

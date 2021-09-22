@@ -18,6 +18,8 @@ const OurService = () => {
                     }
                     img="/img/our-services/img1.png"
                     style={{ marginTop: 60 }}
+                    width={601}
+                    height={520}
                     imgStyle={{ width: 601, height: 520 }}
                 />
 
@@ -31,7 +33,8 @@ const OurService = () => {
                     }
                     img="/img/our-services/img2.png"
                     style={{ marginTop: 170 }}
-                    imgStyle={{ width: 761, height: 740 }}
+                    width={740}
+                    height={761}
                 />
 
                 <ImageRight
@@ -44,6 +47,8 @@ const OurService = () => {
                     }
                     img="/img/our-services/img3.png"
                     style={{ marginTop: 170 }}
+                    width={477}
+                    height={424}
                     imgStyle={{ width: 477, height: 424 }}
                 />
             </section>

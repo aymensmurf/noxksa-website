@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import BannerRight from '../shared/BannerRight'
 
 const ContactUs = () => {
@@ -16,23 +17,23 @@ const ContactUs = () => {
                             <div>
                                 <h3>Contact us:</h3>
                                 <div className="flex ai-c">
-                                    <img src="/img/icons/wa.png" alt="Whatsapp" />
+                                    <Icon src="/img/icons/wa.png" alt="Whatsapp" />
                                     <p>+966 55 444 3450</p>
                                 </div>
                                 <div className="flex ai-c">
-                                    <img src="/img/icons/phone.png" alt="Phone" />
+                                    <Icon src="/img/icons/phone.png" alt="Phone" />
                                     <p>920033680</p>
                                 </div>
                             </div>
                             <div>
                                 <h3>Follow us:</h3>
                                 <div className="flex ai-c">
-                                    <a href="https://twitter.com/NoxKsa" target="_blank" rel="noopener noreferrer"><img src="/img/icons/tw.png" alt="Twitter" /></a>
+                                    <a href="https://twitter.com/NoxKsa" target="_blank" rel="noopener noreferrer"><Icon src="/img/icons/tw.png" alt="Twitter" /></a>
                                     <a href="https://twitter.com/NoxKsa" target="_blank" rel="noopener noreferrer"><p>@NoxKsa</p></a>
                                 </div>
                                 <div className="flex ai-c">
-                                    <a href="https://www.facebook.com/nox.ksa" target="_blank" rel="noopener noreferrer"><img src="/img/icons/fb.png" alt="Phone" /></a>
-                                    <a href="https://www.instagram.com/nox.ksa" target="_blank" rel="noopener noreferrer"><img src="/img/icons/in.png" alt="Phone" /></a>
+                                    <a href="https://www.facebook.com/nox.ksa" target="_blank" rel="noopener noreferrer"><Icon src="/img/icons/fb.png" alt="Phone" /></a>
+                                    <a href="https://www.instagram.com/nox.ksa" target="_blank" rel="noopener noreferrer"><Icon src="/img/icons/in.png" alt="Phone" /></a>
                                     <p>@Nox.Ksa</p>
                                 </div>
                             </div>
@@ -69,12 +70,6 @@ const ContactUs = () => {
                     font-size: 1.75rem;
                 }
 
-                img {
-                    width: 40px;
-                    height: 40px;
-                    object-fit: contain;
-                }
-
                 p {
                     color: #463568;
                     font-size: 22px;
@@ -88,5 +83,11 @@ const ContactUs = () => {
         </>
     )
 }
+
+const Icon = ({ src, alt }) => (
+    <>
+        <Image className="icon" src={src} alt={alt} width={40} height={40} objectFit="contain" />
+    </>
+)
 
 export default ContactUs;
