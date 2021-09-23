@@ -13,7 +13,7 @@ const FileDropZone = ({ file, handleDrop }) => {
                         <input {...getInputProps()} />
                         {
                             !file ?
-                                <p>Drag 'n' drop file here, or click to select one.</p>
+                                <p>Drag &apos;n&apos; drop file here, or click to select one.</p>
                                 :
                                 (typeof file === 'object') ?
                                     <p>{file.name}</p>

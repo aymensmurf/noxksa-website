@@ -8,7 +8,7 @@ const Modal = ({ title, children, footer, isFullWidth, isModalOpen, handleClose 
         return () => {
             document.removeEventListener("mousedown", handleClick);
         };
-    }, []);
+    });
 
     const handleClick = e => {
         if (node.current.contains(e.target)) {

@@ -8,7 +8,7 @@ const ImageRight = ({ text, img, style, width, height, btnTitle, href = "#" }) =
                 <div>
                     <h2>{text}</h2>
 
-                    <Link href={href}>
+                    <Link href={href} passHref>
                         <button>{btnTitle}</button>
                     </Link>
                 </div>

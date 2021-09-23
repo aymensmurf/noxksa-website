@@ -1,5 +1,5 @@
 import Dropzone from 'react-dropzone'
-import { SERVER_URL } from '../../utils/consts'
+import Image from 'next/image'
 
 const PictureDropZone = ({ picture, placeholder, handleDrop }) => {
     return (
@@ -17,9 +17,9 @@ const PictureDropZone = ({ picture, placeholder, handleDrop }) => {
                                 <p>{placeholder || "Drag 'n' drop image here, or click to select one."}</p>
                                 :
                                 (typeof picture === 'object') ?
-                                    <img src={picture.preview} alt="Logo" />
+                                    <Image src={picture.preview} alt="picture" width="100%" height="100%" objectFit="contain" />
                                     :
-                                    <img src={`${SERVER_URL}/uploads/${picture}`} alt="Logo" />
+                                    <Image src={``} alt="picture" width="100%" height="100%" objectFit="contain" />
                         }
                     </div>
                 )}
