@@ -18,6 +18,8 @@ const OurService = () => {
                         </>
                     }
                     img="/img/our-services/img1.png"
+                    btnTitle="Show All Programs"
+                    href="/programs"
                     style={{ marginTop: 60 }}
                     width={601}
                     height={520}
@@ -33,6 +35,8 @@ const OurService = () => {
                         </>
                     }
                     img="/img/our-services/img2.png"
+                    btnTitle="Show All Services"
+                    href="/services"
                     style={{ marginTop: 170 }}
                     width={740}
                     height={761}
@@ -47,6 +51,8 @@ const OurService = () => {
                         </>
                     }
                     img="/img/our-services/img3.png"
+                    btnTitle="Show All Events"
+                    href="/events"
                     style={{ marginTop: 170 }}
                     width={477}
                     height={424}

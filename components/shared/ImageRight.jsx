@@ -1,13 +1,16 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
-const ImageRight = ({ text, img, style, width, height }) => {
+const ImageRight = ({ text, img, style, width, height, btnTitle, href = "#" }) => {
     return (
         <>
             <div className="container grid" style={{ ...style }}>
                 <div>
                     <h2>{text}</h2>
 
-                    <button>Show All Programs</button>
+                    <Link href={href}>
+                        <button>{btnTitle}</button>
+                    </Link>
                 </div>
 
                 <Image src={img} alt="Our services" width={width} height={height} objectFit="contain" />

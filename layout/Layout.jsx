@@ -4,10 +4,10 @@ import Nav from "./Nav";
 
 const BackgroundAnimated = dynamic(() => import("../components/shared/BackgroundAnimated"), { ssr: false })
 
-const Layout = ({ children }) => {
+const Layout = ({ navWithBackground, children }) => {
     return (
         <>
-            <Nav />
+            <Nav navWithBackground={navWithBackground} />
             {children}
             <Footer />
 

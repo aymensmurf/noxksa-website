@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Image from 'next/image';
 
-const Nav = () => {
+const Nav = ({ navWithBackground = false }) => {
     useEffect(() => {
         let doc = document.documentElement;
         let w = window;
@@ -72,7 +72,7 @@ const Nav = () => {
             <style jsx>{`
                 #header {
                     padding: 20px 0px;
-                    background-color: transparent;
+                    background-color: ${navWithBackground ? '#46356A' : 'transparent'};
                     position: fixed;
                     top: 0;
                     width: 100%;

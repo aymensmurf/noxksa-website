@@ -1,6 +1,7 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
-const ImageLeft = ({ text, img, style, width, height }) => {
+const ImageLeft = ({ text, img, style, width, height, btnTitle, href = "#" }) => {
     return (
         <>
             <div className="container grid" style={{ ...style }}>
@@ -9,7 +10,9 @@ const ImageLeft = ({ text, img, style, width, height }) => {
                 <div>
                     <h2>{text}</h2>
 
-                    <button>Show All Programs</button>
+                    <Link href={href}>
+                        <button>{btnTitle}</button>
+                    </Link>
                 </div>
             </div>
 
