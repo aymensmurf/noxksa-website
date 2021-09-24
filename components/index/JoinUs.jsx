@@ -37,7 +37,7 @@ const JoinUs = () => {
             <section className="flex flex-column ai-c jc-c" style={{ textAlign: 'center', gap: 10 }}>
                 <h2>Join us</h2>
 
-                <div className="flex ai-c jc-c" style={{ gap: 60 }}>
+                <div className="options flex ai-c jc-c flex-wrap">
                     <button onClick={() => { setIsEmployeeModalOpen(true) }}>Employee</button>
                     <button onClick={() => { setIsOrganizerModalOpen(true) }}>Organizer</button>
                 </div>
@@ -171,8 +171,6 @@ const JoinUs = () => {
                 </form>
             </Modal>
 
-
-
             <style jsx>{`
                 section {
                     background-image: url('/img/join-us-bg.jpg');
@@ -207,6 +205,22 @@ const JoinUs = () => {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     gap: 15px;
+                }
+
+                .options {
+                    gap: 60px;
+                }
+
+                @media only screen and (max-width: 412px) {
+                    .options {
+                        gap: 20px;
+                    }
+                }
+
+                @media only screen and (max-width: 360px) {
+                    .options {
+                        gap: 10px;
+                    }
                 }
             `}</style>
         </>

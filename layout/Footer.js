@@ -11,7 +11,7 @@ const Footer = () => {
                     height: 87px;
                     background-image: url("/img/footer.png");
                     background-repeat: no-repeat;
-                    background-position: center left;
+                    background-position: bottom left;
                     background-size: contain;
                 }
 
@@ -22,6 +22,17 @@ const Footer = () => {
                     align-self: center;
                     justify-self: end;
                     margin: 0px 20px;
+                }
+
+                @media only screen and (max-width: 1334px) {
+                    footer {
+                        align-items: flex-start;
+                        justify-content: flex-start; 
+                    }
+
+                    p {
+                        margin-top: -100px;
+                    }
                 }
             `}</style>
         </>

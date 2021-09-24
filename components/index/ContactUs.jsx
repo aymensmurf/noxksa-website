@@ -50,7 +50,6 @@ const ContactUs = () => {
             <style jsx>{`
                 section {
                     padding-top: 160px;
-                    padding-bottom: 160px;
                 }
 
                 .grid {
@@ -79,6 +78,22 @@ const ContactUs = () => {
                 .flex {
                     margin-top: 15px;
                     gap: 15px;
+                }
+
+                @media only screen and (max-width: 1023px) {
+                    section {
+                        padding-top: 100px;
+                    }
+                }
+
+                @media only screen and (max-width: 810px) {
+                    .grid {
+                        grid-template-columns: 1fr;
+                    }
+
+                    iframe {
+                        height: 400px;
+                    }
                 }
             `}</style>
         </>
