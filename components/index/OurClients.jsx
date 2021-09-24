@@ -8,7 +8,7 @@ const OurClients = () => {
             <section>
                 <BannerLeft title="Our Clients" />
 
-                <div className="container flex ai-c flex-wrap" style={{ gap: 30, marginTop: 110 }}>
+                <div className="container flex jc-c ai-c flex-wrap" style={{ gap: 30, marginTop: 110 }}>
                     <Image src="/img/clients/gea.png" alt="General Entertainment Authority" width={170} height="100%" objectFit='contain' />
                     <Image src="/img/clients/moe.png" alt="Ministry of Education" width={170} height="100%" objectFit='contain' />
                     <Image src="/img/clients/sc.png" alt="Saudi Customs" width={170} height="100%" objectFit='contain' />
@@ -29,6 +29,18 @@ const OurClients = () => {
             <style jsx>{`
                 section {
                     padding-top: 160px;
+                }
+
+                @media only screen and (max-width: 1023px) {
+                    section {
+                        padding-top: 80px;
+                    }
+                }
+
+                @media only screen and (max-width: 610px) {
+                    section {
+                        padding-top: 60px;
+                    }
                 }
             `}</style>
         </>

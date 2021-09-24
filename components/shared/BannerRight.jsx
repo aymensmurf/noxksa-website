@@ -19,12 +19,37 @@ const BannerRight = ({ title }) => {
 
                 h1 {
                     position: relative;
-                    font-size: 6.7vw;
+                    font-size: 100px;
                     font-weight: 400;
                     color: #f7006c;
-                    line-height: 90px;
+                    line-height: 40px;
                     font-family: "CodecColdTrial", sans-serif;
                     margin-top: 36px;
+                }
+
+                @media only screen and (max-width: 1256px) {
+                    .banner-right {
+                        background-position: center left;
+                        background-size: cover;
+                    }
+
+                    h1 {
+                        color: #fff;
+                    }
+                }
+
+                @media only screen and (max-width: 1023px) {
+                    h1 {
+                        font-size: 80px;
+                        margin-top: 30px;
+                    }
+                }
+
+                @media only screen and (max-width: 780px) {
+                    h1 {
+                        font-size: 50px;
+                        margin-top: 26px;
+                    }
                 }
             `}</style>
         </>

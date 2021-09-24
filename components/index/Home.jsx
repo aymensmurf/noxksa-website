@@ -72,6 +72,80 @@ const Home = () => {
                 h1 span:nth-child(5) {
                     color: rgb(254, 198, 129);
                 }
+
+                @media only screen and (max-width: 1382px) {
+                    h1 {
+                        font-size: 58px;
+                        line-height: 68px;
+                    }
+                }
+
+                @media only screen and (max-width: 1023px) {
+                    h1 {
+                        font-size: 48px;
+                        line-height: 56px;
+                    }
+                }
+
+                @media only screen and (max-width: 796px) {
+                    .home-text-container {
+                        margin-top: 120px;
+                        margin-left: 45%;
+                    }
+
+                    h1 {
+                        font-size: 42px;
+                        line-height: 48px;
+                    }
+                }
+
+                @media only screen and (max-width: 650px) {
+                    .home-text-container {
+                        margin-top: 120px;
+                        margin-left: 40%;
+                    }
+
+                    h1 {
+                        font-size: 38px;
+                        line-height: 46px;
+                    }
+                }
+
+                @media only screen and (max-width: 520px) {
+                    .home-text-container {
+                        margin-top: 120px;
+                        margin-left: 35%;
+                    }
+
+                    h1 {
+                        font-size: 36px;
+                        line-height: 46px;
+                    }
+                }
+
+                @media only screen and (max-width: 456px) {
+                    .home-text-container {
+                        margin-top: 120px;
+                        margin-left: 32%;
+                    }
+
+                    h1 {
+                        font-size: 30px;
+                        line-height: 38px;
+                    }
+                }
+
+                @media only screen and (max-width: 376px) {
+                    .home-text-container {
+                        margin-top: 120px;
+                        margin-left: 28%;
+                    }
+
+                    h1 {
+                        font-size: 28px;
+                        line-height: 38px;
+                    }
+                }
             `}</style>
         </>
     )

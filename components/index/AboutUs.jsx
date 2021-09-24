@@ -29,6 +29,27 @@ const AboutUs = () => {
                 p {
                     margin-bottom: 30px;
                 }
+
+                @media only screen and (max-width: 1023px) {
+                    section {
+                        padding-top: 80px;
+                    }
+
+                    .content {
+                        margin-top: 40px;
+                        width: 100%;
+                    }
+                }
+
+                @media only screen and (max-width: 610px) {
+                    section {
+                        padding-top: 60px;
+                    }
+
+                    .content {
+                        margin-top: 20px;
+                    }
+                }
             `}</style>
         </>
     )

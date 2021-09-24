@@ -21,12 +21,35 @@ const BannerLeft = ({ title }) => {
 
                 h1 {
                     position: relative;
-                    font-size: 6.7vw;
+                    font-size: 100px;
                     font-weight: 400;
                     color: #f7006c;
-                    line-height: 90px;
+                    line-height: 40px;
                     font-family: "CodecColdTrial", sans-serif;
                     margin-top: 10px;
+                }
+
+                @media only screen and (max-width: 1256px) {
+                    .banner-left {
+                        background-position: center right;
+                        background-size: cover;
+                    }
+
+                    h1 {
+                        color: #fff;
+                    }
+                }
+
+                @media only screen and (max-width: 1023px) {
+                    h1 {
+                        font-size: 80px;
+                    }
+                }
+
+                @media only screen and (max-width: 780px) {
+                    h1 {
+                        font-size: 50px;
+                    }
                 }
             `}</style>
         </>

@@ -106,6 +106,15 @@ const Nav = ({ navWithBackground = false }) => {
                 li:hover {
                     color: #fec681;
                 }
+
+                @media only screen and (max-width: 1148px) {
+                    ul {
+                        gap: 15px;  
+                    }
+                    li {
+                        font-size: 16px;
+                    }
+                }
             `}</style>
         </>
     )

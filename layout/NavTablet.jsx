@@ -54,7 +54,7 @@ const NavTablet = ({ navWithBackground }) => {
         <>
             <nav id="main-nav-tablet">
                 <a href="/">
-                    <Image src="/img/logo.png" alt="NOX Entertainment" width={261} height={74} objectFit="contain" />
+                    <Image src="/img/logo.png" alt="NOX Entertainment" width={212} height={60} objectFit="contain" />
                 </a>
                 <div className="flex ai-c" style={{ gap: 5 }} onClick={() => setIsMenuOpen(!isMenuOpen)}>
                     {isMenuOpen ? (
@@ -95,7 +95,7 @@ const NavTablet = ({ navWithBackground }) => {
                 }
 
                 #main-nav-tablet.bg-color {
-                    background-color: #fff;
+                    background-color: #46356A;
                 }
 
                 #menu {
