@@ -72,12 +72,12 @@ const Nav = ({ navWithBackground = false }) => {
             <style jsx>{`
                 #header {
                     padding: 20px 0px;
-                    background-color: ${navWithBackground ? '#46356A' : 'transparent'};
                     position: fixed;
                     top: 0;
                     width: 100%;
                     transition: all .5s ease;
                     z-index: 99;
+                    background-color: ${navWithBackground ? '#46356A' : 'transparent'};
                 }
 
                 #header.hide {

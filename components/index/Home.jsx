@@ -38,17 +38,18 @@ const Home = () => {
                 section {
                     background-color: #46356A;
                     position: relative;
-                    height: 100vh;
                     width: 100vw;
+                    height: 100vh;
                 }
 
                 video {
                     position: absolute;
-                    top: -111px;
+                    top: 0;
                     right: 0;
-                    min-width: 100%;
-                    min-height: 100%;
+                    width: 100vw;
+                    height: 100vh;
                     z-index: 1;
+                    object-fit: cover;
                 }
 
                 .home-text-container {
@@ -58,8 +59,8 @@ const Home = () => {
 
                 h1 {
                     color: #fff;
-                    font-size: 4.6vw;
-                    line-height: 6vw;
+                    font-size: 80px;
+                    line-height: 90px;
                     font-weight: 700;
                     font-family: 'CodecColdTrial', sans-serif;
                 }
