@@ -46,7 +46,7 @@ const JoinUs = () => {
             </section>
 
             <Modal
-                title="Join Us - Employee"
+                title="Join Us"
                 isModalOpen={isEmployeeModalOpen}
                 handleClose={handleCloseEmployeeModal}
                 footer={
@@ -102,7 +102,7 @@ const JoinUs = () => {
             </Modal>
 
             <Modal
-                title="Join Us - Organizer"
+                title="Join Us"
                 isModalOpen={isOrganizerModalOpen}
                 handleClose={handleCloseOrganizerModal}
                 footer={
@@ -209,6 +209,12 @@ const JoinUs = () => {
 
                 .options {
                     gap: 60px;
+                }
+
+                @media only screen and (max-width: 560px) {
+                    .grid {
+                        grid-template-columns: 1fr;
+                    }
                 }
 
                 @media only screen and (max-width: 412px) {
