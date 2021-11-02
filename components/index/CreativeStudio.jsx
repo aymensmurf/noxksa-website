@@ -1,8 +1,9 @@
 import BannerLeft from "../shared/BannerLeft";
 import Album from "../shared/Album";
 import { ALBUMS } from "../../utils/consts";
+import { SERVER_URL } from '../../utils/consts';
 
-const CreativeStudio = () => {
+const CreativeStudio = ({creativeStudio}) => {
     return (
         <>
             <a name="creative-studio" />
@@ -11,8 +12,8 @@ const CreativeStudio = () => {
 
                 <div className="container" style={{ marginTop: 60 }}>
                     <div className="flex ai-c flex-wrap" style={{ gap: 30 }}>
-                        {ALBUMS.map(({ title, mainImg, images }, i) => (
-                            <Album key={i} title={title} mainImg={mainImg} images={images} />
+                        {creativeStudio.map(({ title,links }, i) => (
+                            <Album key={i} title={title.en} mainImg={`${SERVER_URL}/uploads/${links[parseInt(Math.random() * (links.length))].link}`} images={links}/>
                         ))}
                     </div>
                 </div>

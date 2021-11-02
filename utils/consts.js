@@ -12,3 +12,10 @@ export const ALBUMS = [
         mainImg: '/img/albums/stc-solutions/main.jpg'
     },
 ]
+
+
+export const EMAIL_FORMAT = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/;
+export const SERVER_URL = 'http://localhost:5000';
+export const API_URL = SERVER_URL + '/api/v1';
+
+    
