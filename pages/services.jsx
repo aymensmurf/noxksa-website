@@ -1,10 +1,55 @@
 import Layout from "../layout/Layout";
-
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { API_URL } from '../utils/consts';
 const Services = () => {
+    const [services,setServices]=useState([])
+    useEffect(() => {
+        getServices()
+        
+    }, []);
+
+    const getServices = () => {
+        const config = {
+            method: 'get',
+            url: `${API_URL}/services/type/service`,
+            
+        };
+
+        axios(config)
+            .then(({ status, data }) => {
+                if (status === 200) {
+                   setServices(data.data)
+                   console.log(data)
+                }
+            })
+            .catch(err => {
+                console.log('err', err)
+            })
+    };
     return (
         <>
             <Layout navWithBackground>
                 <section className="container">
+                    {
+                        services.map(({ _id, description ,title,subCategories}, i) => (
+                            <div key={_id} >
+                            <h2 className={`colors${i%4}`}>{title.en}</h2>
+                            <p>{description.en}</p>
+                            {
+                                subCategories && subCategories.map(({ _id, description ,title}, i) => (
+                                <div key={_id+i} style={{ marginLeft: "40px" }}>                                    
+                                    <h2 className={`colors${i%4}`}>{title.en}</h2>
+                                    <p>{description.en}</p>
+                                </div>    
+                             ))
+                            }
+                            </div>
+               
+                        ))
+                        
+                    }
+                    {/*
                     <h2>Special Editions</h2>
                     <p>A world that is full with our special challenges from solving mysteries to finding the  key to survive and experiencing new things in curtain time like : GOOSEBUMPS ,  Shaikh Omar’s legacy , Wallmash -Grap & Get – Rage Room  and so on …</p>
 
@@ -42,7 +87,10 @@ const Services = () => {
                     <h2 style={{ color: '#463568' }}>Inflatbles</h2>
                     <p>We are the land of all motion games beginning from the young till the youth , were we have variety of games that move every mucsle. <br />
                         e.g. : wrecking ball – Pulling race – Sumo  – Smashing ballsRage bull – Maze – Hamster – Reslting and other games … </p>
-                </section>
+                
+                    */}
+
+                    </section>
             </Layout>
 
             <style jsx>{`
@@ -52,7 +100,7 @@ const Services = () => {
                 }
 
                 h2 {
-                    color: #007991;
+               
                     font-weight: 400;
                     font-size: 2rem;
                 }
