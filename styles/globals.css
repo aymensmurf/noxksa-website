@@ -46,6 +46,10 @@ p {
   font-family: "CoHeadline", sans-serif;
 }
 
+textarea {
+  font-family: "CoHeadline", sans-serif;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -179,15 +183,15 @@ button:hover {
   }
 }
 
-.colors0{
-color:rgb(0, 121, 145) ;
+.colors0 {
+  color: rgb(0, 121, 145);
 }
-.colors1{
-  color:rgb(70, 53, 104) ;
+.colors1 {
+  color: rgb(70, 53, 104);
 }
-.colors2{
-  color:rgb(247, 0, 108) 
+.colors2 {
+  color: rgb(247, 0, 108);
 }
-.colors3{
-  color: rgb(255, 197, 129) 
+.colors3 {
+  color: rgb(255, 197, 129);
 }

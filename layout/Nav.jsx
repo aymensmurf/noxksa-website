@@ -61,9 +61,10 @@ const Nav = ({ navWithBackground = false }) => {
                             <li><a href="/#about-us">About Us</a></li>
                             <li><a href="/#our-clients">Our Clients</a></li>
                             <li><a href="/#our-services">Our Services</a></li>
-                            <li><a href="/#creative-studio">Creative Studio</a></li>
-                            <li><a href="/#join-the-team">Join The Team</a></li>
+                            <li><a href="/#creative-studio">Studio</a></li>
+                            <li><a href="/#join-the-team">Join Us</a></li>
                             <li><a href="/#contact-us">Contact Us</a></li>
+                            <li><a href="/client-questionnaire">Questionnaire</a></li>
                         </ul>
                     </div>
                 </nav>
