@@ -1,40 +1,149 @@
+import { useState } from "react";
 import Layout from "../layout/Layout";
+import axios from 'axios';
+import { API_URL } from '../utils/consts';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
+
+import { Router } from "next/dist/client/router";
 
 const ClientQuestionnaire = () => {
+    const router = useRouter();
+    const [companyName,setCompanyName]=useState("")
+    const [contactEmail,setContactEmail]=useState("")
+    const [contactNumber,setContactNumber]=useState("")
+    const [personName,setPersonName]=useState("")
+    const [typeEvents,setTypeEvents]=useState("Family Day")
+    const [whereEventsSelected,setWhereEventsSelected]=useState("Out-door")
+    const [whereEventsDetails,setWhereEventsDetails]=useState("")
+
+    const [howLongEvents,setHowLongEvents]=useState("")
+    const [eventDate,setEventDate]=useState("")
+    const [rangeBudgetSelected,setRangeBudgetSelected]=useState("0 - 100.000 SR")
+    const [rangeBudgetDetails,setRangeBudgetDetails]=useState("")
+    const [eventGoal,setEventGoal]=useState("")
+    const [challenges,setChallenges]=useState("")
+    const [atmosphere,setAtmosphere]=useState("")
+    const [similarEvent,setSimilarEvent]=useState("")
+    const [numberAudiences,setNumberAudiences]=useState("")
+    const [invitationMethod,setInvitationMethod]=useState("E-Invitation")
+    const [foodOption,setFoodOption]=useState("Open Buffet")
+    const [targetAudience,setTargetAudience]=useState("Kids")
+    const [targetAge,setTargetAge]=useState("")
+    const [specialGuestChecked,setSpecialGuestChecked]=useState(true)
+    const [specialGuestDetails,setSpecialGuestDetails]=useState("")
+
+    const [eventName,setEventName]=useState("")
+    const [elementsSelected,setElementsSelected]=useState("Logistics")
+    const [elementsDetails,setElementsDetails]=useState("")
+    const [intention,setIntention]=useState("")
+    const [registrationSystem,setRegistrationSystem]=useState("")
+    const [previousClientSelected,setPreviousClientSelected]=useState(true)
+    const [previousClientDetails,setPreviousClientDetails]=useState("")
+
+    const [hearAboutUS,setHearAboutUS]=useState("Through Friends")
+    const [meeting,setMeeting]=useState("")
+    const [touch,setTouch]=useState("Email")
+    
+
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+        if(isValid())
+        {
+
+        
+            console.log(previousClientSelected)
+            const data = {companyName:companyName,contactEmail:contactEmail,contactNumber:contactNumber,personName:personName,typeEvents:typeEvents,whereEvents:{selected:whereEventsSelected,details:whereEventsDetails}
+            ,howLongEvents:howLongEvents,eventDate:eventDate,rangeBudget:{selected:rangeBudgetSelected,details:rangeBudgetDetails},
+            challenges:challenges,atmosphere:atmosphere,similarEvent:similarEvent,numberAudiences:numberAudiences,invitationMethod:invitationMethod,foodOption:foodOption,targetAudience:targetAudience,targetAge:targetAge,specialGuest:{checked:specialGuestChecked,details:specialGuestDetails}
+            ,eventName:eventName,elements:{selected:elementsSelected,details:elementsDetails},intention:intention,registrationSystem:registrationSystem
+            ,previousClient:{selected:previousClientSelected,details:previousClientDetails},hearAboutUS:hearAboutUS,meeting:meeting,touch:touch};
+            const config = {
+                method: 'POST',
+                url: `${API_URL}/questionnaires/`,
+                data
+            }
+            axios(config)
+                .then(({ status, data }) => {
+                    console.log(status)
+                    console.log(data)
+                    toast.success('your form has been successfully send ')                
+                    setTimeout(function() {
+                         router.push('/')
+                    }, 5000); 
+                                 
+                })
+                .catch(err => {
+                    if (err.response) {
+                        const { status, data } = err.response;
+
+                        if ((status === 400) || (status === 404) || (status === 401)) {
+                            console.log(data.error);
+                            toast.error(data.error);
+
+                        }
+                    }
+                })
+        }  
+    }
+    const isValid = () => {
+       
+
+       if(!companyName){
+        toast.info("companyName is required")
+        return false;
+       }
+       if(!contactEmail){
+        toast.info("contactEmail is required")
+        return false;
+       }
+       if(!contactNumber){
+        toast.info("contactNumber is required")
+        return false;
+       }
+
+       if(!personName){
+           toast.info('personName is required')
+       }
+
+        return true;
+    }
+  
     return (
         <>
             <Layout navWithBackground>
                 <section className="container">
                     <h1>Client Questionnaire</h1>
 
-                    <form>
+                    <form onSubmit={e => handleSubmit(e)}>
                         <div className="grid">
                             <div>
                                 <label>Company Name*</label>
-                                <input type="text" className="form-input" placeholder="Company Name*" />
+                                <input type="text" className="form-input" placeholder="Company Name*" value={companyName}  onChange={(e) => {setCompanyName(e.target.value)}}/>
                             </div>
                             <div>
                                 <label>Contact Email*</label>
-                                <input type="text" className="form-input" placeholder="Contact Email" />
+                                <input type="text" className="form-input" placeholder="Contact Email" value={contactEmail} onChange={(e) => {setContactEmail(e.target.value)}} />
                             </div>
                             <div>
                                 <label>Contact Number*</label>
-                                <input type="text" className="form-input" placeholder="Contact Number" />
+                                <input type="text" className="form-input" placeholder="Contact Number" value={contactNumber} onChange={(e) => {setContactNumber(e.target.value)}}/>
                             </div>
                             <div>
                                 <label>Person Name*</label>
-                                <input type="text" className="form-input" placeholder="Person Name" />
+                                <input type="text" className="form-input" placeholder="Person Name" value={personName} onChange={(e) => {setPersonName(e.target.value)}}/>
                             </div>
                         </div>
-
                         <div className="sub-section">
                             <h2>Event Overview</h2>
+
                         </div>
 
                         <div className="grid">
                             <div>
                                 <label>What type of Events are you planning for?*</label>
-                                <select className="form-input">
+                                <select className="form-input" value= {typeEvents} onChange={(e) => {setTypeEvents(e.target.value)}} >
                                     <option value="Family Day">Family Day</option>
                                     <option value="Young Employee">Young Employee</option>
                                     <option value="Public Events">Public Events</option>
@@ -45,7 +154,7 @@ const ClientQuestionnaire = () => {
                             </div>
                             <div>
                                 <label>Where would you like the Event to be held?*</label>
-                                <select className="form-input">
+                                <select className="form-input" value= {whereEventsSelected} onChange={(e) => {setWhereEventsSelected(e.target.value)}} >
                                     <option value="Out-door">Out-door</option>
                                     <option value="Work place">Work place</option>
                                     <option value="Hotel">Hotel</option>
@@ -53,44 +162,52 @@ const ClientQuestionnaire = () => {
                                     <option value="In-door">In-door</option>
                                     <option value="Other">Other</option>
                                 </select>
-                                {/* IF other */}
+                                {(whereEventsSelected=="Other")?
+                                <input type="text" className="form-input" placeholder="Where would you like the Event to be held?*" value= {whereEventsDetails} onChange={(e) => {setWhereEventsDetails(e.target.value)}} /> 
+                                :
+                                <div></div>
+                            }
                                 {/* <input type="text" className="form-input" placeholder="Where would you like the Event to be held?*" /> */}
                             </div>
                             <div>
                                 <label>How long would you like the event to run?*</label>
-                                <input type="text" className="form-input" placeholder="How long would you like the event to run?*" />
+                                <input type="text" className="form-input" placeholder="How long would you like the event to run?*" value= {howLongEvents} onChange={(e) => {setHowLongEvents(e.target.value)}} />
                             </div>
                             <div>
                                 <label>What is the Event Date?*</label>
-                                <input type="date" className="form-input" />
+                                <input type="date" className="form-input" value= {eventDate} onChange={(e) => {setEventDate(e.target.value)}}  />
                             </div>
                             <div>
                                 <label>What is the project range budget?*</label>
-                                <select className="form-input">
+                                <select className="form-input" value={rangeBudgetSelected} onChange={(e) => {setRangeBudgetSelected(e.target.value)}}>
                                     <option value="0 - 100.000 SR">0 - 100.000 SR</option>
                                     <option value="100.000 - 500.000 SR">100.000 - 500.000 SR</option>
                                     <option value="500.000 - 1.000.000 SR">500.000 - 1.000.000 SR</option>
                                     <option value="Other">Other</option>
                                 </select>
-                                {/* IF other */}
+                                {(rangeBudgetSelected=="Other")?
+                                <input type="text" className="form-input" placeholder="What is the project range budget?*" value={rangeBudgetDetails} onChange={(e) => {setRangeBudgetDetails(e.target.value)}} /> 
+                                :
+                                <div></div>
+                                }
                                 {/* <input type="text" className="form-input" placeholder="What is the project range budget?*" /> */}
                             </div>
                             <div></div>
                             <div>
                                 <label>What is your main goal from this event?</label>
-                                <textarea className="form-input" placeholder="What is your main goal from this event?"></textarea>
+                                <textarea className="form-input" placeholder="What is your main goal from this event?" value= {eventGoal} onChange={(e) => {setEventGoal(e.target.value)}} ></textarea>
                             </div>
                             <div>
                                 <label>Do you have any concerns or potential challenges in mind?</label>
-                                <textarea className="form-input" placeholder="Do you have any concerns or potential challenges in mind?"></textarea>
+                                <textarea className="form-input" placeholder="Do you have any concerns or potential challenges in mind?" value= {challenges} onChange={(e) => {setChallenges(e.target.value)}} ></textarea>
                             </div>
                             <div>
                                 <label>What is the identity and overall atmosphere?</label>
-                                <textarea className="form-input" placeholder="What is the identity and overall atmosphere?"></textarea>
+                                <textarea className="form-input" placeholder="What is the identity and overall atmosphere?" value= {atmosphere} onChange={(e) => {setAtmosphere(e.target.value)}} ></textarea>
                             </div>
                             <div>
                                 <label>Have you been to other similar event before? Positive/Negative?</label>
-                                <textarea className="form-input" placeholder="Have you been to other similar event before? Positive/Negative?"></textarea>
+                                <textarea className="form-input" placeholder="Have you been to other similar event before? Positive/Negative?" value= {similarEvent} onChange={(e) => {setSimilarEvent(e.target.value)}} ></textarea>
                             </div>
                         </div>
 
@@ -101,11 +218,11 @@ const ClientQuestionnaire = () => {
                         <div className="grid">
                             <div>
                                 <label>What is expected number of attendees?*</label>
-                                <input type="number" className="form-input" placeholder="What is expected number of attendees?*" />
+                                <input type="number" className="form-input" placeholder="What is expected number of attendees?*" value= {numberAudiences} onChange={(e) => {setNumberAudiences(e.target.value)}}  />
                             </div>
                             <div>
                                 <label>How would you like to invite the audience?*</label>
-                                <select className="form-input">
+                                <select className="form-input" value= {invitationMethod} onChange={(e) => {setInvitationMethod(e.target.value)}} >
                                     <option value="E-Invitation">E-Invitation</option>
                                     <option value="Through Social media platform">Through Social media platform</option>
                                     <option value="Printing Invitation">Printing Invitation</option>
@@ -113,7 +230,7 @@ const ClientQuestionnaire = () => {
                             </div>
                             <div>
                                 <label>What food option would you like to offer the audience?*</label>
-                                <select className="form-input">
+                                <select className="form-input" value= {foodOption} onChange={(e) => {setFoodOption(e.target.value)}} >
                                     <option value="Open Buffet">Open Buffet</option>
                                     <option value="Trucks & Booths">Trucks & Booths</option>
                                     <option value="Snaks">Snaks</option>
@@ -124,7 +241,7 @@ const ClientQuestionnaire = () => {
                             </div>
                             <div>
                                 <label>Who is the main target audience for this event*</label>
-                                <select className="form-input">
+                                <select className="form-input" value= {targetAudience} onChange={(e) => {setTargetAudience(e.target.value)}}>
                                     <option value="Kids">Kids</option>
                                     <option value="Families">Families</option>
                                     <option value="Mixed">Mixed</option>
@@ -134,16 +251,16 @@ const ClientQuestionnaire = () => {
                             </div>
                             <div>
                                 <label>What is the target age?*</label>
-                                <textarea className="form-input" placeholder="What is the target age?*"></textarea>
+                                <textarea className="form-input" placeholder="What is the target age?*" value= {targetAge} onChange={(e) => {setTargetAge(e.target.value)}}></textarea>
                             </div>
                             <div></div>
                             <div>
                                 <div className="flex ai-c">
-                                    <input type="checkbox" />
-                                    <label>Will be there a special guest?*</label>
+                                    <input type="checkbox" checked={specialGuestChecked} onChange={(e) => {setSpecialGuestChecked(!specialGuestChecked)}}/>
+                                    <label>Will be there a special guest?</label>
                                 </div>
                                 <label>More details</label>
-                                <input type="number" className="form-input" placeholder="What is expected number of attendees?*" />
+                                <input type="text" className="form-input" placeholder="more details" value= {specialGuestDetails} onChange={(e) => {setSpecialGuestDetails(e.target.value)}}  />
                             </div>
                         </div>
 
@@ -154,30 +271,30 @@ const ClientQuestionnaire = () => {
                         <div className="grid">
                             <div>
                                 <label>What is the event name?*</label>
-                                <input type="number" className="form-input" placeholder="What is the event name?*" />
+                                <input type="text" className="form-input" placeholder="What is the event name?*" value={eventName} onChange={(e) => {setEventName(e.target.value)}} />
                             </div>
                             <div></div>
                             <div>
                                 <label>What is the most important elements you want to see at the event?*</label>
-                                <select className="form-input">
+                                <select className="form-input" value={elementsSelected} onChange={(e) => {setElementsSelected(e.target.value)}}>
                                     <option value="Logistics">Logistics</option>
                                     <option value="Activities">Activities</option>
                                     <option value="Valet">Valet</option>
                                     <option value="Documentation">Documentation</option>
                                     <option value="Catering">Catering</option>
-                                    <option value="Catering">Stage & Shows</option>
+                                    <option value="Stage & Shows">Stage & Shows</option>
                                 </select>
                                 <label>More details</label>
-                                <textarea className="form-input" placeholder="More details"></textarea>
+                                <textarea className="form-input" placeholder="More details" value={elementsDetails} onChange={(e) => {setElementsDetails(e.target.value)}} ></textarea>
                             </div>
                             <div></div>
                             <div>
                                 <label>Do you intend to have MC, live entertainment or speakers?*</label>
-                                <textarea className="form-input" placeholder="Do you intend to have MC, live entertainment or speakers?"></textarea>
+                                <textarea className="form-input" placeholder="Do you intend to have MC, live entertainment or speakers?" value={intention} onChange={(e) => {setIntention(e.target.value)}}></textarea>
                             </div>
                             <div>
                                 <label>What registration system do you prefer to provide?*</label>
-                                <textarea className="form-input" placeholder="What registration system do you prefer to provide?"></textarea>
+                                <textarea className="form-input" placeholder="What registration system do you prefer to provide?" value={registrationSystem} onChange={(e) => {setRegistrationSystem(e.target.value)}}></textarea>
                             </div>
                         </div>
 
@@ -188,16 +305,16 @@ const ClientQuestionnaire = () => {
                         <div className="grid">
                             <div>
                                 <div className="flex ai-c">
-                                    <input type="checkbox" />
-                                    <label>Are you a previous client?*</label>
+                                    <input type="checkbox"  checked={previousClientSelected} onChange={(e) => {setPreviousClientSelected(!previousClientSelected)}}/>
+                                    <label>Are you a previous client?</label>
                                 </div>
                                 <label>More details</label>
-                                <textarea className="form-input" placeholder="More details" />
+                                <textarea className="form-input" placeholder="More details" value= {previousClientDetails} onChange={(e) => {setPreviousClientDetails(e.target.value)}} />
                             </div>
                             <div></div>
                             <div>
                                 <label>How did you hear about us?*</label>
-                                <select className="form-input">
+                                <select className="form-input" value={hearAboutUS} onChange={(e) => {setHearAboutUS(e.target.value)}}>
                                     <option value="Through Friends">Through Friends</option>
                                     <option value="Through Social media platform">Through Social media platform</option>
                                     <option value="Website">Website</option>
@@ -206,17 +323,20 @@ const ClientQuestionnaire = () => {
                             <div></div>
                             <div>
                                 <label>Do you prefer to have a meeting with us?*</label>
-                                <textarea className="form-input" placeholder="Do you prefer to have a meeting with us?*" />
+                                <textarea className="form-input" placeholder="Do you prefer to have a meeting with us?*" value={meeting} onChange={(e) => {setMeeting(e.target.value)}} />
                             </div>
                             <div></div>
                             <div>
                                 <label>How do you prefer to get in touch with us ?</label>
-                                <select className="form-input">
+                                <select className="form-input" value={touch} onChange={(e) => {setTouch(e.target.value)}}>
                                     <option value="Email">Email</option>
                                     <option value="Phone Number">Phone Number</option>
                                 </select>
                             </div>
                         </div>
+                        <div align="right" style={{marginTop:20}}>
+                             <button className="btn">Send Your Application</button>
+                        </div>                       
                     </form>
                 </section>
             </Layout>

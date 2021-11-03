@@ -24,7 +24,6 @@ const JoinUs = () => {
     
     const handleEmployeeSubmit = async e => {
         e.preventDefault();
-        console.log('ok')
         if(isEmployeeValid()){
 
             let data = new FormData();            
