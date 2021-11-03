@@ -2,7 +2,7 @@ const withPlugins = require('next-compose-plugins')
 const withImages = require('next-images')
 const nextConfig = {
   images: {
-    domains: ['localhost']
+    domains: ['localhost', '35.193.29.67']
   }
 }
 
