@@ -4,7 +4,6 @@ import axios from 'axios';
 import { API_URL } from '../utils/consts';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
-
 import { Router } from "next/dist/client/router";
 
 const ClientQuestionnaire = () => {
@@ -44,16 +43,13 @@ const ClientQuestionnaire = () => {
     const [hearAboutUS,setHearAboutUS]=useState("Through Friends")
     const [meeting,setMeeting]=useState("")
     const [touch,setTouch]=useState("Email")
+    const [disable, setDisable] = useState(false);
+
     
-
-
     const handleSubmit = async e => {
         e.preventDefault();
         if(isValid())
         {
-
-        
-            console.log(previousClientSelected)
             const data = {companyName:companyName,contactEmail:contactEmail,contactNumber:contactNumber,personName:personName,typeEvents:typeEvents,whereEvents:{selected:whereEventsSelected,details:whereEventsDetails}
             ,howLongEvents:howLongEvents,eventDate:eventDate,rangeBudget:{selected:rangeBudgetSelected,details:rangeBudgetDetails},
             challenges:challenges,atmosphere:atmosphere,similarEvent:similarEvent,numberAudiences:numberAudiences,invitationMethod:invitationMethod,foodOption:foodOption,targetAudience:targetAudience,targetAge:targetAge,specialGuest:{checked:specialGuestChecked,details:specialGuestDetails}
@@ -64,17 +60,16 @@ const ClientQuestionnaire = () => {
                 url: `${API_URL}/questionnaires/`,
                 data
             }
+            setDisable(true)
             axios(config)
                 .then(({ status, data }) => {
                     console.log(status)
                     console.log(data)
-                    toast.success('your form has been successfully send ')                
-                    setTimeout(function() {
-                         router.push('/')
-                    }, 5000); 
-                                 
+                    toast.success('your form has been successfully send')      
+                    InitQuestionnaire()                                 
                 })
                 .catch(err => {
+                    
                     if (err.response) {
                         const { status, data } = err.response;
 
@@ -85,6 +80,11 @@ const ClientQuestionnaire = () => {
                         }
                     }
                 })
+                .finally(()=>{
+                    setDisable(false)
+
+                })
+
         }  
     }
     const isValid = () => {
@@ -104,10 +104,105 @@ const ClientQuestionnaire = () => {
        }
 
        if(!personName){
-           toast.info('personName is required')
+        toast.info('personName is required')
+        return false;
+
+       }
+       if(!typeEvents){
+        toast.info('What type of Events are you planning for is required')
+        return false;
+
+       }
+       if(whereEventsSelected=="Other" && !whereEventsDetails){
+        toast.info('Where would you like the Event to be held is required')
+        return false
+       }
+       if(!howLongEvents){
+        toast.info('How long would you like the event to run is required')
+        return false   
+       }
+       if (!eventDate){
+        toast.info('What is the Event Date')
+        return false      
+       }
+     
+       if(rangeBudgetSelected=="Other" && !rangeBudgetDetails){
+        toast.info('What is the project range budget is required')
+        return false
        }
 
+       if(!numberAudiences){
+        toast.info('What is expected number of attendees is required')
+        return false         
+       }
+
+       if(!foodOption){
+        toast.info('What food option would you like to offer the audience is required')
+        return false     
+       }
+
+       if(!targetAudience){
+        toast.info('Who is the main target audience for this event is required')
+        return false     
+       }
+       if(!targetAge){
+        toast.info('What is the target age is required')
+        return false 
+       }
+
+       if(!eventName){
+        toast.info('What is the event name is required')
+        return false 
+       }
+
+       if(!intention){
+        toast.info('Do you intend to have MC, live entertainment or speakers is required')
+        return false 
+       }
+       if(!registrationSystem){
+        toast.info('What registration system do you prefer to provide is required')
+        return false 
+       }
+       if(!meeting){
+        toast.info('Do you prefer to have a meeting with us is required')
+        return false 
+       }
         return true;
+    }
+
+    const InitQuestionnaire = () => {
+        setCompanyName("")
+        setContactEmail("")
+        setContactNumber("")
+        setPersonName("")
+        setTypeEvents("Family Day")
+        setWhereEventsSelected("Out-door")
+        setWhereEventsDetails("")
+        setHowLongEvents("")
+        setEventDate("")
+        setRangeBudgetSelected("0 - 100.000 SR")
+        setRangeBudgetDetails("")
+        setEventGoal("")
+        setChallenges("")
+        setAtmosphere("")
+        setSimilarEvent("")
+        setNumberAudiences("")
+        setInvitationMethod("E-Invitation")
+        setFoodOption("Open Buffet")
+        setTargetAudience("Kids")
+        setTargetAge("")
+        setSpecialGuestChecked(true)
+        setSpecialGuestDetails("")
+        setEventName("")
+        setElementsSelected("Logistics")
+        setElementsDetails("")
+        setIntention("")
+        setRegistrationSystem("")
+        setPreviousClientSelected(true)
+        setPreviousClientDetails("")
+        setHearAboutUS("Through Friends")
+        setMeeting("")
+        setTouch("Email")
     }
   
     return (
@@ -335,7 +430,7 @@ const ClientQuestionnaire = () => {
                             </div>
                         </div>
                         <div align="right" style={{marginTop:20}}>
-                             <button className="btn">Send Your Application</button>
+                             <button className="btn" disabled={disable} >Send Your Application</button>
                         </div>                       
                     </form>
                 </section>

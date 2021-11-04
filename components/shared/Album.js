@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
-import image from 'next/image';
 
-const Album = ({ title, mainImg, images }) => {
+const Album = ({ title, mainImg, IMAGES }) => {
     const [modalIsOpen, setIsOpen] = useState(false);
 
     return (
@@ -11,6 +10,10 @@ const Album = ({ title, mainImg, images }) => {
                 <Image src={mainImg} alt={title} width={264} height={256} objectFit="cover" />
                 <h4>{title}</h4>
             </div>
+
+
+
+        
 
             <style jsx>{`
                 .album {

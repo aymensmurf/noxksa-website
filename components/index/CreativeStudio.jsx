@@ -13,7 +13,7 @@ const CreativeStudio = ({creativeStudio}) => {
                 <div className="container" style={{ marginTop: 60 }}>
                     <div className="flex ai-c flex-wrap" style={{ gap: 30 }}>
                         {creativeStudio.map(({ title,links }, i) => (
-                            <Album key={i} title={title.en} mainImg={`${SERVER_URL}/uploads/${links[parseInt(Math.random() * (links.length))].link}`} images={links}/>
+                            <Album key={i} title={title.en} mainImg={`${SERVER_URL}/uploads/${links[parseInt(Math.random() * (links.length))].link}`} IMAGES={links}/>
                         ))}
                     </div>
                 </div>

@@ -19,13 +19,14 @@ const JoinUs = () => {
     const [dateOfBirth,setDateOfBirth]=useState("");
     const [languages,setLanguages]=useState("");
     const [isExperiences,setIsexperiences]=useState("");
+    const [disableEmployeeButton, setDisableEmployeeButton] = useState(false);
+    const [disableOrganizerButton, setDisableOrganizerButton] = useState(false);
 
    
     
     const handleEmployeeSubmit = async e => {
         e.preventDefault();
         if(isEmployeeValid()){
-
             let data = new FormData();            
             data.append('files',file)
             data.append('fullname', fullName);
@@ -40,6 +41,7 @@ const JoinUs = () => {
                 url: `${API_URL}/employees/`,
                 data
             }
+            setDisableEmployeeButton(true)
             axios(config)
                 .then(({ status, data }) => {
                     console.log(status)
@@ -56,6 +58,10 @@ const JoinUs = () => {
                         }
                     }
                 })
+                .finally(()=>{
+                    setDisableEmployeeButton(false)
+
+                })
         }   
     }
 
@@ -64,7 +70,6 @@ const JoinUs = () => {
     const handleOrganizerSubmit = async e => {
         e.preventDefault();
         if(isOrganizerValid()){
-
             let data = new FormData();            
             data.append('files',file)
             data.append('fullname', fullName);
@@ -81,6 +86,7 @@ const JoinUs = () => {
                 url: `${API_URL}/organizers/`,
                 data
             }
+            setDisableOrganizerButton(true)
             axios(config)
                 .then(({ status, data }) => {
                     console.log(status)
@@ -99,6 +105,9 @@ const JoinUs = () => {
                             toast.error(data.error);
                         }
                     }
+                })
+                .finally(()=>{
+                    setDisableOrganizerButton(false)
                 })
         }   
     }
@@ -132,11 +141,7 @@ const JoinUs = () => {
         setLanguages("")
         setIsexperiences("")
     }
-    
-
     const isOrganizerValid = () => {
-       
-
         if (!fullName) {
             toast.info("Fullname is required")
             return false;
@@ -189,8 +194,7 @@ const JoinUs = () => {
         return true;
     }
     
-    const isEmployeeValid = () => {
-       
+    const isEmployeeValid = () => {  
 
         if (!fullName) {
             toast.info("Fullname is required")
@@ -301,7 +305,7 @@ const JoinUs = () => {
                         </div>
                     </div>
                     <div align="right" style={{marginTop:20}}>
-                    <button className="btn">Send Your Application</button>
+                    <button className="btn" disabled={disableEmployeeButton}>Send Your Application</button>
                     </div>               
                 </form>
             </Modal>
@@ -366,7 +370,7 @@ const JoinUs = () => {
                         </div>
                     </div>
                     <div align="right" style={{marginTop:20}}>
-                    <button className="btn">Send Your Application</button>
+                    <button className="btn" disabled={disableOrganizerButton}>Send Your Application</button>
                     </div>                                   
                 </form>
             </Modal>
