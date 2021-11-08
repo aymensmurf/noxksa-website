@@ -48,6 +48,7 @@ const JoinUs = () => {
                     console.log(data)
                     toast.success('your application has been successfully send ')                
                     initEmployee();
+                    setIsEmployeeModalOpen(false)
                 })
                 .catch(err => {
                     if (err.response) {
@@ -93,6 +94,7 @@ const JoinUs = () => {
                     console.log(data)
                     toast.success('your application has been successfully send ')                
                     initOrganizer();
+                    setIsOrganizerModalOpen(false)
                
                
                

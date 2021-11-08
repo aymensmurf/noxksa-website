@@ -52,7 +52,7 @@ const ClientQuestionnaire = () => {
         {
             const data = {companyName:companyName,contactEmail:contactEmail,contactNumber:contactNumber,personName:personName,typeEvents:typeEvents,whereEvents:{selected:whereEventsSelected,details:whereEventsDetails}
             ,howLongEvents:howLongEvents,eventDate:eventDate,rangeBudget:{selected:rangeBudgetSelected,details:rangeBudgetDetails},
-            challenges:challenges,atmosphere:atmosphere,similarEvent:similarEvent,numberAudiences:numberAudiences,invitationMethod:invitationMethod,foodOption:foodOption,targetAudience:targetAudience,targetAge:targetAge,specialGuest:{checked:specialGuestChecked,details:specialGuestDetails}
+            eventGoal:eventGoal,challenges:challenges,atmosphere:atmosphere,similarEvent:similarEvent,numberAudiences:numberAudiences,invitationMethod:invitationMethod,foodOption:foodOption,targetAudience:targetAudience,targetAge:targetAge,specialGuest:{checked:specialGuestChecked,details:specialGuestDetails}
             ,eventName:eventName,elements:{selected:elementsSelected,details:elementsDetails},intention:intention,registrationSystem:registrationSystem
             ,previousClient:{selected:previousClientSelected,details:previousClientDetails},hearAboutUS:hearAboutUS,meeting:meeting,touch:touch};
             const config = {
@@ -91,15 +91,15 @@ const ClientQuestionnaire = () => {
        
 
        if(!companyName){
-        toast.info("companyName is required")
+        toast.info("company Name is required")
         return false;
        }
        if(!contactEmail){
-        toast.info("contactEmail is required")
+        toast.info("contact Email is required")
         return false;
        }
        if(!contactNumber){
-        toast.info("contactNumber is required")
+        toast.info("contact Number is required")
         return false;
        }
 

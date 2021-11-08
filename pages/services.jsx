@@ -39,7 +39,7 @@ const Services = () => {
                             {
                                 subCategories && subCategories.map(({ _id, description ,title}, i) => (
                                 <div key={_id+i} style={{ marginLeft: "40px" }}>                                    
-                                    <h2 className={`colors${i%4}`}>{title.en}</h2>
+                                    <h4 className={`colors${i%4}`}>{title.en}</h4>
                                     <p>{description.en}</p>
                                 </div>    
                              ))
@@ -103,6 +103,11 @@ const Services = () => {
                
                     font-weight: 400;
                     font-size: 2rem;
+                }
+                h4 {
+               
+                    font-weight: 200;
+                    font-size: 1rem;
                 }
 
                 p {

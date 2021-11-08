@@ -45,7 +45,7 @@ const Index = () => {
     const getAlbums = () => {
         const config = {
             method: 'get',
-            url: `${API_URL}/albums`,
+            url: `${API_URL}/albums/specific`,
             
         };
     
