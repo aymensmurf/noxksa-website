@@ -1,12 +1,13 @@
 import Image from 'next/image'
 import BannerRight from '../shared/BannerRight'
+import { withTranslation } from '../../i18n'
 
-const ContactUs = () => {
+const ContactUs = ({t}) => {
     return (
         <>
             <a name="contact-us" />
             <section>
-                <BannerRight title="Contact Us" />
+                <BannerRight title={t('CONTACTUS.contactus')} />
 
                 <div className="container" style={{ marginTop: 60 }}>
                     <div className="grid">
@@ -16,7 +17,7 @@ const ContactUs = () => {
 
                         <div className="flex jc-sb flex-wrap" style={{ marginTop: 0, gap: 60 }}>
                             <div>
-                                <h3>Contact us:</h3>
+                                <h3>{t('CONTACTUS.contactus')}:</h3>
                                 <div className="flex ai-c">
                                     <Icon src="/img/icons/wa.png" alt="Whatsapp" />
                                     <p>+966 55 444 3450</p>
@@ -27,7 +28,7 @@ const ContactUs = () => {
                                 </div>
                             </div>
                             <div>
-                                <h3>Follow us:</h3>
+                                <h3>{t('CONTACTUS.followus')}:</h3>
                                 <div className="flex ai-c">
                                     <a href="https://twitter.com/NoxKsa" target="_blank" rel="noopener noreferrer"><Icon src="/img/icons/tw.png" alt="Twitter" /></a>
                                     <a href="https://twitter.com/NoxKsa" target="_blank" rel="noopener noreferrer"><p>@NoxKsa</p></a>
@@ -39,7 +40,7 @@ const ContactUs = () => {
                                 </div>
                             </div>
                             <div>
-                                <h3>Our office:</h3>
+                                <h3>{t('CONTACTUS.office')}:</h3>
                                 <p>Near Red Fox in 7th Deam Almasif, Riyadh 12647</p>
                             </div>
                         </div>
@@ -106,4 +107,8 @@ const Icon = ({ src, alt }) => (
     </>
 )
 
-export default ContactUs;
+ContactUs.getInitialProps = async () => ({
+    namespacesRequired: ['common'],
+  })
+  
+export default withTranslation('common')(ContactUs);

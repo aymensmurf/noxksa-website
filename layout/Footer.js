@@ -1,8 +1,11 @@
-const Footer = () => {
+import { withTranslation } from '../i18n'
+const Footer = ({t}) => {
+    //                    background-position: bottom left;
+
     return (
         <>
             <footer className="flex ai-c jc-end">
-                <p>© Copyright 2020 Ktheeb Company. All Rights Reserved.</p>
+                <p>{t('FOOTER.footer')}</p>
             </footer>
 
             <style jsx>{`
@@ -11,7 +14,6 @@ const Footer = () => {
                     height: 87px;
                     background-image: url("/img/footer.png");
                     background-repeat: no-repeat;
-                    background-position: bottom left;
                     background-size: contain;
                 }
 
@@ -38,5 +40,10 @@ const Footer = () => {
         </>
     )
 }
+Footer.getInitialProps = async () => ({
+    namespacesRequired: ['common'],
+  })
+  
+export default withTranslation('common')(Footer);
 
-export default Footer;
+

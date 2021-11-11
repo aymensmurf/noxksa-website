@@ -2,13 +2,14 @@ import BannerLeft from "../shared/BannerLeft";
 import Album from "../shared/Album";
 import { ALBUMS } from "../../utils/consts";
 import { SERVER_URL } from '../../utils/consts';
+import { withTranslation } from '../../i18n'
 
-const CreativeStudio = ({creativeStudio}) => {
+const CreativeStudio = ({creativeStudio,t}) => {
     return (
         <>
             <a name="creative-studio" />
             <section>
-                <BannerLeft title="Creative Studio" />
+                <BannerLeft title={t('CREATIVESTUDIO.STUDIO')} />
 
                 <div className="container" style={{ marginTop: 60 }}>
                     <div className="flex ai-c flex-wrap" style={{ gap: 30 }}>
@@ -28,5 +29,7 @@ const CreativeStudio = ({creativeStudio}) => {
         </>
     )
 }
-
-export default CreativeStudio;
+CreativeStudio.getInitialProps = async () => ({
+    namespacesRequired: ['common'],
+  })
+export default withTranslation('common')(CreativeStudio);

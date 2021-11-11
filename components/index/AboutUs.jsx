@@ -1,17 +1,18 @@
 import BannerRight from "../shared/BannerRight";
+import { withTranslation } from '../../i18n'
 
-const AboutUs = () => {
+const AboutUs = ({t}) => {
     return (
         <>
             <a name="about-us" />
             <section>
-                <BannerRight title="Who we are" />
+                <BannerRight title={t('ABOUTUS.whoweare')} />
 
                 <div className="container">
                     <div className="content">
-                        <p>NOX by Ktheeb Is a company specialized in creating entertainment, established in 2017 Specialized in creating concepts and building complete entertainment.</p>
-                        <p>Through a short period of time the company made an outstanding model in transportable entertainment throughout the Kingdom of Saudi Arabia.</p>
-                        <p>Since 2017 and until this day the company has grown along-side its employees with their capabilities and the creativity spread throughout the department,creating exceptional entertainment contents.</p>
+                        <p>{t('ABOUTUS.p1')}</p>
+                        <p>{t('ABOUTUS.p2')}</p>
+                        <p>{t('ABOUTUS.p3')}</p>
                     </div>
                 </div>
             </section>
@@ -54,5 +55,10 @@ const AboutUs = () => {
         </>
     )
 }
+AboutUs.getInitialProps = async () => ({
+    namespacesRequired: ['common'],
+  })
+  
 
-export default AboutUs;
+export default withTranslation('common')(AboutUs);
+

@@ -5,8 +5,9 @@ import { API_URL } from '../utils/consts';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { Router } from "next/dist/client/router";
+import { withTranslation } from '../i18n'
 
-const ClientQuestionnaire = () => {
+const ClientQuestionnaire = ({t}) => {
     const router = useRouter();
     const [companyName,setCompanyName]=useState("")
     const [contactEmail,setContactEmail]=useState("")
@@ -214,20 +215,20 @@ const ClientQuestionnaire = () => {
                     <form onSubmit={e => handleSubmit(e)}>
                         <div className="grid">
                             <div>
-                                <label>Company Name*</label>
-                                <input type="text" className="form-input" placeholder="Company Name*" value={companyName}  onChange={(e) => {setCompanyName(e.target.value)}}/>
+                                <label>{t('CLIENTQUEST.compN')}*</label>
+                                <input type="text" className="form-input" placeholder={t('CLIENTQUEST.compN')} value={companyName}  onChange={(e) => {setCompanyName(e.target.value)}}/>
                             </div>
                             <div>
-                                <label>Contact Email*</label>
-                                <input type="text" className="form-input" placeholder="Contact Email" value={contactEmail} onChange={(e) => {setContactEmail(e.target.value)}} />
+                                <label>{t('CLIENTQUEST.contE')}*</label>
+                                <input type="text" className="form-input" placeholder={t('CLIENTQUEST.contE')} value={contactEmail} onChange={(e) => {setContactEmail(e.target.value)}} />
                             </div>
                             <div>
-                                <label>Contact Number*</label>
-                                <input type="text" className="form-input" placeholder="Contact Number" value={contactNumber} onChange={(e) => {setContactNumber(e.target.value)}}/>
+                                <label>{t('CLIENTQUEST.contN')}*</label>
+                                <input type="text" className="form-input" placeholder={t('CLIENTQUEST.contN')} value={contactNumber} onChange={(e) => {setContactNumber(e.target.value)}}/>
                             </div>
                             <div>
-                                <label>Person Name*</label>
-                                <input type="text" className="form-input" placeholder="Person Name" value={personName} onChange={(e) => {setPersonName(e.target.value)}}/>
+                                <label>{t('CLIENTQUEST.contE')}*</label>
+                                <input type="text" className="form-input" placeholder={t('CLIENTQUEST.contE')} value={personName} onChange={(e) => {setPersonName(e.target.value)}}/>
                             </div>
                         </div>
                         <div className="sub-section">
@@ -237,7 +238,7 @@ const ClientQuestionnaire = () => {
 
                         <div className="grid">
                             <div>
-                                <label>What type of Events are you planning for?*</label>
+                                <label>{t('EVENTQUEST.eventType')}*</label>
                                 <select className="form-input" value= {typeEvents} onChange={(e) => {setTypeEvents(e.target.value)}} >
                                     <option value="Family Day">Family Day</option>
                                     <option value="Young Employee">Young Employee</option>
@@ -248,7 +249,7 @@ const ClientQuestionnaire = () => {
                                 </select>
                             </div>
                             <div>
-                                <label>Where would you like the Event to be held?*</label>
+                                <label>{t('EVENTQUEST.eventHeld')}*</label>
                                 <select className="form-input" value= {whereEventsSelected} onChange={(e) => {setWhereEventsSelected(e.target.value)}} >
                                     <option value="Out-door">Out-door</option>
                                     <option value="Work place">Work place</option>
@@ -265,15 +266,15 @@ const ClientQuestionnaire = () => {
                                 {/* <input type="text" className="form-input" placeholder="Where would you like the Event to be held?*" /> */}
                             </div>
                             <div>
-                                <label>How long would you like the event to run?*</label>
-                                <input type="text" className="form-input" placeholder="How long would you like the event to run?*" value= {howLongEvents} onChange={(e) => {setHowLongEvents(e.target.value)}} />
+                                <label>{t('EVENTQUEST.eventLong')}*</label>
+                                <input type="text" className="form-input" placeholder={t('EVENTQUEST.eventLong')} value= {howLongEvents} onChange={(e) => {setHowLongEvents(e.target.value)}} />
                             </div>
                             <div>
-                                <label>What is the Event Date?*</label>
+                                <label>{t('EVENTQUEST.eventDate')}*</label>
                                 <input type="date" className="form-input" value= {eventDate} onChange={(e) => {setEventDate(e.target.value)}}  />
                             </div>
                             <div>
-                                <label>What is the project range budget?*</label>
+                                <label>{t('EVENTQUEST.eventBudget')}*</label>
                                 <select className="form-input" value={rangeBudgetSelected} onChange={(e) => {setRangeBudgetSelected(e.target.value)}}>
                                     <option value="0 - 100.000 SR">0 - 100.000 SR</option>
                                     <option value="100.000 - 500.000 SR">100.000 - 500.000 SR</option>
@@ -281,7 +282,7 @@ const ClientQuestionnaire = () => {
                                     <option value="Other">Other</option>
                                 </select>
                                 {(rangeBudgetSelected=="Other")?
-                                <input type="text" className="form-input" placeholder="What is the project range budget?*" value={rangeBudgetDetails} onChange={(e) => {setRangeBudgetDetails(e.target.value)}} /> 
+                                <input type="text" className="form-input" placeholder={t('EVENTQUEST.eventBudget')} value={rangeBudgetDetails} onChange={(e) => {setRangeBudgetDetails(e.target.value)}} /> 
                                 :
                                 <div></div>
                                 }
@@ -289,20 +290,20 @@ const ClientQuestionnaire = () => {
                             </div>
                             <div></div>
                             <div>
-                                <label>What is your main goal from this event?</label>
-                                <textarea className="form-input" placeholder="What is your main goal from this event?" value= {eventGoal} onChange={(e) => {setEventGoal(e.target.value)}} ></textarea>
+                                <label>{t('EVENTQUEST.eventGoal')}</label>
+                                <textarea className="form-input" placeholder={t('EVENTQUEST.eventGoal')} value= {eventGoal} onChange={(e) => {setEventGoal(e.target.value)}} ></textarea>
                             </div>
                             <div>
-                                <label>Do you have any concerns or potential challenges in mind?</label>
-                                <textarea className="form-input" placeholder="Do you have any concerns or potential challenges in mind?" value= {challenges} onChange={(e) => {setChallenges(e.target.value)}} ></textarea>
+                                <label>{t('EVENTQUEST.eventChallenges')}</label>
+                                <textarea className="form-input" placeholder={t('EVENTQUEST.eventChallenges')} value= {challenges} onChange={(e) => {setChallenges(e.target.value)}} ></textarea>
                             </div>
                             <div>
-                                <label>What is the identity and overall atmosphere?</label>
-                                <textarea className="form-input" placeholder="What is the identity and overall atmosphere?" value= {atmosphere} onChange={(e) => {setAtmosphere(e.target.value)}} ></textarea>
+                                <label>{t('EVENTQUEST.eventAtmosphere')}</label>
+                                <textarea className="form-input" placeholder={t('EVENTQUEST.eventAtmosphere')} value= {atmosphere} onChange={(e) => {setAtmosphere(e.target.value)}} ></textarea>
                             </div>
                             <div>
-                                <label>Have you been to other similar event before? Positive/Negative?</label>
-                                <textarea className="form-input" placeholder="Have you been to other similar event before? Positive/Negative?" value= {similarEvent} onChange={(e) => {setSimilarEvent(e.target.value)}} ></textarea>
+                                <label>{t('EVENTQUEST.eventSimilar')}</label>
+                                <textarea className="form-input" placeholder={t('EVENTQUEST.eventSimilar')} value= {similarEvent} onChange={(e) => {setSimilarEvent(e.target.value)}} ></textarea>
                             </div>
                         </div>
 
@@ -430,7 +431,7 @@ const ClientQuestionnaire = () => {
                             </div>
                         </div>
                         <div align="right" style={{marginTop:20}}>
-                             <button className="btn" disabled={disable} >Send Your Application</button>
+                             <button className="btn" disabled={disable}>{t('JOINUS.sendapp')}</button>
                         </div>                       
                     </form>
                 </section>
@@ -488,4 +489,8 @@ const ClientQuestionnaire = () => {
     )
 }
 
-export default ClientQuestionnaire;
+
+ClientQuestionnaire.getInitialProps = async () => ({
+    namespacesRequired: ['common'],
+  })  
+export default withTranslation('common')(ClientQuestionnaire);

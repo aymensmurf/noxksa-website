@@ -1,24 +1,37 @@
 import BannerRight from "../shared/BannerRight";
 import ImageLeft from "../shared/ImageLeft";
 import ImageRight from "../shared/ImageRight";
+import { withTranslation } from '../../i18n'
 
-const OurService = () => {
+const OurService = ({isRTL,t}) => {
     return (
-        <>
+        <>  
             <a name="our-services" />
             <section>
-                <BannerRight title="Our Services" />
+                <BannerRight title={t('OURSERVICES.SERVICES')} />
 
                 <ImageRight
                     text={
-                        <>
+                        <> {isRTL?
+                            <div>
+                            <span>برامجنا</span><br />
+                            <span style={{ color: '#F7006C' }}>الترفيهية</span><br />
+                            <span style={{ color: '#FFC581' }}>المجهزة لكم </span><br />
+                            </div>
+                           
+                            :
+                            <div>
                             <span>Our ready</span><br />
                             <span style={{ color: '#F7006C' }}>Entertainment</span><br />
                             <span style={{ color: '#FFC581' }}>Programs</span><br />
+                            </div>
+                          
+                        }
+                            
                         </>
                     }
                     img="/img/our-services/img1.png"
-                    btnTitle="Show All Programs"
+                    btnTitle={t('OURSERVICES.SHOWP')}
                     href="/programs"
                     style={{ marginTop: 60 }}
                     width={601}
@@ -29,13 +42,24 @@ const OurService = () => {
                 <ImageLeft
                     text={
                         <>
+                            {isRTL?
+                            <div>
+                            <span>خدماتنا</span><br />
+                            <span style={{ color: '#F7006C' }}>الترفيهية</span><br />
+                            <span style={{ color: '#FFC581' }}>المجهزة لكم</span><br />
+                            </div>
+                            :
+                            <div>
                             <span>Our</span><br />
                             <span style={{ color: '#F7006C' }}>Entertainment</span><br />
                             <span style={{ color: '#FFC581' }}>Services</span><br />
+                            </div>
+                            }
+                            
                         </>
                     }
                     img="/img/our-services/img2.png"
-                    btnTitle="Show All Services"
+                    btnTitle={t('OURSERVICES.SHOWS')}
                     href="/services"
                     style={{ marginTop: 170 }}
                     width={740}
@@ -45,13 +69,24 @@ const OurService = () => {
                 <ImageRight
                     text={
                         <>
+                        {isRTL?
+                        <div>
+                            <span>خدمات</span><br />
+                            <span style={{ color: '#F7006C' }}>الفعليات</span><br />
+                            <span style={{ color: '#FFC581' }}>الترفيهية</span><br />
+                        </div>
+                        :
+                        <div>
                             <span>Our Services For</span><br />
                             <span style={{ color: '#F7006C' }}>Entertainment</span><br />
                             <span style={{ color: '#FFC581' }}>Events</span><br />
+                        </div>
+                        }
+                       
                         </>
                     }
                     img="/img/our-services/img3.png"
-                    btnTitle="Show All Events"
+                    btnTitle={t('OURSERVICES.SHOWE')}
                     href="/events"
                     style={{ marginTop: 170 }}
                     width={477}
@@ -68,5 +103,10 @@ const OurService = () => {
         </>
     )
 }
+OurService.getInitialProps = async () => ({
+    namespacesRequired: ['common'],
+  })
+  
+export default withTranslation('common')(OurService);
 
-export default OurService;
+

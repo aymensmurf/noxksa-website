@@ -3,16 +3,11 @@ import { AboutUs, ContactUs, CreativeStudio, Home, JoinUs, OurClients, OurServic
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_URL } from '../utils/consts';
+import { i18n, withTranslation } from '../i18n'
+
  
-
-
-
-
-
-
-
 const Index = () => {
-
+    const [isRTL, setIsRTL] = useState(false)
     const [clients,setClients]=useState([]);
     const [albums,setAlbums]=useState([]);
     useEffect(() => {
@@ -21,6 +16,13 @@ const Index = () => {
         
     }, []);
 
+    useEffect(() => {
+        let isRTL = i18n.language === 'ar' ? true : false;
+        setIsRTL(isRTL)
+        
+    });
+
+  
 
     const getClients = () => {
         const config = {
@@ -63,8 +65,8 @@ const Index = () => {
         <Layout>
             <Home />
             <AboutUs />
-            <OurClients clients={clients} />
-            <OurServices />
+            <OurClients clients={clients}  />
+            <OurServices isRTL={isRTL}/>
             <CreativeStudio  creativeStudio={albums}/>
             <JoinUs />
             <ContactUs />

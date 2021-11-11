@@ -1,0 +1,98 @@
+{
+    "INDEX": {
+        "HI": "Hello, you can choose the appropriate donation method for you",
+        "DELIVERY_BTN": "Create a delivery request",
+        "DOWNLOAD_BTN": "Download the app",
+        "SHARE": "Share your comments and opinions",
+        "DONATE_VIA_WHATSAPP": "Create a delivery request via Whatsapp"
+    },
+    "LANG": {
+        "ARABIC": "Arabic",
+        "ENGLISH": "English"
+    },
+    "Nav":{
+        "ABOUTUS":"About Us",
+        "OURCLIENTS":"Our Clients",
+        "OURSERVICES":"Our Services",
+        "CREATIVESTUDIO":"Studio",
+        "JOINTHETEAM":"Join Us",
+        "CONTACTUS":"Contact Us",
+        "QUESTIONNAIRE":"Questionnaire"
+    },
+    "HOME":{
+        "Most":"The most",
+        "Enter":"Entertainment",
+        "All":"All for you",
+        "WORDS" :["Services", "Programs", "Events"]
+
+    },
+    "OURCLIENTS":{
+
+        "CLIENTS":"Our Clients"
+    },
+
+    "OURSERVICES":{
+        "SERVICES":"Our Services",
+        "READY":"Our ready",
+        "Enter":"Entertainment",
+        "programs":"Programs",
+        "SHOWS":"Show All Services",
+        "SHOWP":"Show All Programs",
+        "SHOWE":"Show All Events"
+    },
+    "ABOUTUS":{
+        "whoweare":"Who we are",
+        "p1":"NOX by Ktheeb Is a company specialized in creating entertainment, established in 2017 Specialized in creating concepts and building complete entertainment.",
+        "p2":"Through a short period of time the company made an outstanding model in transportable entertainment throughout the Kingdom of Saudi Arabia.",
+        "p3":"Since 2017 and until this day the company has grown along-side its employees with their capabilities and the creativity spread throughout the department,creating exceptional entertainment contents."
+    },
+    "JOINUS":{
+        "JOINUS":"Join Us",
+        "EMP":"Employee",
+        "ORG":"Organizer",
+        "fullname":"Full Name",
+        "phone":"Mobile number",
+        "email":"Email",
+        "nation":"Nationality",
+        "region":"Region",
+        "gender":"Gender",
+        "birth":"Date of Birth",
+        "resume":"Upload your Resume",
+        "lang":"What languages do you speak?",
+        "exp":"Do You Have any Experiences in this role?",
+        "sendapp":"Send Your Application"
+
+
+    },
+    "CREATIVESTUDIO":{
+        "STUDIO":"Creative Studio"
+    },
+    "CONTACTUS":{
+        "contactus":"Contact Us",
+        "followus":"Follow Us",
+        "office":"Our Office"
+
+    },
+    "FOOTER":{
+        "footer":"© Copyright 2020 Ktheeb Company. All Rights Reserved."
+    },
+    "CLIENTQUEST":{
+        "compN":"Company Name",
+        "contE":"Contact Email",
+        "contN":"Contact Number",
+        "personN":"Person Name"
+
+    },
+    "EVENTQUEST":{
+        "eventType":"What type of Events are you planning for?",
+        "eventHeld":"Where would you like the Event to be held?",
+        "eventLong":"How long would you like the event to run?",
+        "eventDate":"What is the Event Date?",
+        "eventBudget":"What is the project range budget?",
+        "eventGoal":"What is your main goal from this event?",
+        "eventChallenges":"Do you have any concerns or potential challenges in mind?",
+        "eventAtmosphere":"What is the identity and overall atmosphere?",
+        "eventSimilar":"Have you been to other similar event before? Positive/Negative?"
+    }
+ 
+}

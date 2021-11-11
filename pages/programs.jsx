@@ -2,12 +2,20 @@ import Layout from "../layout/Layout";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_URL } from '../utils/consts';
+import { i18n } from '../i18n'
+
 const Programs = () => {
+    const [isRTL, setIsRTL] = useState(false)
     const [programs,setPrograms]=useState([])
     useEffect(() => {
         getPrograms()
         
     }, []);
+    useEffect(() => {
+        let isRTL = i18n.language === 'ar' ? true : false;
+        setIsRTL(isRTL)        
+    });
+
 
     
     const getPrograms = () => {
@@ -36,12 +44,12 @@ const Programs = () => {
                 {
                     programs.map(({ _id, description ,title,subCategories}, i) => (
                         <div key={_id}>
-                        <h2 className={`colors${i%4}`}>{title.en}</h2>
-                        <p>{description.en}</p>
+                        <h2 className={`colors${i%4}`}>{isRTL?title.ar:title.en}</h2>
+                        <p>{isRTL?description.ar:description.en}</p>
                         {subCategories && subCategories.map(({ _id, description ,title}, i) => (
                                <div key={_id+i} style={{ marginLeft: "40px" }}>
-                                   <h4 className={`colors${i%4}`}>{title.en}</h4>
-                                   <p>{description.en}</p>
+                                   <h4 className={`colors${i%4}`}>{isRTL?title.ar:title.en}</h4>
+                                   <p>{isRTL?description.ar:description.en}</p>
                                </div>    
                             ))
                         }

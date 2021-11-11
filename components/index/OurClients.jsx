@@ -2,13 +2,15 @@ import Image from 'next/image';
 import BannerLeft from "../shared/BannerLeft";
 import { SERVER_URL } from '../../utils/consts';
 import Link from 'next/link'
+import { withTranslation } from '../../i18n'
 
-  const OurClients = ({clients}) => {
+
+  const OurClients = ({clients,t}) => {
     return (
         <>
             <a name="our-clients" />
             <section>
-                <BannerLeft title="Our Clients" />
+                <BannerLeft title={t('OURCLIENTS.CLIENTS')}/>
                 <div className="container flex jc-c ai-c flex-wrap" style={{ gap: 30, marginTop: 110 }}>
                     {
                         clients.map(({ _id, link ,img}, i) => (
@@ -43,4 +45,8 @@ import Link from 'next/link'
     )
 }
 
-export default OurClients;
+OurClients.getInitialProps = async () => ({
+    namespacesRequired: ['common'],
+  })
+  
+export default withTranslation('common')(OurClients);

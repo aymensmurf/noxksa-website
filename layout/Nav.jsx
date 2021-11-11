@@ -1,8 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect ,useState} from 'react';
 import Image from 'next/image';
+import { i18n, withTranslation } from '../i18n'
 
-const Nav = ({ navWithBackground = false }) => {
+const Nav = ({ navWithBackground = false,t}) => {
+    const [isRTL, setIsRTL] = useState(false)
     useEffect(() => {
+        let isRTL = i18n.language === 'ar' ? true : false;
+        setIsRTL(isRTL)
         let doc = document.documentElement;
         let w = window;
 
@@ -12,7 +16,6 @@ const Nav = ({ navWithBackground = false }) => {
         let prevDirection = 0;
 
         let header = document.getElementById('header');
-
         let checkScroll = function () {
             curScroll = w.scrollY || doc.scrollTop;
 
@@ -46,7 +49,7 @@ const Nav = ({ navWithBackground = false }) => {
         };
 
         window.addEventListener('scroll', checkScroll);
-    }, [])
+    })
 
     return (
         <>
@@ -55,16 +58,19 @@ const Nav = ({ navWithBackground = false }) => {
                     <a href="/">
                         <Image src="/img/logo.png" alt="NOX Entertainment" width={261} height={74} objectFit="contain" />
                     </a>
+                    <h4 className="lang" onClick={() => i18n.changeLanguage(isRTL ? 'en' : 'ar')}>
+                {isRTL ? 'English' : 'العربية'}
+            </h4>
 
                     <div>
                         <ul>
-                            <li><a href="/#about-us">About Us</a></li>
-                            <li><a href="/#our-clients">Our Clients</a></li>
-                            <li><a href="/#our-services">Our Services</a></li>
-                            <li><a href="/#creative-studio">Studio</a></li>
-                            <li><a href="/#join-the-team">Join Us</a></li>
-                            <li><a href="/#contact-us">Contact Us</a></li>
-                            <li><a href="/client-questionnaire">Questionnaire</a></li>
+                            <li><a href="/#about-us">{t('Nav.ABOUTUS')}</a></li>
+                            <li><a href="/#our-clients">{t('Nav.OURCLIENTS')}</a></li>
+                            <li><a href="/#our-services">{t('Nav.OURSERVICES')}</a></li>
+                            <li><a href="/#creative-studio">{t('Nav.CREATIVESTUDIO')}</a></li>
+                            <li><a href="/#join-the-team">{t('Nav.JOINTHETEAM')}</a></li>
+                            <li><a href="/#contact-us">{t('Nav.CONTACTUS')}</a></li>
+                            <li><a href="/client-questionnaire">{t('Nav.QUESTIONNAIRE')}</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -116,9 +122,29 @@ const Nav = ({ navWithBackground = false }) => {
                         font-size: 16px;
                     }
                 }
+                .lang {
+                    // height: 35px !important;
+                    cursor: pointer;
+                }
+
             `}</style>
+                 <style>{`
+                .form-group ,div{
+                    direction: ${isRTL ? 'rtl' : 'ltr'};
+                }
+
+                footer,select,textarea,form,input,footer {
+                    text-align: ${isRTL ? 'right' : 'left'};
+                }
+                footer{
+                    background-position:${isRTL ? 'bottom right' : 'bottom left'};
+                }
+              
+
+            `}</style>
+
         </>
     )
 }
 
-export default Nav;
+export default withTranslation('common')(Nav)
