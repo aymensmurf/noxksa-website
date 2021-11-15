@@ -1,14 +1,19 @@
 import BannerRight from "../shared/BannerRight";
 import { withTranslation } from '../../i18n'
 
-const AboutUs = ({t}) => {
+const AboutUs = ({isRTL,t}) => {
     return (
         <>
             <a name="about-us" />
             <section>
-                <BannerRight title={t('ABOUTUS.whoweare')} />
+            {isRTL?
+                <BannerRight  title={t('ABOUTUS.whoweare')} />
 
-                <div className="container">
+                :
+                <BannerRight title={t('ABOUTUS.whoweare')} />
+                }
+
+                <div className="container" style={{direction: `${isRTL ? 'rtl' : 'ltr'}`}} >
                     <div className="content">
                         <p>{t('ABOUTUS.p1')}</p>
                         <p>{t('ABOUTUS.p2')}</p>

@@ -1,19 +1,10 @@
 import { withRouter } from 'next/router';
 import { useEffect, useState } from 'react'
-import { createPortal } from 'react-dom';
 import {i18n,withTranslation } from '../../i18n'
 
 
 
-const Home = ({t}) => {
-    const [isRTL, setIsRTL] = useState(false)
-    useEffect(() => {
-        let isRTL = i18n.language === 'ar' ? true : false;
-        console.log(isRTL)
-        setIsRTL(isRTL)
-
-    })
-
+const Home = ({isRTL,t}) => {
     const [index, setIndex] = useState(0);
     const WORDS =isRTL?["الحفلات","البرامج","الخدمات"] :["Services", "Programs", "Events"]
 
@@ -37,7 +28,7 @@ const Home = ({t}) => {
                     <source src="/videos/home.mp4" type="video/mp4" />
                 </video>
 
-                <div className="home-text-container">
+                <div className="home-text-container" >
                     <h1 >                        
                         <span>{t('HOME.Most')}</span><br />
                         {isRTL?

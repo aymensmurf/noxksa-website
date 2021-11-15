@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { API_URL } from '../../utils/consts';
 import { withTranslation } from '../../i18n'
 
-const JoinUs = ({t}) => {
+const JoinUs = ({isRTL,t}) => {
     const [isEmployeeModalOpen, setIsEmployeeModalOpen] = useState(false);
     const [isOrganizerModalOpen, setIsOrganizerModalOpen] = useState(false);
     const [file, setFile] = useState("");
@@ -47,7 +47,7 @@ const JoinUs = ({t}) => {
                 .then(({ status, data }) => {
                     console.log(status)
                     console.log(data)
-                    toast.success('your application has been successfully send ')                
+                    toast.success(`${t('toast.SUCCESS')}`)                
                     initEmployee();
                     setIsEmployeeModalOpen(false)
                 })
@@ -146,51 +146,51 @@ const JoinUs = ({t}) => {
     }
     const isOrganizerValid = () => {
         if (!fullName) {
-            toast.info("Fullname is required")
+            toast.info(`${t('toast.fullName')}`)
             return false;
         }
 
         if (!mobileNumber) {
-            toast.info("MobileNumber is required")
+            toast.info(`${t('toast.mobileNumber')}`)
             return false;
         }
 
 
         if (!email) {
-            toast.info("Email is required")
+            toast.info(`${t('toast.email')}`)
             return false;
         }
         if (!nationality) {
-            toast.info("Nationality is required")
+            toast.info(`${t('toast.nationality')}`)
             return false;
         }
         if (!region) {
-            toast.info("Region is required")
+            toast.info(`${t('toast.region')}`)
             return false;
         }
 
         if (!gender) {
-            toast.info("Gender is required")
+            toast.info(`${t('toast.gender')}`)
             return false;
         }
 
         if (!dateOfBirth) {
-            toast.info("DateOfBirth is required")
+            toast.info(`${t('toast.dateOfBirth')}`)
             return false;
         }
 
         if (!languages) {
-            toast.info("Languages is required")
+            toast.info(`${t('toast.languages')}`)
             return false;   
         }
 
         if (!isExperiences) {
-            toast.info("Experiences is required")
+            toast.info(`${t('toast.isExperiences')}`)
             return false;
         }
 
         if(!file){
-            toast.info("Resume is required")
+            toast.info(`${t('toast.file')}`)
             return false;
         }
 
@@ -200,43 +200,44 @@ const JoinUs = ({t}) => {
     const isEmployeeValid = () => {  
 
         if (!fullName) {
-            toast.info("Fullname is required")
+            toast.info(`${t('toast.fullName')}`)
             return false;
         }
 
         if (!mobileNumber) {
-            toast.info("MobileNumber is required")
+            toast.info(`${t('toast.mobileNumber')}`)
             return false;
         }
 
 
         if (!email) {
-            toast.info("Email is required")
+            toast.info(`${t('toast.email')}`)
             return false;
         }
         if (!nationality) {
-            toast.info("Nationality is required")
+            toast.info(`${t('toast.nationality')}`)
             return false;
         }
         if (!region) {
-            toast.info("Region is required")
+            toast.info(`${t('toast.region')}`)
             return false;
         }
 
         if (!gender) {
-            toast.info("Gender is required")
+            toast.info(`${t('toast.gender')}`)
             return false;
         }
 
         if (!dateOfBirth) {
-            toast.info("DateOfBirth is required")
+            toast.info(`${t('toast.dateOfBirth')}`)
             return false;
         }
 
         if(!file){
-            toast.info("Resume is required")
+            toast.info(`${t('toast.file')}`)
             return false;
         }
+
 
         return true;
     }
@@ -386,6 +387,7 @@ const JoinUs = ({t}) => {
                     height: 100vh;
                     overflow: hidden;
                     padding: 50px 0px;
+                    
                 }
 
                 h2 {
@@ -402,6 +404,8 @@ const JoinUs = ({t}) => {
 
                 form > div {
                     margin-top: 10px;
+                    direction: ${isRTL ? 'rtl' : 'ltr'};
+
                 }
 
                 form > div:nth-child(1){
@@ -434,7 +438,8 @@ const JoinUs = ({t}) => {
                     .options {
                         gap: 10px;
                     }
-                }
+                },
+             
             `}</style>
         </>
     )

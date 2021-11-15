@@ -1,4 +1,6 @@
 import BannerRight from "../shared/BannerRight";
+import BannerLeft from "../shared/BannerLeft";
+
 import ImageLeft from "../shared/ImageLeft";
 import ImageRight from "../shared/ImageRight";
 import { withTranslation } from '../../i18n'
@@ -8,7 +10,13 @@ const OurService = ({isRTL,t}) => {
         <>  
             <a name="our-services" />
             <section>
+            {isRTL?
                 <BannerRight title={t('OURSERVICES.SERVICES')} />
+
+                :
+                <BannerLeft title={t('OURSERVICES.SERVICES')} />
+
+                }
 
                 <ImageRight
                     text={

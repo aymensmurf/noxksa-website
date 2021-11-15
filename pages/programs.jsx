@@ -92,6 +92,8 @@ const Programs = () => {
                 section {
                     padding-top: 200px;
                     padding-bottom: 60px;
+                    direction: ${isRTL ? 'rtl' : 'ltr'};
+
                 }
 
                 h2 {

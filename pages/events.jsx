@@ -76,11 +76,15 @@ const Events = () => {
                 h2 {
                     font-weight: 400;
                     font-size: 2rem;
+                    direction: ${isRTL ? 'rtl' : 'ltr'};
+
                 }
 
                 h4 {
                     font-weight: 200;
                     font-size: 1rem;
+                    direction: ${isRTL ? 'rtl' : 'ltr'};
+
                 }
 
                 p {
@@ -89,6 +93,8 @@ const Events = () => {
                     font-weight: 700;
                     color: #272d3a;
                     margin-bottom: 20px;
+                    direction: ${isRTL ? 'rtl' : 'ltr'};
+
                 }
             `}</style>
         </>

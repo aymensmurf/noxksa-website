@@ -58,9 +58,9 @@ const Nav = ({ navWithBackground = false,t}) => {
                     <a href="/">
                         <Image src="/img/logo.png" alt="NOX Entertainment" width={261} height={74} objectFit="contain" />
                     </a>
-                    <h4 className="lang" onClick={() => i18n.changeLanguage(isRTL ? 'en' : 'ar')}>
+                    <button className="lang" onClick={() => i18n.changeLanguage(isRTL ? 'en' : 'ar')}>
                 {isRTL ? 'English' : 'العربية'}
-            </h4>
+            </button>
 
                     <div>
                         <ul>
@@ -129,7 +129,7 @@ const Nav = ({ navWithBackground = false,t}) => {
 
             `}</style>
                  <style>{`
-                .form-group ,div{
+                .form-group {
                     direction: ${isRTL ? 'rtl' : 'ltr'};
                 }
 

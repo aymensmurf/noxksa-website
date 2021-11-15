@@ -63,13 +63,13 @@ const Index = () => {
     };
     return (
         <Layout>
-            <Home />
-            <AboutUs />
-            <OurClients clients={clients}  />
+            <Home isRTL={isRTL} />
+            <AboutUs  isRTL={isRTL}/>
+            <OurClients  isRTL={isRTL} clients={clients}  />
             <OurServices isRTL={isRTL}/>
-            <CreativeStudio  creativeStudio={albums}/>
-            <JoinUs />
-            <ContactUs />
+            <CreativeStudio isRTL={isRTL}  creativeStudio={albums}/>
+            <JoinUs isRTL={isRTL}/>
+            <ContactUs isRTL={isRTL}/>
         </Layout>
     )
 }
