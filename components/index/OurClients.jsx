@@ -53,8 +53,5 @@ import { withTranslation } from '../../i18n'
     )
 }
 
-OurClients.getInitialProps = async () => ({
-    namespacesRequired: ['common'],
-  })
-  
+
 export default withTranslation('common')(OurClients);

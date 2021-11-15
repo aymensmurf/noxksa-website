@@ -499,8 +499,4 @@ const ClientQuestionnaire = ({t}) => {
     )
 }
 
-
-ClientQuestionnaire.getInitialProps = async () => ({
-    namespacesRequired: ['common'],
-  })  
 export default withTranslation('common')(ClientQuestionnaire);

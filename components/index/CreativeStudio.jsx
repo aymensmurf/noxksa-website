@@ -42,7 +42,5 @@ const CreativeStudio = ({isRTL,creativeStudio,t}) => {
         </>
     )
 }
-CreativeStudio.getInitialProps = async () => ({
-    namespacesRequired: ['common'],
-  })
+
 export default withTranslation('common')(CreativeStudio);

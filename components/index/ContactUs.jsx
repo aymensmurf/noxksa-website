@@ -113,9 +113,5 @@ const Icon = ({ src, alt }) => (
         <Image className="icon" src={src} alt={alt} width={40} height={40} objectFit="contain" />
     </>
 )
-
-ContactUs.getInitialProps = async () => ({
-    namespacesRequired: ['common'],
-  })
   
 export default withTranslation('common')(ContactUs);

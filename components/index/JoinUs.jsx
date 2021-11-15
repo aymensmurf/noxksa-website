@@ -267,7 +267,7 @@ const JoinUs = ({isRTL,t}) => {
                     <div className="grid">
                         <div>
                             <label >{t('JOINUS.fullname')}*</label>
-                            <input type="text"  value={fullName} className="form-input" placeholder="John Smith" onChange={e => { setFullName(e.target.value); }}/>
+                            <input type="text"  value={fullName} className="form-input" placeholder={t('JOINUS.fullname')} onChange={e => { setFullName(e.target.value); }}/>
                         </div>
                         <div>
                             <label >{t('JOINUS.phone')}*</label>
@@ -292,8 +292,8 @@ const JoinUs = ({isRTL,t}) => {
                         <div>
                             <label >{t('JOINUS.gender')}*</label>
                             <select className="form-input" value={gender} onChange={(e) => setGender(e.target.value)}    >
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
+                                <option value="male">{t('JOINUS.male')}</option>
+                                <option value="female">{t('JOINUS.female')}</option>
                             </select>
                         </div>
                         <div>
@@ -305,7 +305,7 @@ const JoinUs = ({isRTL,t}) => {
                     <div>
                         <label>{t('JOINUS.resume')}*</label>
                         <div style={{ marginTop: 4 }}>
-                            <FileDropZone file={file} handleDrop={handleFileDrop} />
+                            <FileDropZone file={file} isRTL={isRTL} handleDrop={handleFileDrop} />
                         </div>
                     </div>
                     <div align="right" style={{marginTop:20}}>
@@ -349,8 +349,8 @@ const JoinUs = ({isRTL,t}) => {
                         <div>
                             <label >{t('JOINUS.gender')}*</label>
                             <select  className="form-input" value={gender} onChange={(e) => setGender(e.target.value)}    >
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
+                                <option value="male">{t('JOINUS.male')}</option>
+                                <option value="female">{t('JOINUS.female')}</option>
                             </select>
                         </div>
                         <div>
@@ -370,7 +370,7 @@ const JoinUs = ({isRTL,t}) => {
                     <div>
                         <label>{t('JOINUS.resume')}*</label>
                         <div style={{ marginTop: 4 }}>
-                            <FileDropZone file={file} handleDrop={handleFileDrop} />
+                            <FileDropZone file={file} isRTL={isRTL} handleDrop={handleFileDrop} />
                         </div>
                     </div>
                     <div align="right" style={{marginTop:20}}>
@@ -387,6 +387,8 @@ const JoinUs = ({isRTL,t}) => {
                     height: 100vh;
                     overflow: hidden;
                     padding: 50px 0px;
+                    direction: ${isRTL ? 'rtl' : 'ltr'};
+
                     
                 }
 
@@ -445,8 +447,5 @@ const JoinUs = ({isRTL,t}) => {
     )
 }
 
-JoinUs.getInitialProps = async () => ({
-    namespacesRequired: ['common'],
-  })
   
 export default withTranslation('common')(JoinUs);

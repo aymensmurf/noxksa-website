@@ -60,6 +60,8 @@
         "resume":"Upload your Resume",
         "lang":"What languages do you speak?",
         "exp":"Do You Have any Experiences in this role?",
+        "male":"male",
+        "female":"female",
         "sendapp":"Send Your Application"
 
 

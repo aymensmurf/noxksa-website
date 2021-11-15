@@ -28,7 +28,7 @@ const Home = ({isRTL,t}) => {
                     <source src="/videos/home.mp4" type="video/mp4" />
                 </video>
 
-                <div className="home-text-container" >
+                <div className="home-text-container"  style={{direction: `${isRTL ? 'rtl' : 'ltr'}`}} >
                     <h1 >                        
                         <span>{t('HOME.Most')}</span><br />
                         {isRTL?

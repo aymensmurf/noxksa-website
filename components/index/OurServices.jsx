@@ -19,6 +19,7 @@ const OurService = ({isRTL,t}) => {
                 }
 
                 <ImageRight
+                
                     text={
                         <> {isRTL?
                             <div>
@@ -41,7 +42,7 @@ const OurService = ({isRTL,t}) => {
                     img="/img/our-services/img1.png"
                     btnTitle={t('OURSERVICES.SHOWP')}
                     href="/programs"
-                    style={{ marginTop: 60 }}
+                    style={{marginTop: 60,direction: `${isRTL ? 'rtl' : 'ltr'}`}}
                     width={601}
                     height={520}
                     imgStyle={{ width: 601, height: 520 }}
@@ -69,7 +70,7 @@ const OurService = ({isRTL,t}) => {
                     img="/img/our-services/img2.png"
                     btnTitle={t('OURSERVICES.SHOWS')}
                     href="/services"
-                    style={{ marginTop: 170 }}
+                    style={{marginTop: 170,direction: `${isRTL ? 'rtl' : 'ltr'}`}}
                     width={740}
                     height={761}
                 />
@@ -96,7 +97,7 @@ const OurService = ({isRTL,t}) => {
                     img="/img/our-services/img3.png"
                     btnTitle={t('OURSERVICES.SHOWE')}
                     href="/events"
-                    style={{ marginTop: 170 }}
+                    style={{marginTop: 170,direction: `${isRTL ? 'rtl' : 'ltr'}`}}
                     width={477}
                     height={424}
                     imgStyle={{ width: 477, height: 424 }}
@@ -111,9 +112,7 @@ const OurService = ({isRTL,t}) => {
         </>
     )
 }
-OurService.getInitialProps = async () => ({
-    namespacesRequired: ['common'],
-  })
+
   
 export default withTranslation('common')(OurService);
 

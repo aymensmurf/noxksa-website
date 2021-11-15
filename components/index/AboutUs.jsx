@@ -1,4 +1,6 @@
 import BannerRight from "../shared/BannerRight";
+import BannerLeft from "../shared/BannerLeft";
+
 import { withTranslation } from '../../i18n'
 
 const AboutUs = ({isRTL,t}) => {
@@ -7,10 +9,9 @@ const AboutUs = ({isRTL,t}) => {
             <a name="about-us" />
             <section>
             {isRTL?
-                <BannerRight  title={t('ABOUTUS.whoweare')} />
-
+                <BannerRight  title={t('ABOUTUS.whoweare')} isRTL={isRTL}/>
                 :
-                <BannerRight title={t('ABOUTUS.whoweare')} />
+                <BannerLeft title={t('ABOUTUS.whoweare')} isRTL={isRTL}/>
                 }
 
                 <div className="container" style={{direction: `${isRTL ? 'rtl' : 'ltr'}`}} >
@@ -60,10 +61,6 @@ const AboutUs = ({isRTL,t}) => {
         </>
     )
 }
-AboutUs.getInitialProps = async () => ({
-    namespacesRequired: ['common'],
-  })
-  
 
 export default withTranslation('common')(AboutUs);
 

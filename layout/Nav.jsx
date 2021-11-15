@@ -54,13 +54,11 @@ const Nav = ({ navWithBackground = false,t}) => {
     return (
         <>
             <header id="header">
-                <nav className="container flex jc-sb ai-c">
+                <nav className="container flex jc-sb ai-c" style={{direction: isRTL?'rtl':'ltr'}}>
                     <a href="/">
                         <Image src="/img/logo.png" alt="NOX Entertainment" width={261} height={74} objectFit="contain" />
                     </a>
-                    <button className="lang" onClick={() => i18n.changeLanguage(isRTL ? 'en' : 'ar')}>
-                {isRTL ? 'English' : 'العربية'}
-            </button>
+                  
 
                     <div>
                         <ul>
@@ -73,7 +71,14 @@ const Nav = ({ navWithBackground = false,t}) => {
                             <li><a href="/client-questionnaire">{t('Nav.QUESTIONNAIRE')}</a></li>
                         </ul>
                     </div>
+                    <div className="circle"> 
+                    <div  style={{textAlign:"center",color:"white"}}onClick={() => i18n.changeLanguage(isRTL ? 'en' : 'ar')}>
+                    {isRTL ? 'EN' : 'AR'}
+                    </div>
+                    </div>
                 </nav>
+                
+
             </header>
 
             <style jsx>{`
@@ -123,8 +128,17 @@ const Nav = ({ navWithBackground = false,t}) => {
                     }
                 }
                 .lang {
-                    // height: 35px !important;
                     cursor: pointer;
+                    
+                }
+                .circle {
+                    border-radius: 50%;
+                    border-style: solid;
+                    border-width: 1px;
+                    border-color: white;
+                    width: 45px;
+                    height: 40px;
+                    font-size:18px
                 }
 
             `}</style>
