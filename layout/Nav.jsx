@@ -144,6 +144,7 @@ const Nav = ({ navWithBackground = false,t}) => {
                     position: relative;
                     margin-top: -16px;
                     cursor:pointer;
+                    border-width: 1px;
                 
                 }
 

@@ -34,7 +34,7 @@ const ClientQuestionnaire = ({t}) => {
     const [foodOption,setFoodOption]=useState("Open Buffet")
     const [targetAudience,setTargetAudience]=useState("Kids")
     const [targetAge,setTargetAge]=useState("")
-    const [specialGuestChecked,setSpecialGuestChecked]=useState(true)
+    const [specialGuestChecked,setSpecialGuestChecked]=useState(false)
     const [specialGuestDetails,setSpecialGuestDetails]=useState("")
 
     const [eventName,setEventName]=useState("")
@@ -42,7 +42,7 @@ const ClientQuestionnaire = ({t}) => {
     const [elementsDetails,setElementsDetails]=useState("")
     const [intention,setIntention]=useState("")
     const [registrationSystem,setRegistrationSystem]=useState("")
-    const [previousClientSelected,setPreviousClientSelected]=useState(true)
+    const [previousClientSelected,setPreviousClientSelected]=useState(false)
     const [previousClientDetails,setPreviousClientDetails]=useState("")
 
     const [hearAboutUS,setHearAboutUS]=useState("Through Friends")
@@ -202,14 +202,14 @@ const ClientQuestionnaire = ({t}) => {
         setFoodOption("Open Buffet")
         setTargetAudience("Kids")
         setTargetAge("")
-        setSpecialGuestChecked(true)
+        setSpecialGuestChecked(false)
         setSpecialGuestDetails("")
         setEventName("")
         setElementsSelected("Logistics")
         setElementsDetails("")
         setIntention("")
         setRegistrationSystem("")
-        setPreviousClientSelected(true)
+        setPreviousClientSelected(false)
         setPreviousClientDetails("")
         setHearAboutUS("Through Friends")
         setMeeting("")
@@ -362,7 +362,7 @@ const ClientQuestionnaire = ({t}) => {
                             <div></div>
                             <div>
                                 <div className="flex ai-c">
-                                    <input type="checkbox" checked={specialGuestChecked} onChange={(e) => {setSpecialGuestChecked(!specialGuestChecked)}}/>
+                                    <input type="checkbox"  checked={"true"?specialGuestChecked:"false"} onChange={(e) => {setSpecialGuestChecked(!specialGuestChecked)}}/>
                                     <label>{t('AUDIENCEQUEST.guest')}</label>
                                 </div>
                                 <label>{t('AUDIENCEQUEST.details')}</label>
@@ -411,7 +411,7 @@ const ClientQuestionnaire = ({t}) => {
                         <div className="grid">
                             <div>
                                 <div className="flex ai-c">
-                                    <input type="checkbox"  checked={previousClientSelected} onChange={(e) => {setPreviousClientSelected(!previousClientSelected)}}/>
+                                    <input type="checkbox" checked={"true"?previousClientSelected:"false"} onChange={(e) => {setPreviousClientSelected(!previousClientSelected)}}/>
                                     <label>{t('OTHERDETAILSQUEST.prevclient')}*</label>
                                 </div>
                                 <label>{t('OTHERDETAILSQUEST.details')}</label>
