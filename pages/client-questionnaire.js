@@ -1,7 +1,7 @@
 import { useState,useEffect } from "react";
 import Layout from "../layout/Layout";
 import axios from 'axios';
-import { API_URL } from '../utils/consts';
+import { API_URL,EMAIL_FORMAT } from '../utils/consts';
 import { toast } from 'react-toastify';
 import { i18n, withTranslation } from '../i18n'
 
@@ -103,6 +103,12 @@ const ClientQuestionnaire = ({t}) => {
         toast.info(`${t('toast.CE')}`)
         return false;
        }
+
+       if (!contactEmail.match(EMAIL_FORMAT)) {
+        toast.error(`${t('toast.errorEmail')}`);
+        return false;
+        }
+
        if(!contactNumber){
         toast.info(`${t('toast.CNU')}`)
         return false;
@@ -333,10 +339,10 @@ const ClientQuestionnaire = ({t}) => {
                                 <select className="form-input" value= {foodOption} onChange={(e) => {setFoodOption(e.target.value)}} >
                                     <option value="Open Buffet">{t('AUDIENCEQUEST.foodChoice1')}</option>
                                     <option value="Trucks & Booths">{t('AUDIENCEQUEST.foodChoice2')}</option>
-                                    <option value="Snaks">{t('AUDIENCEQUEST.foodChoice2')}</option>
-                                    <option value="Coffee Break">{t('AUDIENCEQUEST.foodChoice3')}</option>
-                                    <option value="Seated">{t('AUDIENCEQUEST.foodChoice4')}</option>
-                                    <option value="Other">{t('AUDIENCEQUEST.foodChoice5')}</option>
+                                    <option value="Snaks">{t('AUDIENCEQUEST.foodChoice3')}</option>
+                                    <option value="Coffee Break">{t('AUDIENCEQUEST.foodChoice4')}</option>
+                                    <option value="Seated">{t('AUDIENCEQUEST.foodChoice5')}</option>
+                                    <option value="Other">{t('AUDIENCEQUEST.foodChoice6')}</option>
                                 </select>
                             </div>
                             <div>

@@ -61,6 +61,7 @@ const Nav = ({ navWithBackground = false,t}) => {
                   
 
                     <div>
+                 
                         <ul>
                             <li><a href="/#about-us">{t('Nav.ABOUTUS')}</a></li>
                             <li><a href="/#our-clients">{t('Nav.OURCLIENTS')}</a></li>
@@ -69,13 +70,12 @@ const Nav = ({ navWithBackground = false,t}) => {
                             <li><a href="/#join-the-team">{t('Nav.JOINTHETEAM')}</a></li>
                             <li><a href="/#contact-us">{t('Nav.CONTACTUS')}</a></li>
                             <li><a href="/client-questionnaire">{t('Nav.QUESTIONNAIRE')}</a></li>
+                            <li className="circle" onClick={() => i18n.changeLanguage(isRTL ? 'en' : 'ar')} >{isRTL ? 'EN' : 'AR'}</li>
+
                         </ul>
-                    </div>
-                    <div className="circle"> 
-                    <div  style={{textAlign:"center",color:"white"}}onClick={() => i18n.changeLanguage(isRTL ? 'en' : 'ar')}>
-                    {isRTL ? 'EN' : 'AR'}
-                    </div>
-                    </div>
+                  
+                      
+                    </div>                   
                 </nav>
                 
 
@@ -92,6 +92,7 @@ const Nav = ({ navWithBackground = false,t}) => {
                     background-color: ${navWithBackground ? '#46356A' : 'transparent'};
                 }
 
+
                 #header.hide {
                     top: -143px;
                 }
@@ -104,6 +105,7 @@ const Nav = ({ navWithBackground = false,t}) => {
                     display: flex;
                     gap: 20px;
                 }
+                
 
                 li {
                     list-style: none;
@@ -112,8 +114,8 @@ const Nav = ({ navWithBackground = false,t}) => {
                     font-weight: 500;
                     font-family: "Quicksand", sans-serif;
                     text-transform: capitalize;
-                    cursor: pointer;
                 }
+               
 
                 li:hover {
                     color: #fec681;
@@ -127,18 +129,22 @@ const Nav = ({ navWithBackground = false,t}) => {
                         font-size: 16px;
                     }
                 }
-                .lang {
-                    cursor: pointer;
-                    
-                }
+              
+            
                 .circle {
+                    width:55px;
+                    height:55px;
                     border-radius: 50%;
                     border-style: solid;
-                    border-width: 1px;
                     border-color: white;
-                    width: 45px;
-                    height: 40px;
-                    font-size:18px
+                    display:flex;
+                    align-items: center;
+                    justify-content: center;
+                    color:white
+                    position: relative;
+                    margin-top: -16px;
+                    cursor:pointer;
+                
                 }
 
             `}</style>

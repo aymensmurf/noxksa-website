@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Modal from '../shared/Modal';
 import FileDropZone from '../shared/FileDropZone';
 import { toast } from 'react-toastify';
-import { API_URL } from '../../utils/consts';
+import { API_URL,EMAIL_FORMAT } from '../../utils/consts';
 import { withTranslation } from '../../i18n'
 
 const JoinUs = ({isRTL,t}) => {
@@ -160,6 +160,7 @@ const JoinUs = ({isRTL,t}) => {
             toast.info(`${t('toast.email')}`)
             return false;
         }
+      
         if (!nationality) {
             toast.info(`${t('toast.nationality')}`)
             return false;
@@ -214,6 +215,7 @@ const JoinUs = ({isRTL,t}) => {
             toast.info(`${t('toast.email')}`)
             return false;
         }
+        
         if (!nationality) {
             toast.info(`${t('toast.nationality')}`)
             return false;

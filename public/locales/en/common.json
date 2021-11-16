@@ -1,11 +1,5 @@
 {
-    "INDEX": {
-        "HI": "Hello, you can choose the appropriate donation method for you",
-        "DELIVERY_BTN": "Create a delivery request",
-        "DOWNLOAD_BTN": "Download the app",
-        "SHARE": "Share your comments and opinions",
-        "DONATE_VIA_WHATSAPP": "Create a delivery request via Whatsapp"
-    },
+   
     "LANG": {
         "ARABIC": "Arabic",
         "ENGLISH": "English"
@@ -193,7 +187,9 @@
         "dateOfBirth":"DateOfBirth is required",
         "languages":"Languages is required",
         "isExperiences":"Experiences is required",
-        "file":"Resume is required"
+        "file":"Resume is required",
+        "errorEmail":"contact Email is not valid"
+
     }
  
 }
