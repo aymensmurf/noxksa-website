@@ -23,7 +23,7 @@ const CreativeStudio = ({isRTL,creativeStudio,t}) => {
                     <div className="flex ai-c flex-wrap" style={{ gap: 30 }}>
                         {creativeStudio.map(({ title,links }, i) => (
                             isRTL?
-                                <Album key={i} title={title.ar} mainImg={`${SERVER_URL}/uploads/${links[parseInt(Math.random() * (links.length))].link}`} IMAGES={links}/>
+                                <Album key={i} title={title.ar} mainImg={`${SERVER_URL}/uploads/${links[parseInt(Math.random()* (links.length))].link}`} IMAGES={links}/>
 
                                 :
                                 <Album key={i} title={title.en} mainImg={`${SERVER_URL}/uploads/${links[parseInt(Math.random() * (links.length))].link}`} IMAGES={links}/>
