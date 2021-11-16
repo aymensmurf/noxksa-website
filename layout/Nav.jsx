@@ -49,7 +49,7 @@ const Nav = ({ navWithBackground = false,t}) => {
         };
 
         window.addEventListener('scroll', checkScroll);
-    })
+    },[i18n.language])
 
     return (
         <>

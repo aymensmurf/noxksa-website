@@ -11,8 +11,8 @@ const ClientQuestionnaire = ({t}) => {
     useEffect(() => {
         let isRTL = i18n.language === 'ar' ? true : false;
         setIsRTL(isRTL)
-        
-    });
+        console.log("ok")
+    },[i18n.language]);
     const [companyName,setCompanyName]=useState("")
     const [contactEmail,setContactEmail]=useState("")
     const [contactNumber,setContactNumber]=useState("")

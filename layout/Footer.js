@@ -7,7 +7,7 @@ const Footer = ({t}) => {
         let isRTL = i18n.language === 'ar' ? true : false;
         setIsRTL(isRTL)
         
-    });
+    },[i18n.language]);
     return (
         <>
             <footer className="flex ai-c jc-end">

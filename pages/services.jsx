@@ -13,7 +13,7 @@ const Services = () => {
     useEffect(() => {
         let isRTL = i18n.language === 'ar' ? true : false;
         setIsRTL(isRTL)        
-    });
+    },[i18n.language]);
 
     const getServices = () => {
         const config = {

@@ -14,7 +14,7 @@ const Programs = () => {
     useEffect(() => {
         let isRTL = i18n.language === 'ar' ? true : false;
         setIsRTL(isRTL)        
-    });
+    },[i18n.language]);
 
 
     
