@@ -71,8 +71,9 @@ const Nav = ({ navWithBackground = false,t}) => {
                             <li><a href="/#contact-us">{t('Nav.CONTACTUS')}</a></li>
                             <li><a href="/client-questionnaire">{t('Nav.QUESTIONNAIRE')}</a></li>
                             <li className="circle" onClick={() => i18n.changeLanguage(isRTL ? 'en' : 'ar')} >{isRTL ? 'EN' : 'AR'}</li>
-
+                        
                         </ul>
+
                   
                       
                     </div>                   
