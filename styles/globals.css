@@ -1,5 +1,5 @@
 @font-face {
-  font-family: "CoHeadline", sans-serif;
+  font-family: "CoHeadline";
   src: url("/fonts/CoHeadline/Co-Headline-W23-Arabic-Regular.ttf");
   font-display: swap;
   font-style: normal;
@@ -7,14 +7,14 @@
 }
 
 @font-face {
-  font-family: "CoHeadline", sans-serif;
+  font-family: "CodecColdTrial";
   src: url("/fonts/CodecColdTrial/Codec-Cold-Bold-trial.ttf");
   font-display: swap;
   font-style: normal;
   font-weight: 700;
 }
 @font-face {
-  font-family: "CoHeadline", sans-serif;
+  font-family: "CodecColdTrial";
   src: url("/fonts/CodecColdTrial/Codec-Cold-Regular-trial.ttf");
   font-display: swap;
   font-style: normal;
