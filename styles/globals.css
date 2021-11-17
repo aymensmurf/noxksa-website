@@ -1,5 +1,5 @@
 @font-face {
-  font-family: "CoHeadline";
+  font-family: "CoHeadline", sans-serif;
   src: url("/fonts/CoHeadline/Co-Headline-W23-Arabic-Regular.ttf");
   font-display: swap;
   font-style: normal;
@@ -7,14 +7,14 @@
 }
 
 @font-face {
-  font-family: "CodecColdTrial";
+  font-family: "CoHeadline", sans-serif;
   src: url("/fonts/CodecColdTrial/Codec-Cold-Bold-trial.ttf");
   font-display: swap;
   font-style: normal;
   font-weight: 700;
 }
 @font-face {
-  font-family: "CodecColdTrial";
+  font-family: "CoHeadline", sans-serif;
   src: url("/fonts/CodecColdTrial/Codec-Cold-Regular-trial.ttf");
   font-display: swap;
   font-style: normal;
@@ -84,7 +84,7 @@ button {
   border-radius: 10px;
   padding: 26px 24px;
   color: #fff;
-  font-family: "CodecColdTrial", sans-serif;
+  font-family: "CoHeadline", sans-serif;
   cursor: pointer;
   z-index: 98;
   transition: all 300ms ease;

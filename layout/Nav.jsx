@@ -113,7 +113,7 @@ const Nav = ({ navWithBackground = false,t}) => {
                     color: #fff;
                     font-size: 18px;
                     font-weight: 500;
-                    font-family: "Quicksand", sans-serif;
+                    font-family: "CoHeadline", sans-serif;
                     text-transform: capitalize;
                 }
                

@@ -76,7 +76,7 @@ const Home = ({isRTL,t}) => {
                     font-size: 80px;
                     line-height: 90px;
                     font-weight: 700;
-                    font-family: 'CodecColdTrial', sans-serif;
+                    font-family: "CoHeadline", sans-serif;
                 }
               
                 h1 span:nth-child(3) {

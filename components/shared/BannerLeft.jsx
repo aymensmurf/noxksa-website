@@ -25,7 +25,7 @@ const BannerLeft = ({ title }) => {
                     font-weight: 400;
                     color: #f7006c;
                     line-height: 40px;
-                    font-family: "CodecColdTrial", sans-serif;
+                    font-family: "CoHeadline", sans-serif;
                     margin-top: 10px;
                 }
 

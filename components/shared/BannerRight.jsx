@@ -23,7 +23,7 @@ const BannerRight = ({ title }) => {
                     font-weight: 400;
                     color: #f7006c;
                     line-height: 20px;
-                    font-family: "CodecColdTrial", sans-serif;
+                    font-family: "CoHeadline", sans-serif;
                     margin-top: 36px;
                 }
 
