@@ -1,5 +1,6 @@
 //export const SERVER_URL = 'http://localhost:5000';
-export const SERVER_URL = 'http://35.193.29.67:5000';
+// export const SERVER_URL = 'http://35.193.29.67:5000';
+export const SERVER_URL = 'https://website-api.noxksa.com';
 export const API_URL = SERVER_URL + '/api/v1';
 export const ALBUMS = [
     {
