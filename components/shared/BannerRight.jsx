@@ -10,7 +10,7 @@ const BannerRight = ({ title }) => {
             <style jsx>{`
                 .banner-right {
                     position: relative;
-                    height: 168px;
+                    height: 190px;
                     background-image: url("/img/banner-right.png");
                     background-repeat: no-repeat;
                     background-position: center right;
@@ -22,7 +22,7 @@ const BannerRight = ({ title }) => {
                     font-size: 100px;
                     font-weight: 400;
                     color: #f7006c;
-                    line-height: 40px;
+                    line-height: 20px;
                     font-family: "CodecColdTrial", sans-serif;
                     margin-top: 36px;
                 }

@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Layout from "../layout/Layout";
 import axios from 'axios';
-import { API_URL } from '../utils/consts';
-import { useRouter } from 'next/router';
+import { API_URL,EMAIL_FORMAT } from '../utils/consts';
 import { toast } from 'react-toastify';
-import { Router } from "next/dist/client/router";
+import { i18n, withTranslation } from '../i18n'
 
-const ClientQuestionnaire = () => {
-    const router = useRouter();
+const ClientQuestionnaire = ({t}) => {
+    const [isRTL, setIsRTL] = useState(false)
+
+    useEffect(() => {
+        let isRTL = i18n.language === 'ar' ? true : false;
+        setIsRTL(isRTL)
+        console.log("ok")
+    },[i18n.language]);
     const [companyName,setCompanyName]=useState("")
     const [contactEmail,setContactEmail]=useState("")
     const [contactNumber,setContactNumber]=useState("")
@@ -29,7 +34,7 @@ const ClientQuestionnaire = () => {
     const [foodOption,setFoodOption]=useState("Open Buffet")
     const [targetAudience,setTargetAudience]=useState("Kids")
     const [targetAge,setTargetAge]=useState("")
-    const [specialGuestChecked,setSpecialGuestChecked]=useState(true)
+    const [specialGuestChecked,setSpecialGuestChecked]=useState(false)
     const [specialGuestDetails,setSpecialGuestDetails]=useState("")
 
     const [eventName,setEventName]=useState("")
@@ -37,7 +42,7 @@ const ClientQuestionnaire = () => {
     const [elementsDetails,setElementsDetails]=useState("")
     const [intention,setIntention]=useState("")
     const [registrationSystem,setRegistrationSystem]=useState("")
-    const [previousClientSelected,setPreviousClientSelected]=useState(true)
+    const [previousClientSelected,setPreviousClientSelected]=useState(false)
     const [previousClientDetails,setPreviousClientDetails]=useState("")
 
     const [hearAboutUS,setHearAboutUS]=useState("Through Friends")
@@ -65,7 +70,7 @@ const ClientQuestionnaire = () => {
                 .then(({ status, data }) => {
                     console.log(status)
                     console.log(data)
-                    toast.success('your form has been successfully send')      
+                    toast.success(`${t('toast.SUCCESS')}`)      
                     InitQuestionnaire()                                 
                 })
                 .catch(err => {
@@ -91,80 +96,86 @@ const ClientQuestionnaire = () => {
        
 
        if(!companyName){
-        toast.info("company Name is required")
+        toast.info(`${t('toast.CN')}`)
         return false;
        }
        if(!contactEmail){
-        toast.info("contact Email is required")
+        toast.info(`${t('toast.CE')}`)
         return false;
        }
+
+       if (!contactEmail.match(EMAIL_FORMAT)) {
+        toast.error(`${t('toast.errorEmail')}`);
+        return false;
+        }
+
        if(!contactNumber){
-        toast.info("contact Number is required")
+        toast.info(`${t('toast.CNU')}`)
         return false;
        }
 
        if(!personName){
-        toast.info('personName is required')
+        toast.info(`${t('toast.PN')}`)
         return false;
 
        }
        if(!typeEvents){
-        toast.info('What type of Events are you planning for is required')
+        toast.info(`${t('toast.TE')}`)
         return false;
 
        }
        if(whereEventsSelected=="Other" && !whereEventsDetails){
-        toast.info('Where would you like the Event to be held is required')
+        toast.info(`${t('toast.EH')}`)
         return false
        }
        if(!howLongEvents){
-        toast.info('How long would you like the event to run is required')
+        toast.info(`${t('toast.HE')}`)
         return false   
        }
        if (!eventDate){
-        toast.info('What is the Event Date')
+        toast.info(`${t('toast.Ed')}`)
         return false      
        }
-     
+       
        if(rangeBudgetSelected=="Other" && !rangeBudgetDetails){
-        toast.info('What is the project range budget is required')
+        toast.info(`${t('toast.RB')}`)
         return false
        }
 
        if(!numberAudiences){
-        toast.info('What is expected number of attendees is required')
+        toast.info(`${t('toast.NA')}`)
         return false         
        }
 
        if(!foodOption){
-        toast.info('What food option would you like to offer the audience is required')
+        toast.info(`${t('toast.FO')}`)
         return false     
        }
 
        if(!targetAudience){
-        toast.info('Who is the main target audience for this event is required')
+        toast.info(`${t('toast.TA')}`)
         return false     
        }
        if(!targetAge){
-        toast.info('What is the target age is required')
+        toast.info(`${t('toast.TAG')}`)
         return false 
        }
 
        if(!eventName){
-        toast.info('What is the event name is required')
+        toast.info(`${t('toast.EN')}`)
         return false 
        }
 
        if(!intention){
-        toast.info('Do you intend to have MC, live entertainment or speakers is required')
+        toast.info(`${t('toast.EI')}`)
         return false 
        }
        if(!registrationSystem){
-        toast.info('What registration system do you prefer to provide is required')
+        toast.info(`${t('toast.ER')}`)
         return false 
        }
        if(!meeting){
-        toast.info('Do you prefer to have a meeting with us is required')
+        toast.info(`${t('toast.EM')}`)
         return false 
        }
         return true;
@@ -191,14 +202,14 @@ const ClientQuestionnaire = () => {
         setFoodOption("Open Buffet")
         setTargetAudience("Kids")
         setTargetAge("")
-        setSpecialGuestChecked(true)
+        setSpecialGuestChecked(false)
         setSpecialGuestDetails("")
         setEventName("")
         setElementsSelected("Logistics")
         setElementsDetails("")
         setIntention("")
         setRegistrationSystem("")
-        setPreviousClientSelected(true)
+        setPreviousClientSelected(false)
         setPreviousClientDetails("")
         setHearAboutUS("Through Friends")
         setMeeting("")
@@ -209,79 +220,79 @@ const ClientQuestionnaire = () => {
         <>
             <Layout navWithBackground>
                 <section className="container">
-                    <h1>Client Questionnaire</h1>
+                    <h1>{t('CLIENTQUEST.title')}</h1>
 
                     <form onSubmit={e => handleSubmit(e)}>
                         <div className="grid">
                             <div>
-                                <label>Company Name*</label>
-                                <input type="text" className="form-input" placeholder="Company Name*" value={companyName}  onChange={(e) => {setCompanyName(e.target.value)}}/>
+                                <label>{t('CLIENTQUEST.compN')}*</label>
+                                <input type="text" className="form-input" placeholder={t('CLIENTQUEST.compN')} value={companyName}  onChange={(e) => {setCompanyName(e.target.value)}}/>
                             </div>
                             <div>
-                                <label>Contact Email*</label>
-                                <input type="text" className="form-input" placeholder="Contact Email" value={contactEmail} onChange={(e) => {setContactEmail(e.target.value)}} />
+                                <label>{t('CLIENTQUEST.contE')}*</label>
+                                <input type="text" className="form-input" placeholder={t('CLIENTQUEST.contE')} value={contactEmail} onChange={(e) => {setContactEmail(e.target.value)}} />
                             </div>
                             <div>
-                                <label>Contact Number*</label>
-                                <input type="text" className="form-input" placeholder="Contact Number" value={contactNumber} onChange={(e) => {setContactNumber(e.target.value)}}/>
+                                <label>{t('CLIENTQUEST.contN')}*</label>
+                                <input type="text" className="form-input" placeholder={t('CLIENTQUEST.contN')} value={contactNumber} onChange={(e) => {setContactNumber(e.target.value)}}/>
                             </div>
                             <div>
-                                <label>Person Name*</label>
-                                <input type="text" className="form-input" placeholder="Person Name" value={personName} onChange={(e) => {setPersonName(e.target.value)}}/>
+                                <label>{t('CLIENTQUEST.personN')}*</label>
+                                <input type="text" className="form-input" placeholder={t('CLIENTQUEST.personN')} value={personName} onChange={(e) => {setPersonName(e.target.value)}}/>
                             </div>
                         </div>
                         <div className="sub-section">
-                            <h2>Event Overview</h2>
+                            <h2>{t('EVENTQUEST.title')}</h2>
 
                         </div>
 
                         <div className="grid">
                             <div>
-                                <label>What type of Events are you planning for?*</label>
+                                <label>{t('EVENTQUEST.eventType')}*</label>
                                 <select className="form-input" value= {typeEvents} onChange={(e) => {setTypeEvents(e.target.value)}} >
-                                    <option value="Family Day">Family Day</option>
-                                    <option value="Young Employee">Young Employee</option>
-                                    <option value="Public Events">Public Events</option>
-                                    <option value="Internal Events">Internal Events</option>
-                                    <option value="Annual Event">Annual Event</option>
-                                    <option value="Other">Other</option>
+                                    <option value="Family Day">{t('EVENTQUEST.eventTypeChoice1')}</option>
+                                    <option value="Young Employee">{t('EVENTQUEST.eventTypeChoice2')}</option>
+                                    <option value="Public Events">{t('EVENTQUEST.eventTypeChoice3')}</option>
+                                    <option value="Internal Events">{t('EVENTQUEST.eventTypeChoice4')}</option>
+                                    <option value="Annual Event">{t('EVENTQUEST.eventTypeChoice5')}</option>
+                                    <option value="Other">{t('EVENTQUEST.eventTypeChoice6')}</option>
                                 </select>
                             </div>
                             <div>
-                                <label>Where would you like the Event to be held?*</label>
+                                <label>{t('EVENTQUEST.eventHeld')}*</label>
                                 <select className="form-input" value= {whereEventsSelected} onChange={(e) => {setWhereEventsSelected(e.target.value)}} >
-                                    <option value="Out-door">Out-door</option>
-                                    <option value="Work place">Work place</option>
-                                    <option value="Hotel">Hotel</option>
-                                    <option value="Resort">Resort</option>
-                                    <option value="In-door">In-door</option>
-                                    <option value="Other">Other</option>
+                                    <option value="Out-door">{t('EVENTQUEST.eventHeldChoice1')}</option>
+                                    <option value="Work place">{t('EVENTQUEST.eventHeldChoice2')}</option>
+                                    <option value="Hotel">{t('EVENTQUEST.eventHeldChoice3')}</option>
+                                    <option value="Resort">{t('EVENTQUEST.eventHeldChoice4')}</option>
+                                    <option value="In-door">{t('EVENTQUEST.eventHeldChoice5')}</option>
+                                    <option value="Other">{t('EVENTQUEST.eventHeldChoice6')}</option>
                                 </select>
                                 {(whereEventsSelected=="Other")?
-                                <input type="text" className="form-input" placeholder="Where would you like the Event to be held?*" value= {whereEventsDetails} onChange={(e) => {setWhereEventsDetails(e.target.value)}} /> 
+                                <input type="text" className="form-input" placeholder={`${t('EVENTQUEST.eventHeld')}*`} value= {whereEventsDetails} onChange={(e) => {setWhereEventsDetails(e.target.value)}} /> 
                                 :
                                 <div></div>
                             }
                                 {/* <input type="text" className="form-input" placeholder="Where would you like the Event to be held?*" /> */}
                             </div>
                             <div>
-                                <label>How long would you like the event to run?*</label>
-                                <input type="text" className="form-input" placeholder="How long would you like the event to run?*" value= {howLongEvents} onChange={(e) => {setHowLongEvents(e.target.value)}} />
+                                <label>{t('EVENTQUEST.eventLong')}*</label>
+                                <input type="text" className="form-input" placeholder={t('EVENTQUEST.eventLong')} value= {howLongEvents} onChange={(e) => {setHowLongEvents(e.target.value)}} />
                             </div>
                             <div>
-                                <label>What is the Event Date?*</label>
+                                <label>{t('EVENTQUEST.eventDate')}*</label>
                                 <input type="date" className="form-input" value= {eventDate} onChange={(e) => {setEventDate(e.target.value)}}  />
                             </div>
                             <div>
-                                <label>What is the project range budget?*</label>
+                                <label>{t('EVENTQUEST.eventBudget')}*</label>
                                 <select className="form-input" value={rangeBudgetSelected} onChange={(e) => {setRangeBudgetSelected(e.target.value)}}>
                                     <option value="0 - 100.000 SR">0 - 100.000 SR</option>
                                     <option value="100.000 - 500.000 SR">100.000 - 500.000 SR</option>
                                     <option value="500.000 - 1.000.000 SR">500.000 - 1.000.000 SR</option>
-                                    <option value="Other">Other</option>
+                                    <option value="Other">{t('EVENTQUEST.eventBudgetChoice4')}</option>
                                 </select>
                                 {(rangeBudgetSelected=="Other")?
-                                <input type="text" className="form-input" placeholder="What is the project range budget?*" value={rangeBudgetDetails} onChange={(e) => {setRangeBudgetDetails(e.target.value)}} /> 
+                                <input type="text" className="form-input" placeholder={`${t('EVENTQUEST.eventBudget')}*`} value={rangeBudgetDetails} onChange={(e) => {setRangeBudgetDetails(e.target.value)}} /> 
                                 :
                                 <div></div>
                                 }
@@ -289,148 +300,148 @@ const ClientQuestionnaire = () => {
                             </div>
                             <div></div>
                             <div>
-                                <label>What is your main goal from this event?</label>
-                                <textarea className="form-input" placeholder="What is your main goal from this event?" value= {eventGoal} onChange={(e) => {setEventGoal(e.target.value)}} ></textarea>
+                                <label>{t('EVENTQUEST.eventGoal')}</label>
+                                <textarea className="form-input" placeholder={t('EVENTQUEST.eventGoal')} value= {eventGoal} onChange={(e) => {setEventGoal(e.target.value)}} ></textarea>
                             </div>
                             <div>
-                                <label>Do you have any concerns or potential challenges in mind?</label>
-                                <textarea className="form-input" placeholder="Do you have any concerns or potential challenges in mind?" value= {challenges} onChange={(e) => {setChallenges(e.target.value)}} ></textarea>
+                                <label>{t('EVENTQUEST.eventChallenges')}</label>
+                                <textarea className="form-input" placeholder={t('EVENTQUEST.eventChallenges')} value= {challenges} onChange={(e) => {setChallenges(e.target.value)}} ></textarea>
                             </div>
                             <div>
-                                <label>What is the identity and overall atmosphere?</label>
-                                <textarea className="form-input" placeholder="What is the identity and overall atmosphere?" value= {atmosphere} onChange={(e) => {setAtmosphere(e.target.value)}} ></textarea>
+                                <label>{t('EVENTQUEST.eventAtmosphere')}</label>
+                                <textarea className="form-input" placeholder={t('EVENTQUEST.eventAtmosphere')} value= {atmosphere} onChange={(e) => {setAtmosphere(e.target.value)}} ></textarea>
                             </div>
                             <div>
-                                <label>Have you been to other similar event before? Positive/Negative?</label>
-                                <textarea className="form-input" placeholder="Have you been to other similar event before? Positive/Negative?" value= {similarEvent} onChange={(e) => {setSimilarEvent(e.target.value)}} ></textarea>
+                                <label>{t('EVENTQUEST.eventSimilar')}</label>
+                                <textarea className="form-input" placeholder={t('EVENTQUEST.eventSimilar')} value= {similarEvent} onChange={(e) => {setSimilarEvent(e.target.value)}} ></textarea>
                             </div>
                         </div>
 
                         <div className="sub-section" style={{ backgroundColor: 'rgb(247, 0, 108)' }}>
-                            <h2>Audience Overview</h2>
+                            <h2>{t('AUDIENCEQUEST.title')}</h2>
                         </div>
 
                         <div className="grid">
                             <div>
-                                <label>What is expected number of attendees?*</label>
-                                <input type="number" className="form-input" placeholder="What is expected number of attendees?*" value= {numberAudiences} onChange={(e) => {setNumberAudiences(e.target.value)}}  />
+                                <label>{t('AUDIENCEQUEST.number')}*</label>
+                                <input type="number" className="form-input" placeholder={t('AUDIENCEQUEST.number')} value= {numberAudiences} onChange={(e) => {setNumberAudiences(e.target.value)}}  />
                             </div>
                             <div>
-                                <label>How would you like to invite the audience?*</label>
+                                <label>{t('AUDIENCEQUEST.invite')}*</label>
                                 <select className="form-input" value= {invitationMethod} onChange={(e) => {setInvitationMethod(e.target.value)}} >
-                                    <option value="E-Invitation">E-Invitation</option>
-                                    <option value="Through Social media platform">Through Social media platform</option>
-                                    <option value="Printing Invitation">Printing Invitation</option>
+                                    <option value="E-Invitation">{t('AUDIENCEQUEST.inviteChoice1')}</option>
+                                    <option value="Through Social media platform">{t('AUDIENCEQUEST.inviteChoice2')}</option>
+                                    <option value="Printing Invitation">{t('AUDIENCEQUEST.inviteChoice3')}</option>
                                 </select>
                             </div>
                             <div>
-                                <label>What food option would you like to offer the audience?*</label>
+                                <label>{t('AUDIENCEQUEST.food')}*</label>
                                 <select className="form-input" value= {foodOption} onChange={(e) => {setFoodOption(e.target.value)}} >
-                                    <option value="Open Buffet">Open Buffet</option>
-                                    <option value="Trucks & Booths">Trucks & Booths</option>
-                                    <option value="Snaks">Snaks</option>
-                                    <option value="Coffee Break">Coffee Break</option>
-                                    <option value="Seated">Seated</option>
-                                    <option value="Other">Other</option>
+                                    <option value="Open Buffet">{t('AUDIENCEQUEST.foodChoice1')}</option>
+                                    <option value="Trucks & Booths">{t('AUDIENCEQUEST.foodChoice2')}</option>
+                                    <option value="Snaks">{t('AUDIENCEQUEST.foodChoice3')}</option>
+                                    <option value="Coffee Break">{t('AUDIENCEQUEST.foodChoice4')}</option>
+                                    <option value="Seated">{t('AUDIENCEQUEST.foodChoice5')}</option>
+                                    <option value="Other">{t('AUDIENCEQUEST.foodChoice6')}</option>
                                 </select>
                             </div>
                             <div>
-                                <label>Who is the main target audience for this event*</label>
+                                <label>{t('AUDIENCEQUEST.target')}*</label>
                                 <select className="form-input" value= {targetAudience} onChange={(e) => {setTargetAudience(e.target.value)}}>
-                                    <option value="Kids">Kids</option>
-                                    <option value="Families">Families</option>
-                                    <option value="Mixed">Mixed</option>
-                                    <option value="Women">Women</option>
-                                    <option value="Men">Men</option>
+                                    <option value="Kids">{t('AUDIENCEQUEST.targetChoice1')}</option>
+                                    <option value="Families">{t('AUDIENCEQUEST.targetChoice2')}</option>
+                                    <option value="Mixed">{t('AUDIENCEQUEST.targetChoice3')}</option>
+                                    <option value="Women">{t('AUDIENCEQUEST.targetChoice4')}</option>
+                                    <option value="Men">{t('AUDIENCEQUEST.targetChoice5')}</option>
                                 </select>
                             </div>
                             <div>
-                                <label>What is the target age?*</label>
-                                <textarea className="form-input" placeholder="What is the target age?*" value= {targetAge} onChange={(e) => {setTargetAge(e.target.value)}}></textarea>
+                                <label>{t('AUDIENCEQUEST.age')}*</label>
+                                <textarea className="form-input" placeholder={t('AUDIENCEQUEST.age')} value= {targetAge} onChange={(e) => {setTargetAge(e.target.value)}}></textarea>
                             </div>
                             <div></div>
                             <div>
                                 <div className="flex ai-c">
-                                    <input type="checkbox" checked={specialGuestChecked} onChange={(e) => {setSpecialGuestChecked(!specialGuestChecked)}}/>
-                                    <label>Will be there a special guest?</label>
+                                    <input type="checkbox"  checked={"true"?specialGuestChecked:"false"} onChange={(e) => {setSpecialGuestChecked(!specialGuestChecked)}}/>
+                                    <label>{t('AUDIENCEQUEST.guest')}</label>
                                 </div>
-                                <label>More details</label>
-                                <input type="text" className="form-input" placeholder="more details" value= {specialGuestDetails} onChange={(e) => {setSpecialGuestDetails(e.target.value)}}  />
+                                <label>{t('AUDIENCEQUEST.details')}</label>
+                                <input type="text" className="form-input" placeholder={t('AUDIENCEQUEST.details')} value= {specialGuestDetails} onChange={(e) => {setSpecialGuestDetails(e.target.value)}}  />
                             </div>
                         </div>
 
                         <div className="sub-section" style={{ backgroundColor: 'rgb(0, 121, 145)' }}>
-                            <h2>Event Details</h2>
+                            <h2>{t('EVENTDETAILSQUEST.title')}</h2>
                         </div>
 
                         <div className="grid">
                             <div>
-                                <label>What is the event name?*</label>
-                                <input type="text" className="form-input" placeholder="What is the event name?*" value={eventName} onChange={(e) => {setEventName(e.target.value)}} />
+                                <label>{t('EVENTDETAILSQUEST.name')}*</label>
+                                <input type="text" className="form-input" placeholder={t('EVENTDETAILSQUEST.name')} value={eventName} onChange={(e) => {setEventName(e.target.value)}} />
                             </div>
                             <div></div>
                             <div>
-                                <label>What is the most important elements you want to see at the event?*</label>
+                                <label>{t('EVENTDETAILSQUEST.elements')}*</label>
                                 <select className="form-input" value={elementsSelected} onChange={(e) => {setElementsSelected(e.target.value)}}>
-                                    <option value="Logistics">Logistics</option>
-                                    <option value="Activities">Activities</option>
-                                    <option value="Valet">Valet</option>
-                                    <option value="Documentation">Documentation</option>
-                                    <option value="Catering">Catering</option>
-                                    <option value="Stage & Shows">Stage & Shows</option>
+                                    <option value="Logistics">{t('EVENTDETAILSQUEST.elementsChoice1')}</option>
+                                    <option value="Activities">{t('EVENTDETAILSQUEST.elementsChoice2')}</option>
+                                    <option value="Valet">{t('EVENTDETAILSQUEST.elementsChoice3')}</option>
+                                    <option value="Documentation">{t('EVENTDETAILSQUEST.elementsChoice4')}</option>
+                                    <option value="Catering">{t('EVENTDETAILSQUEST.elementsChoice5')}</option>
+                                    <option value="Stage & Shows">{t('EVENTDETAILSQUEST.elementsChoice6')}</option>
                                 </select>
-                                <label>More details</label>
-                                <textarea className="form-input" placeholder="More details" value={elementsDetails} onChange={(e) => {setElementsDetails(e.target.value)}} ></textarea>
+                                <label>{t('EVENTDETAILSQUEST.details')}</label>
+                                <textarea className="form-input" placeholder={t('EVENTDETAILSQUEST.details')} value={elementsDetails} onChange={(e) => {setElementsDetails(e.target.value)}} ></textarea>
                             </div>
                             <div></div>
                             <div>
-                                <label>Do you intend to have MC, live entertainment or speakers?*</label>
-                                <textarea className="form-input" placeholder="Do you intend to have MC, live entertainment or speakers?" value={intention} onChange={(e) => {setIntention(e.target.value)}}></textarea>
+                                <label>{t('EVENTDETAILSQUEST.intention')}*</label>
+                                <textarea className="form-input" placeholder={t('EVENTDETAILSQUEST.intention')} value={intention} onChange={(e) => {setIntention(e.target.value)}}></textarea>
                             </div>
                             <div>
-                                <label>What registration system do you prefer to provide?*</label>
-                                <textarea className="form-input" placeholder="What registration system do you prefer to provide?" value={registrationSystem} onChange={(e) => {setRegistrationSystem(e.target.value)}}></textarea>
+                                <label>{t('EVENTDETAILSQUEST.registration')}*</label>
+                                <textarea className="form-input" placeholder={t('EVENTDETAILSQUEST.registration')} value={registrationSystem} onChange={(e) => {setRegistrationSystem(e.target.value)}}></textarea>
                             </div>
                         </div>
 
                         <div className="sub-section" style={{ backgroundColor: 'rgb(255, 197, 129)' }}>
-                            <h2>Other Details</h2>
+                            <h2>{t('EVENTDETAILSQUEST.title')}</h2>
                         </div>
 
                         <div className="grid">
                             <div>
                                 <div className="flex ai-c">
-                                    <input type="checkbox"  checked={previousClientSelected} onChange={(e) => {setPreviousClientSelected(!previousClientSelected)}}/>
-                                    <label>Are you a previous client?</label>
+                                    <input type="checkbox" checked={"true"?previousClientSelected:"false"} onChange={(e) => {setPreviousClientSelected(!previousClientSelected)}}/>
+                                    <label>{t('OTHERDETAILSQUEST.prevclient')}*</label>
                                 </div>
-                                <label>More details</label>
-                                <textarea className="form-input" placeholder="More details" value= {previousClientDetails} onChange={(e) => {setPreviousClientDetails(e.target.value)}} />
+                                <label>{t('OTHERDETAILSQUEST.details')}</label>
+                                <textarea className="form-input" placeholder={t('OTHERDETAILSQUEST.details')} value= {previousClientDetails} onChange={(e) => {setPreviousClientDetails(e.target.value)}} />
                             </div>
                             <div></div>
                             <div>
-                                <label>How did you hear about us?*</label>
+                                <label>{t('OTHERDETAILSQUEST.hear')}*</label>
                                 <select className="form-input" value={hearAboutUS} onChange={(e) => {setHearAboutUS(e.target.value)}}>
-                                    <option value="Through Friends">Through Friends</option>
-                                    <option value="Through Social media platform">Through Social media platform</option>
-                                    <option value="Website">Website</option>
+                                    <option value="Through Friends">{t('OTHERDETAILSQUEST.hearChoice1')}</option>
+                                    <option value="Through Social media platform">{t('OTHERDETAILSQUEST.hearChoice2')}</option>
+                                    <option value="Website">{t('OTHERDETAILSQUEST.hearChoice3')}</option>
                                 </select>
                             </div>
                             <div></div>
                             <div>
-                                <label>Do you prefer to have a meeting with us?*</label>
-                                <textarea className="form-input" placeholder="Do you prefer to have a meeting with us?*" value={meeting} onChange={(e) => {setMeeting(e.target.value)}} />
+                                <label>{t('OTHERDETAILSQUEST.meeting')}*</label>
+                                <textarea className="form-input" placeholder={t('OTHERDETAILSQUEST.meeting')} value={meeting} onChange={(e) => {setMeeting(e.target.value)}} />
                             </div>
                             <div></div>
                             <div>
-                                <label>How do you prefer to get in touch with us ?</label>
+                                <label>{t('OTHERDETAILSQUEST.touch')}</label>
                                 <select className="form-input" value={touch} onChange={(e) => {setTouch(e.target.value)}}>
-                                    <option value="Email">Email</option>
-                                    <option value="Phone Number">Phone Number</option>
+                                    <option value="Email">{t('OTHERDETAILSQUEST.touchChoice1')}</option>
+                                    <option value="Phone Number">{t('OTHERDETAILSQUEST.touchChoice2')}</option>
                                 </select>
                             </div>
                         </div>
                         <div align="right" style={{marginTop:20}}>
-                             <button className="btn" disabled={disable} >Send Your Application</button>
+                             <button className="btn" disabled={disable}>{t('JOINUS.sendapp')}</button>
                         </div>                       
                     </form>
                 </section>
@@ -443,6 +454,8 @@ const ClientQuestionnaire = () => {
                     min-height: calc(100vh - 187px);
                     position: relative;
                     z-index: 98;
+                    direction: ${isRTL ? 'rtl' : 'ltr'};
+
                 }
 
                 h1 {
@@ -463,7 +476,11 @@ const ClientQuestionnaire = () => {
                     border-radius: 40px;
                     margin: 25px 0px;
                 }
+                form > div {
+                    margin-top: 10px;
+                    direction: ${isRTL ? 'rtl' : 'ltr'};
 
+                }
                 .sub-section h2 {
                     font-size: 18px;
                     font-weight: 500;
@@ -488,4 +505,4 @@ const ClientQuestionnaire = () => {
     )
 }
 
-export default ClientQuestionnaire;
+export default withTranslation('common')(ClientQuestionnaire);

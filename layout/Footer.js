@@ -1,8 +1,17 @@
-const Footer = () => {
+import { useState,useEffect } from "react";
+import { i18n, withTranslation } from '../i18n'
+const Footer = ({t}) => {
+    //                    background-position: bottom left;
+    const [isRTL, setIsRTL] = useState(false)
+    useEffect(() => {
+        let isRTL = i18n.language === 'ar' ? true : false;
+        setIsRTL(isRTL)
+        
+    },[i18n.language]);
     return (
         <>
             <footer className="flex ai-c jc-end">
-                <p>© Copyright 2020 Ktheeb Company. All Rights Reserved.</p>
+                <p>{t('FOOTER.footer')}</p>
             </footer>
 
             <style jsx>{`
@@ -11,8 +20,9 @@ const Footer = () => {
                     height: 87px;
                     background-image: url("/img/footer.png");
                     background-repeat: no-repeat;
-                    background-position: bottom left;
                     background-size: contain;
+                    direction: ${isRTL ? 'rtl' : 'ltr'};
+
                 }
 
                 p {
@@ -38,5 +48,7 @@ const Footer = () => {
         </>
     )
 }
+  
+export default withTranslation('common')(Footer);
 
-export default Footer;
+

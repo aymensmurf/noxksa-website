@@ -1,15 +1,25 @@
 import Image from 'next/image';
 import BannerLeft from "../shared/BannerLeft";
+import BannerRight from "../shared/BannerRight";
+
 import { SERVER_URL } from '../../utils/consts';
 import Link from 'next/link'
+import { withTranslation } from '../../i18n'
 
-  const OurClients = ({clients}) => {
+
+  const OurClients = ({isRTL,clients,t}) => {
     return (
         <>
             <a name="our-clients" />
             <section>
-                <BannerLeft title="Our Clients" />
-                <div className="container flex jc-c ai-c flex-wrap" style={{ gap: 30, marginTop: 110 }}>
+
+                {isRTL?
+                <BannerLeft title={t('OURCLIENTS.CLIENTS')} />
+
+                :
+                <BannerRight  title={t('OURCLIENTS.CLIENTS')} />
+                }
+                <div className="container flex jc-c ai-c flex-wrap" style={{ gap: 30, marginTop: 110 , direction: `${isRTL ? 'rtl' : 'ltr'}`}}>
                     {
                         clients.map(({ _id, link ,img}, i) => (
                         <a href={link} key={_id}>
@@ -43,4 +53,5 @@ import Link from 'next/link'
     )
 }
 
-export default OurClients;
+
+export default withTranslation('common')(OurClients);

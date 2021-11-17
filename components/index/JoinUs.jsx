@@ -4,9 +4,10 @@ import Image from 'next/image';
 import Modal from '../shared/Modal';
 import FileDropZone from '../shared/FileDropZone';
 import { toast } from 'react-toastify';
-import { API_URL } from '../../utils/consts';
+import { API_URL,EMAIL_FORMAT } from '../../utils/consts';
+import { withTranslation } from '../../i18n'
 
-const JoinUs = () => {
+const JoinUs = ({isRTL,t}) => {
     const [isEmployeeModalOpen, setIsEmployeeModalOpen] = useState(false);
     const [isOrganizerModalOpen, setIsOrganizerModalOpen] = useState(false);
     const [file, setFile] = useState("");
@@ -46,7 +47,7 @@ const JoinUs = () => {
                 .then(({ status, data }) => {
                     console.log(status)
                     console.log(data)
-                    toast.success('your application has been successfully send ')                
+                    toast.success(`${t('toast.SUCCESS')}`)                
                     initEmployee();
                     setIsEmployeeModalOpen(false)
                 })
@@ -145,51 +146,52 @@ const JoinUs = () => {
     }
     const isOrganizerValid = () => {
         if (!fullName) {
-            toast.info("Fullname is required")
+            toast.info(`${t('toast.fullName')}`)
             return false;
         }
 
         if (!mobileNumber) {
-            toast.info("MobileNumber is required")
+            toast.info(`${t('toast.mobileNumber')}`)
             return false;
         }
 
 
         if (!email) {
-            toast.info("Email is required")
+            toast.info(`${t('toast.email')}`)
             return false;
         }
+      
         if (!nationality) {
-            toast.info("Nationality is required")
+            toast.info(`${t('toast.nationality')}`)
             return false;
         }
         if (!region) {
-            toast.info("Region is required")
+            toast.info(`${t('toast.region')}`)
             return false;
         }
 
         if (!gender) {
-            toast.info("Gender is required")
+            toast.info(`${t('toast.gender')}`)
             return false;
         }
 
         if (!dateOfBirth) {
-            toast.info("DateOfBirth is required")
+            toast.info(`${t('toast.dateOfBirth')}`)
             return false;
         }
 
         if (!languages) {
-            toast.info("Languages is required")
+            toast.info(`${t('toast.languages')}`)
             return false;   
         }
 
         if (!isExperiences) {
-            toast.info("Experiences is required")
+            toast.info(`${t('toast.isExperiences')}`)
             return false;
         }
 
         if(!file){
-            toast.info("Resume is required")
+            toast.info(`${t('toast.file')}`)
             return false;
         }
 
@@ -199,43 +201,45 @@ const JoinUs = () => {
     const isEmployeeValid = () => {  
 
         if (!fullName) {
-            toast.info("Fullname is required")
+            toast.info(`${t('toast.fullName')}`)
             return false;
         }
 
         if (!mobileNumber) {
-            toast.info("MobileNumber is required")
+            toast.info(`${t('toast.mobileNumber')}`)
             return false;
         }
 
 
         if (!email) {
-            toast.info("Email is required")
+            toast.info(`${t('toast.email')}`)
             return false;
         }
+        
         if (!nationality) {
-            toast.info("Nationality is required")
+            toast.info(`${t('toast.nationality')}`)
             return false;
         }
         if (!region) {
-            toast.info("Region is required")
+            toast.info(`${t('toast.region')}`)
             return false;
         }
 
         if (!gender) {
-            toast.info("Gender is required")
+            toast.info(`${t('toast.gender')}`)
             return false;
         }
 
         if (!dateOfBirth) {
-            toast.info("DateOfBirth is required")
+            toast.info(`${t('toast.dateOfBirth')}`)
             return false;
         }
 
         if(!file){
-            toast.info("Resume is required")
+            toast.info(`${t('toast.file')}`)
             return false;
         }
+
 
         return true;
     }
@@ -244,18 +248,18 @@ const JoinUs = () => {
         <>
             <a name="join-the-team" />
             <section className="flex flex-column ai-c jc-c" style={{ textAlign: 'center', gap: 10 }}>
-                <h2>Join us</h2>
+                <h2>{t('JOINUS.JOINUS')}</h2>
 
                 <div className="options flex ai-c jc-c flex-wrap">
-                    <button onClick={() => { setIsEmployeeModalOpen(true),initEmployee()}}>Employee</button>
-                    <button onClick={() => { setIsOrganizerModalOpen(true),initOrganizer() }}>Organizer</button>
+                    <button onClick={() => { setIsEmployeeModalOpen(true),initEmployee()}}>{t('JOINUS.EMP')}</button>
+                    <button onClick={() => { setIsOrganizerModalOpen(true),initOrganizer() }}>{t('JOINUS.ORG')}</button>
                 </div>
 
                 <Image src="/img/team.png" alt="Join Us" width={1250} height={518} objectFit="contain" />
             </section>
 
             <Modal
-                title="Join Us"
+                title={t('JOINUS.JOINUS')}
                 isModalOpen={isEmployeeModalOpen}
                 handleClose={handleCloseEmployeeModal}
                
@@ -264,56 +268,56 @@ const JoinUs = () => {
                 <form onSubmit={e => handleEmployeeSubmit(e)}>
                     <div className="grid">
                         <div>
-                            <label >Full Name*</label>
-                            <input type="text"  value={fullName} className="form-input" placeholder="John Smith" onChange={e => { setFullName(e.target.value); }}/>
+                            <label >{t('JOINUS.fullname')}*</label>
+                            <input type="text"  value={fullName} className="form-input" placeholder={t('JOINUS.fullname')} onChange={e => { setFullName(e.target.value); }}/>
                         </div>
                         <div>
-                            <label >Mobile number*</label>
-                            <input type="text"  value={mobileNumber} className="form-input" placeholder="Mobile number" onChange={e => { setMobileNumber(e.target.value); }}/>
+                            <label >{t('JOINUS.phone')}*</label>
+                            <input type="text"  value={mobileNumber} className="form-input" placeholder={t('JOINUS.phone')} onChange={e => { setMobileNumber(e.target.value); }}/>
                         </div>
                     </div>
                     <div>
-                        <label >Email*</label>
+                        <label >{t('JOINUS.email')}*</label>
                         <input type="email"  value={email} className="form-input" placeholder="john.smith@noxksa.com" onChange={e => { setEmail(e.target.value); }} />
                     </div>
                     <div className="grid">
                         <div>
-                            <label >Nationality*</label>
-                            <input type="text" name="nationality" value={nationality} className="form-input" placeholder="Nationality" onChange={e => { setNationality(e.target.value); }}/>
+                            <label >{t('JOINUS.nation')}*</label>
+                            <input type="text" name="nationality" value={nationality} className="form-input" placeholder={t('JOINUS.nation')} onChange={e => { setNationality(e.target.value); }}/>
                         </div>
                         <div>
-                            <label >Region*</label>
-                            <input type="text" name="region" value={region} className="form-input" placeholder="Region" onChange={e => { setRegion(e.target.value); }} />
+                            <label >{t('JOINUS.region')}*</label>
+                            <input type="text" name="region" value={region} className="form-input" placeholder={t('JOINUS.region')} onChange={e => { setRegion(e.target.value); }} />
                         </div>
                     </div>
                     <div className="grid">
                         <div>
-                            <label >Gender*</label>
+                            <label >{t('JOINUS.gender')}*</label>
                             <select className="form-input" value={gender} onChange={(e) => setGender(e.target.value)}    >
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
+                                <option value="male">{t('JOINUS.male')}</option>
+                                <option value="female">{t('JOINUS.female')}</option>
                             </select>
                         </div>
                         <div>
-                            <label >Date of Birth*</label>
-                            <input type="date"value={dateOfBirth} className="form-input" placeholder="Date of Birth" onChange={e => { setDateOfBirth(e.target.value); }}/>
+                            <label >{t('JOINUS.birth')}*</label>
+                            <input type="date"value={dateOfBirth} className="form-input" placeholder={t('JOINUS.birth')} onChange={e => { setDateOfBirth(e.target.value); }}/>
                         </div>
                     </div>
 
                     <div>
-                        <label>Upload your Resume*</label>
+                        <label>{t('JOINUS.resume')}*</label>
                         <div style={{ marginTop: 4 }}>
-                            <FileDropZone file={file} handleDrop={handleFileDrop} />
+                            <FileDropZone file={file} isRTL={isRTL} handleDrop={handleFileDrop} />
                         </div>
                     </div>
                     <div align="right" style={{marginTop:20}}>
-                    <button className="btn" disabled={disableEmployeeButton}>Send Your Application</button>
+                    <button className="btn" disabled={disableEmployeeButton}>{t('JOINUS.sendapp')}</button>
                     </div>               
                 </form>
             </Modal>
 
             <Modal
-                title="Join Us"
+                title={t('JOINUS.JOINUS')}
                 isModalOpen={isOrganizerModalOpen}
                 handleClose={handleCloseOrganizerModal}
                 
@@ -321,58 +325,58 @@ const JoinUs = () => {
                 <form onSubmit={e => handleOrganizerSubmit(e)}>
                     <div className="grid">
                         <div>
-                            <label >Full Name*</label>
+                            <label >{t('JOINUS.fullname')}*</label>
                             <input type="text" value={fullName} className="form-input" placeholder="John Smith" onChange={e => { setFullName(e.target.value); }} />
                         </div>
                         <div>
-                            <label >Mobile number*</label>
-                            <input type="text" className="form-input" placeholder="Mobile number" value={mobileNumber} onChange={e => { setMobileNumber(e.target.value); }}/>
+                            <label >{t('JOINUS.phone')}*</label>
+                            <input type="text" className="form-input" placeholder={t('JOINUS.phone')} value={mobileNumber} onChange={e => { setMobileNumber(e.target.value); }}/>
                         </div>
                     </div>
                     <div>
-                        <label >Email*</label>
+                        <label >{t('JOINUS.email')}*</label>
                         <input type="email"  className="form-input" value={email} placeholder="john.smith@noxksa.com" onChange={e => { setEmail(e.target.value); }} />
                     </div>
                     <div className="grid">
                         <div>
-                            <label >Nationality*</label>
-                            <input type="text"  className="form-input" value={nationality} placeholder="Nationality" onChange={e => { setNationality(e.target.value); }}/>
+                            <label >{t('JOINUS.nation')}*</label>
+                            <input type="text"  className="form-input" value={nationality} placeholder={t('JOINUS.nation')} onChange={e => { setNationality(e.target.value); }}/>
                         </div>
                         <div>
-                            <label >Region*</label>
-                            <input type="text"  className="form-input" placeholder="Region" value={region} onChange={e => { setRegion(e.target.value); }} />
+                            <label >{t('JOINUS.region')}*</label>
+                            <input type="text"  className="form-input" placeholder={t('JOINUS.region')} value={region} onChange={e => { setRegion(e.target.value); }} />
                         </div>
                     </div>
                     <div className="grid">
                         <div>
-                            <label >Gender*</label>
+                            <label >{t('JOINUS.gender')}*</label>
                             <select  className="form-input" value={gender} onChange={(e) => setGender(e.target.value)}    >
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
+                                <option value="male">{t('JOINUS.male')}</option>
+                                <option value="female">{t('JOINUS.female')}</option>
                             </select>
                         </div>
                         <div>
-                            <label>Date of Birth*</label>
-                            <input type="date" className="form-input" value={dateOfBirth} placeholder="Date of Birth" onChange={e => { setDateOfBirth(e.target.value); }}/>
+                            <label>{t('JOINUS.birth')}*</label>
+                            <input type="date" className="form-input" value={dateOfBirth} placeholder={t('JOINUS.birth')} onChange={e => { setDateOfBirth(e.target.value); }}/>
                         </div>
                     </div>
                     <div>
-                        <label >What languages do you speak?*</label>
-                        <input type="text" className="form-input" value={languages} placeholder="Arabic, English" onChange={e => { setLanguages(e.target.value); }}/>
+                        <label >{t('JOINUS.lang')}*</label>
+                        <input type="text" className="form-input" value={languages} placeholder={t('JOINUS.lang')} onChange={e => { setLanguages(e.target.value); }}/>
                     </div>
                     <div>
-                        <label>Do You Have any Experiences in this role?*</label>
-                        <input type="text" value={isExperiences} className="form-input" placeholder="Do You Have any Experiences in this role?" onChange={e => { setIsexperiences(e.target.value); }}/>
+                        <label>{t('JOINUS.exp')}*</label>
+                        <input type="text" value={isExperiences} className="form-input" placeholder={t('JOINUS.exp')} onChange={e => { setIsexperiences(e.target.value); }}/>
                     </div>
 
                     <div>
-                        <label>Upload your Resume*</label>
+                        <label>{t('JOINUS.resume')}*</label>
                         <div style={{ marginTop: 4 }}>
-                            <FileDropZone file={file} handleDrop={handleFileDrop} />
+                            <FileDropZone file={file} isRTL={isRTL} handleDrop={handleFileDrop} />
                         </div>
                     </div>
                     <div align="right" style={{marginTop:20}}>
-                    <button className="btn" disabled={disableOrganizerButton}>Send Your Application</button>
+                    <button className="btn" disabled={disableOrganizerButton}>{t('JOINUS.sendapp')}</button>
                     </div>                                   
                 </form>
             </Modal>
@@ -385,6 +389,9 @@ const JoinUs = () => {
                     height: 100vh;
                     overflow: hidden;
                     padding: 50px 0px;
+                    direction: ${isRTL ? 'rtl' : 'ltr'};
+
+                    
                 }
 
                 h2 {
@@ -401,6 +408,8 @@ const JoinUs = () => {
 
                 form > div {
                     margin-top: 10px;
+                    direction: ${isRTL ? 'rtl' : 'ltr'};
+
                 }
 
                 form > div:nth-child(1){
@@ -433,10 +442,12 @@ const JoinUs = () => {
                     .options {
                         gap: 10px;
                     }
-                }
+                },
+             
             `}</style>
         </>
     )
 }
 
-export default JoinUs;
+  
+export default withTranslation('common')(JoinUs);

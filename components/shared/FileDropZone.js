@@ -1,6 +1,6 @@
 import Dropzone from 'react-dropzone'
 
-const FileDropZone = ({ file, handleDrop }) => {
+const FileDropZone = ({ isRTL,file, handleDrop }) => {
     return (
         <>
             <Dropzone
@@ -13,6 +13,9 @@ const FileDropZone = ({ file, handleDrop }) => {
                         <input {...getInputProps()} />
                         {
                             !file ?
+                                isRTL?
+                                <p>اسحب الملف و أسقطه هنا ، أو انقر لتحديد أحدهما</p>
+                                :
                                 <p>Drag &apos;n&apos; drop file here, or click to select one.</p>
                                 :
                                 (typeof file === 'object') ?

@@ -1,9 +1,12 @@
+import { withRouter } from 'next/router';
 import { useEffect, useState } from 'react'
+import {i18n,withTranslation } from '../../i18n'
 
-const WORDS = ["Services", "Programs", "Events"]
 
-const Home = () => {
+
+const Home = ({isRTL,t}) => {
     const [index, setIndex] = useState(0);
+    const WORDS =isRTL?["الحفلات","البرامج","الخدمات"] :["Services", "Programs", "Events"]
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -20,16 +23,27 @@ const Home = () => {
     return (
         <>
             <section className="flex ai-c">
+                
                 <video className="video" preload="true" autoPlay muted>
                     <source src="/videos/home.mp4" type="video/mp4" />
                 </video>
 
-                <div className="home-text-container">
-                    <h1>
-                        <span>The Most</span><br />
-                        <span>ENTERTAINMENT</span><br />
-                        <span className="word-animation">{WORDS[index]}</span><br />
-                        <span>All For You</span><br />
+                <div className="home-text-container"  style={{direction: `${isRTL ? 'rtl' : 'ltr'}`}} >
+                    <h1 >                        
+                        <span>{t('HOME.Most')}</span><br />
+                        {isRTL?
+                        <div>
+                            <span className="word-animation"style={{ color: "rgb(245, 6, 108)" }} >{WORDS[index]}</span><br />    
+                            <span style={{ color: 'white' }}>{t('HOME.Enter')}</span><br />
+                        </div>
+                        :
+                        <div>
+                            <span>{t('HOME.Enter')}</span><br />
+                            <span className="word-animation">{WORDS[index]}</span><br />
+                        </div>
+                        }
+                       
+                        <span>{t('HOME.All')}</span><br />
                     </h1>
                 </div>
             </section>
@@ -64,9 +78,9 @@ const Home = () => {
                     font-weight: 700;
                     font-family: 'CodecColdTrial', sans-serif;
                 }
-
+              
                 h1 span:nth-child(3) {
-                    color: rgb(245, 6, 108);
+                    color: ${isRTL?"white":"rgb(245, 6, 108)"};
                 }
 
                 h1 span:nth-child(5) {
@@ -150,5 +164,9 @@ const Home = () => {
         </>
     )
 }
+Home.getInitialProps = async () => ({
+    namespacesRequired: ['common'],
+  })
+  
 
-export default Home;
+  export default withTranslation('common')(Home);
