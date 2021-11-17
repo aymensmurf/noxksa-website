@@ -19,12 +19,11 @@ const BannerRight = ({ title }) => {
 
                 h1 {
                     position: relative;
-                    font-size: 100px;
+                    font-size: 90px;
                     font-weight: 400;
                     color: #f7006c;
-                    line-height: 20px;
                     font-family: "CoHeadline", sans-serif;
-                    margin-top: 36px;
+                    margin-top: 0px;
                 }
 
                 @media only screen and (max-width: 1256px) {

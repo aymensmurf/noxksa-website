@@ -140,7 +140,6 @@ const Nav = ({ navWithBackground = false, t }) => {
                     color: white;
                     cursor: pointer;
                     border-width: 1px;
-                
                 }
 
             `}</style>
