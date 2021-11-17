@@ -1,8 +1,8 @@
-import { useEffect ,useState} from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { i18n, withTranslation } from '../i18n'
 
-const Nav = ({ navWithBackground = false,t}) => {
+const Nav = ({ navWithBackground = false, t }) => {
     const [isRTL, setIsRTL] = useState(false)
     useEffect(() => {
         let isRTL = i18n.language === 'ar' ? true : false;
@@ -49,19 +49,18 @@ const Nav = ({ navWithBackground = false,t}) => {
         };
 
         window.addEventListener('scroll', checkScroll);
-    },[i18n.language])
+    }, [i18n.language])
 
     return (
         <>
             <header id="header">
-                <nav className="container flex jc-sb ai-c" style={{direction: isRTL?'rtl':'ltr'}}>
+                <nav className="container flex jc-sb ai-c" style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
                     <a href="/">
                         <Image src="/img/logo.png" alt="NOX Entertainment" width={261} height={74} objectFit="contain" />
                     </a>
-                  
+
 
                     <div>
-                 
                         <ul>
                             <li><a href="/#about-us">{t('Nav.ABOUTUS')}</a></li>
                             <li><a href="/#our-clients">{t('Nav.OURCLIENTS')}</a></li>
@@ -71,14 +70,10 @@ const Nav = ({ navWithBackground = false,t}) => {
                             <li><a href="/#contact-us">{t('Nav.CONTACTUS')}</a></li>
                             <li><a href="/client-questionnaire">{t('Nav.QUESTIONNAIRE')}</a></li>
                             <li className="circle" onClick={() => i18n.changeLanguage(isRTL ? 'en' : 'ar')} >{isRTL ? 'EN' : 'AR'}</li>
-                        
                         </ul>
-
-                  
-                      
-                    </div>                   
+                    </div>
                 </nav>
-                
+
 
             </header>
 
@@ -104,6 +99,7 @@ const Nav = ({ navWithBackground = false,t}) => {
 
                 ul {
                     display: flex;
+                    align-items: center;
                     gap: 20px;
                 }
                 
@@ -133,24 +129,22 @@ const Nav = ({ navWithBackground = false,t}) => {
               
             
                 .circle {
-                    width:55px;
-                    height:55px;
+                    width: 55px;
+                    height: 55px;
                     border-radius: 50%;
                     border-style: solid;
                     border-color: white;
-                    display:flex;
+                    display: flex;
                     align-items: center;
                     justify-content: center;
-                    color:white
-                    position: relative;
-                    margin-top: -16px;
-                    cursor:pointer;
+                    color: white;
+                    cursor: pointer;
                     border-width: 1px;
                 
                 }
 
             `}</style>
-                 <style>{`
+            <style>{`
                 .form-group {
                     direction: ${isRTL ? 'rtl' : 'ltr'};
                 }
