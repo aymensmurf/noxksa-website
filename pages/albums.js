@@ -42,7 +42,7 @@ const CreativeStudio = () => {
         <>
         <Layout navWithBackground>
 
-            <section>
+            <section >
                 <div className="container" style={{ marginTop: 60 , direction: `${isRTL ? 'rtl' : 'ltr'}`}} >
                     <div className="flex ai-c flex-wrap" style={{ gap: 30 }}>
                         {albums.map(({ title,links }, i) => (
@@ -61,6 +61,7 @@ const CreativeStudio = () => {
                 section {
                     padding-top: 160px;
                     padding-bottom: 160px;
+                    min-height: calc(100vh - 187px);
                 }
             `}</style>
         </>
