@@ -143,7 +143,7 @@ const Nav = ({ navWithBackground = false,t}) => {
                     justify-content: center;
                     color:white
                     position: relative;
-                    margin-top: -16px;
+                    margin-top: -12px;
                     cursor:pointer;
                     border-width: 1px;
                 

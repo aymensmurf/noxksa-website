@@ -24,7 +24,7 @@ const BannerRight = ({ title }) => {
                     color: #f7006c;
                     line-height: 20px;
                     font-family: "CoHeadline", sans-serif;
-                    margin-top: 36px;
+                    margin-top: 0px kenet 36px;
                 }
 
                 @media only screen and (max-width: 1256px) {

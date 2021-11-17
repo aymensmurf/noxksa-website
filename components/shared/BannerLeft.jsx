@@ -26,7 +26,7 @@ const BannerLeft = ({ title }) => {
                     color: #f7006c;
                     line-height: 40px;
                     font-family: "CoHeadline", sans-serif;
-                    margin-top: 10px;
+                    margin-top: -30px; kenet 10px;
                 }
 
                 @media only screen and (max-width: 1256px) {
