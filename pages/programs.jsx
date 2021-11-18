@@ -6,30 +6,29 @@ import { i18n } from '../i18n'
 
 const Programs = () => {
     const [isRTL, setIsRTL] = useState(false)
-    const [programs,setPrograms]=useState([])
+    const [programs, setPrograms] = useState([])
     useEffect(() => {
         getPrograms()
-        
+
     }, []);
     useEffect(() => {
         let isRTL = i18n.language === 'ar' ? true : false;
-        setIsRTL(isRTL)        
-    },[i18n.language]);
+        setIsRTL(isRTL)
+    }, [i18n.language]);
 
 
-    
+
     const getPrograms = () => {
         const config = {
             method: 'get',
             url: `${API_URL}/services/type/program`,
-            
+
         };
 
         axios(config)
             .then(({ status, data }) => {
                 if (status === 200) {
-                   setPrograms(data.data)
-                   console.log(data)
+                    setPrograms(data.data)
                 }
             })
             .catch(err => {
@@ -41,22 +40,22 @@ const Programs = () => {
         <>
             <Layout navWithBackground>
                 <section className="container">
-                {
-                    programs.map(({ _id, description ,title,subCategories}, i) => (
-                        <div key={_id}>
-                        <h2 className={`colors${i%4}`}>{isRTL?title.ar:title.en}</h2>
-                        <p>{isRTL?description.ar:description.en}</p>
-                        {subCategories && subCategories.map(({ _id, description ,title}, i) => (
-                               <div key={_id+i} style={{ marginLeft: "40px" }}>
-                                   <h4 className={`colors${i%4}`}>{isRTL?title.ar:title.en}</h4>
-                                   <p>{isRTL?description.ar:description.en}</p>
-                               </div>    
-                            ))
-                        }
-                        </div>
-                    ))
-                }
-                {/*
+                    {
+                        programs.map(({ _id, description, title, subCategories }, i) => (
+                            <div key={_id}>
+                                <h2 className={`colors${i % 4}`}>{isRTL ? title.ar : title.en}</h2>
+                                <p>{isRTL ? description.ar : description.en}</p>
+                                {subCategories && subCategories.map(({ _id, description, title }, i) => (
+                                    <div key={_id + i} style={{ marginLeft: "40px" }}>
+                                        <h4 className={`colors${i % 4}`}>{isRTL ? title.ar : title.en}</h4>
+                                        <p>{isRTL ? description.ar : description.en}</p>
+                                    </div>
+                                ))
+                                }
+                            </div>
+                        ))
+                    }
+                    {/*
                     <h2>Annual Event</h2>
                     <p>A world that is full with our special challenges from solving mysteries to finding the key to survive and experiencing new things in curtain time like : GOOSEBUMPS , Shaikh Omar’s legacy , Wallmash -Grap & Get – Rage Room and so on …</p>
 
@@ -84,7 +83,7 @@ const Programs = () => {
                     <h2 style={{ color: '#f7006c' }}>Volunteering Activities</h2>
                     <p>A day for the Employees’ children to let them know better about their parents’ workplace within educational / entertainment activities… A group of humanitarian activities that raise the awareness about necessity of charity to the employees.</p>
                 */
-                }
+                    }
                 </section>
             </Layout>
 
