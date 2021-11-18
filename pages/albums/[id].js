@@ -10,45 +10,7 @@ import Iframe from 'react-iframe'
 
 
 
-const Album = (props) => {
-    const router = useRouter();
-    const [img, setImg] = useState([])
-    const [video, setVideo] = useState([])
-
-    const [title, setTitle] = useState("")
-    const [description, setDescription] = useState("")
-
-    const { data } = props.data.data
-    const links = data.links
-    const images = []
-    const videos = []
-    const [isOpen, setIsOpen] = useState(false);
-
-
-    useEffect(() => {
-        for (let i = 0; i < links.length; i++) {
-            const link = `${SERVER_URL}/uploads/${links[i].link}`
-            if (links[i].link.startsWith('album')) {
-                images.push({
-                    thumbnail: link, src: link, thumbnailWidth: 320,
-                    thumbnailHeight: 212
-                })
-            }
-            else {
-                videos.push(links[i].link)
-
-            }
-
-
-        }
-        setVideo(videos)
-        setImg(images)
-        setTitle(data.title)
-        setDescription(data.description)
-    }, []);
-
-
-
+const Album = ({ data }) => {
     return (
 
         <>
@@ -58,22 +20,31 @@ const Album = (props) => {
                 <section style={{ position: 'relative', zIndex: 98 }} >
 
                     <div className="container" style={{ marginTop: 60 }} >
-                        <h1>{title.en}</h1>
-                        <p style={{ marginTop: 20 }}>{description.en}   </p>
+                        <h1>{data.title.en}</h1>
+                        <p style={{ marginTop: 20 }}>{data.description.en}</p>
 
-                        <div className="album" style={{ marginTop: 20 }}>
-                            <Gallery images={img} backdropClosesModal={true} margin={5} onClickThumbnail={() => setIsOpen(true)} />
-                            {video.map((v, i) => (
-                                <Iframe url={v}
-                                    key={i}
-                                    width="220px"
-                                    height="220px"
-                                    id="myId"
-                                />
-                            ))}
+                        {data.links && data.links.length > 0 && (
+                            <div className="grid">
+                                {data.links.map((link, i) => (
+                                    link.type === 'upload' ? (
+                                        <img
+                                            key={i}
+                                            src={`${SERVER_URL}/uploads/${link.link}`}
+                                            alt=""
+                                            style={{ width: "100%", height: 300, objectFit: 'cover' }}
+                                        />
+                                    ) : (
+                                        <Iframe
+                                            key={i}
+                                            url={link.link}
+                                            width="100%"
+                                            height="300px"
+                                        />
+                                    )
+                                ))}
+                            </div>
+                        )}
 
-                        </div>
-                        {console.log(isOpen)}
 
                     </div>
 
@@ -87,14 +58,13 @@ const Album = (props) => {
                     padding-bottom: 160px;
                     min-height: calc(100vh - 187px);
                 }
-                .album {
-                    text-align: center;
-                    z-index: 98;
-                    cursor: pointer;
-                }
-              
-               
 
+                .grid {
+                    display: grid;
+                    grid-template-columns: repeat(5, 1fr);
+                    gap: 10px;
+                    margin-top: 30px;
+                }
             `}</style>
         </>
     )
@@ -103,11 +73,11 @@ const Album = (props) => {
 
 export async function getServerSideProps({ query }) {
     const res = await fetch(`${API_URL}/albums/${query.id}`)
-    const data = await res.json()
+    const { data } = await res.json()
 
     return {
         props: {
-            data: { data }
+            data
         },
     };
 }
