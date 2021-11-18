@@ -1,65 +1,65 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import Layout from "../layout/Layout";
 import axios from 'axios';
-import { API_URL,EMAIL_FORMAT } from '../utils/consts';
+import { API_URL, EMAIL_FORMAT } from '../utils/consts';
 import { toast } from 'react-toastify';
 import { i18n, withTranslation } from '../i18n'
 
-const ClientQuestionnaire = ({t}) => {
+const ClientQuestionnaire = ({ t }) => {
     const [isRTL, setIsRTL] = useState(false)
 
     useEffect(() => {
         let isRTL = i18n.language === 'ar' ? true : false;
         setIsRTL(isRTL)
-        console.log("ok")
-    },[i18n.language]);
-    const [companyName,setCompanyName]=useState("")
-    const [contactEmail,setContactEmail]=useState("")
-    const [contactNumber,setContactNumber]=useState("")
-    const [personName,setPersonName]=useState("")
-    const [typeEvents,setTypeEvents]=useState("Family Day")
-    const [whereEventsSelected,setWhereEventsSelected]=useState("Out-door")
-    const [whereEventsDetails,setWhereEventsDetails]=useState("")
+    }, [i18n.language]);
+    const [companyName, setCompanyName] = useState("")
+    const [contactEmail, setContactEmail] = useState("")
+    const [contactNumber, setContactNumber] = useState("")
+    const [personName, setPersonName] = useState("")
+    const [typeEvents, setTypeEvents] = useState("Family Day")
+    const [whereEventsSelected, setWhereEventsSelected] = useState("Out-door")
+    const [whereEventsDetails, setWhereEventsDetails] = useState("")
 
-    const [howLongEvents,setHowLongEvents]=useState("")
-    const [eventDate,setEventDate]=useState("")
-    const [rangeBudgetSelected,setRangeBudgetSelected]=useState("0 - 100.000 SR")
-    const [rangeBudgetDetails,setRangeBudgetDetails]=useState("")
-    const [eventGoal,setEventGoal]=useState("")
-    const [challenges,setChallenges]=useState("")
-    const [atmosphere,setAtmosphere]=useState("")
-    const [similarEvent,setSimilarEvent]=useState("")
-    const [numberAudiences,setNumberAudiences]=useState("")
-    const [invitationMethod,setInvitationMethod]=useState("E-Invitation")
-    const [foodOption,setFoodOption]=useState("Open Buffet")
-    const [targetAudience,setTargetAudience]=useState("Kids")
-    const [targetAge,setTargetAge]=useState("")
-    const [specialGuestChecked,setSpecialGuestChecked]=useState(false)
-    const [specialGuestDetails,setSpecialGuestDetails]=useState("")
+    const [howLongEvents, setHowLongEvents] = useState("")
+    const [eventDate, setEventDate] = useState("")
+    const [rangeBudgetSelected, setRangeBudgetSelected] = useState("0 - 100.000 SR")
+    const [rangeBudgetDetails, setRangeBudgetDetails] = useState("")
+    const [eventGoal, setEventGoal] = useState("")
+    const [challenges, setChallenges] = useState("")
+    const [atmosphere, setAtmosphere] = useState("")
+    const [similarEvent, setSimilarEvent] = useState("")
+    const [numberAudiences, setNumberAudiences] = useState("")
+    const [invitationMethod, setInvitationMethod] = useState("E-Invitation")
+    const [foodOption, setFoodOption] = useState("Open Buffet")
+    const [targetAudience, setTargetAudience] = useState("Kids")
+    const [targetAge, setTargetAge] = useState("")
+    const [specialGuestChecked, setSpecialGuestChecked] = useState(false)
+    const [specialGuestDetails, setSpecialGuestDetails] = useState("")
 
-    const [eventName,setEventName]=useState("")
-    const [elementsSelected,setElementsSelected]=useState("Logistics")
-    const [elementsDetails,setElementsDetails]=useState("")
-    const [intention,setIntention]=useState("")
-    const [registrationSystem,setRegistrationSystem]=useState("")
-    const [previousClientSelected,setPreviousClientSelected]=useState(false)
-    const [previousClientDetails,setPreviousClientDetails]=useState("")
+    const [eventName, setEventName] = useState("")
+    const [elementsSelected, setElementsSelected] = useState("Logistics")
+    const [elementsDetails, setElementsDetails] = useState("")
+    const [intention, setIntention] = useState("")
+    const [registrationSystem, setRegistrationSystem] = useState("")
+    const [previousClientSelected, setPreviousClientSelected] = useState(false)
+    const [previousClientDetails, setPreviousClientDetails] = useState("")
 
-    const [hearAboutUS,setHearAboutUS]=useState("Through Friends")
-    const [meeting,setMeeting]=useState("")
-    const [touch,setTouch]=useState("Email")
+    const [hearAboutUS, setHearAboutUS] = useState("Through Friends")
+    const [meeting, setMeeting] = useState("")
+    const [touch, setTouch] = useState("Email")
     const [disable, setDisable] = useState(false);
 
-    
+
     const handleSubmit = async e => {
         e.preventDefault();
-        if(isValid())
-        {
-            const data = {companyName:companyName,contactEmail:contactEmail,contactNumber:contactNumber,personName:personName,typeEvents:typeEvents,whereEvents:{selected:whereEventsSelected,details:whereEventsDetails}
-            ,howLongEvents:howLongEvents,eventDate:eventDate,rangeBudget:{selected:rangeBudgetSelected,details:rangeBudgetDetails},
-            eventGoal:eventGoal,challenges:challenges,atmosphere:atmosphere,similarEvent:similarEvent,numberAudiences:numberAudiences,invitationMethod:invitationMethod,foodOption:foodOption,targetAudience:targetAudience,targetAge:targetAge,specialGuest:{checked:specialGuestChecked,details:specialGuestDetails}
-            ,eventName:eventName,elements:{selected:elementsSelected,details:elementsDetails},intention:intention,registrationSystem:registrationSystem
-            ,previousClient:{selected:previousClientSelected,details:previousClientDetails},hearAboutUS:hearAboutUS,meeting:meeting,touch:touch};
+        if (isValid()) {
+            const data = {
+                companyName: companyName, contactEmail: contactEmail, contactNumber: contactNumber, personName: personName, typeEvents: typeEvents, whereEvents: { selected: whereEventsSelected, details: whereEventsDetails }
+                , howLongEvents: howLongEvents, eventDate: eventDate, rangeBudget: { selected: rangeBudgetSelected, details: rangeBudgetDetails },
+                eventGoal: eventGoal, challenges: challenges, atmosphere: atmosphere, similarEvent: similarEvent, numberAudiences: numberAudiences, invitationMethod: invitationMethod, foodOption: foodOption, targetAudience: targetAudience, targetAge: targetAge, specialGuest: { checked: specialGuestChecked, details: specialGuestDetails }
+                , eventName: eventName, elements: { selected: elementsSelected, details: elementsDetails }, intention: intention, registrationSystem: registrationSystem
+                , previousClient: { selected: previousClientSelected, details: previousClientDetails }, hearAboutUS: hearAboutUS, meeting: meeting, touch: touch
+            };
             const config = {
                 method: 'POST',
                 url: `${API_URL}/questionnaires/`,
@@ -68,116 +68,114 @@ const ClientQuestionnaire = ({t}) => {
             setDisable(true)
             axios(config)
                 .then(({ status, data }) => {
-                    console.log(status)
-                    console.log(data)
-                    toast.success(`${t('toast.SUCCESS')}`)      
-                    InitQuestionnaire()                                 
+                    toast.success(`${t('toast.SUCCESS')}`)
+                    InitQuestionnaire()
                 })
                 .catch(err => {
-                    
+
                     if (err.response) {
                         const { status, data } = err.response;
 
                         if ((status === 400) || (status === 404) || (status === 401)) {
-                            console.log(data.error);
+                            console.error(data.error);
                             toast.error(data.error);
 
                         }
                     }
                 })
-                .finally(()=>{
+                .finally(() => {
                     setDisable(false)
 
                 })
 
-        }  
+        }
     }
     const isValid = () => {
-       
 
-       if(!companyName){
-        toast.info(`${t('toast.CN')}`)
-        return false;
-       }
-       if(!contactEmail){
-        toast.info(`${t('toast.CE')}`)
-        return false;
-       }
 
-       if (!contactEmail.match(EMAIL_FORMAT)) {
-        toast.error(`${t('toast.errorEmail')}`);
-        return false;
+        if (!companyName) {
+            toast.info(`${t('toast.CN')}`)
+            return false;
+        }
+        if (!contactEmail) {
+            toast.info(`${t('toast.CE')}`)
+            return false;
         }
 
-       if(!contactNumber){
-        toast.info(`${t('toast.CNU')}`)
-        return false;
-       }
+        if (!contactEmail.match(EMAIL_FORMAT)) {
+            toast.error(`${t('toast.errorEmail')}`);
+            return false;
+        }
 
-       if(!personName){
-        toast.info(`${t('toast.PN')}`)
-        return false;
+        if (!contactNumber) {
+            toast.info(`${t('toast.CNU')}`)
+            return false;
+        }
 
-       }
-       if(!typeEvents){
-        toast.info(`${t('toast.TE')}`)
-        return false;
+        if (!personName) {
+            toast.info(`${t('toast.PN')}`)
+            return false;
 
-       }
-       if(whereEventsSelected=="Other" && !whereEventsDetails){
-        toast.info(`${t('toast.EH')}`)
-        return false
-       }
-       if(!howLongEvents){
-        toast.info(`${t('toast.HE')}`)
-        return false   
-       }
-       if (!eventDate){
-        toast.info(`${t('toast.Ed')}`)
-        return false      
-       }
-       
-       if(rangeBudgetSelected=="Other" && !rangeBudgetDetails){
-        toast.info(`${t('toast.RB')}`)
-        return false
-       }
+        }
+        if (!typeEvents) {
+            toast.info(`${t('toast.TE')}`)
+            return false;
 
-       if(!numberAudiences){
-        toast.info(`${t('toast.NA')}`)
-        return false         
-       }
+        }
+        if (whereEventsSelected == "Other" && !whereEventsDetails) {
+            toast.info(`${t('toast.EH')}`)
+            return false
+        }
+        if (!howLongEvents) {
+            toast.info(`${t('toast.HE')}`)
+            return false
+        }
+        if (!eventDate) {
+            toast.info(`${t('toast.Ed')}`)
+            return false
+        }
 
-       if(!foodOption){
-        toast.info(`${t('toast.FO')}`)
-        return false     
-       }
+        if (rangeBudgetSelected == "Other" && !rangeBudgetDetails) {
+            toast.info(`${t('toast.RB')}`)
+            return false
+        }
 
-       if(!targetAudience){
-        toast.info(`${t('toast.TA')}`)
-        return false     
-       }
-       if(!targetAge){
-        toast.info(`${t('toast.TAG')}`)
-        return false 
-       }
+        if (!numberAudiences) {
+            toast.info(`${t('toast.NA')}`)
+            return false
+        }
 
-       if(!eventName){
-        toast.info(`${t('toast.EN')}`)
-        return false 
-       }
+        if (!foodOption) {
+            toast.info(`${t('toast.FO')}`)
+            return false
+        }
 
-       if(!intention){
-        toast.info(`${t('toast.EI')}`)
-        return false 
-       }
-       if(!registrationSystem){
-        toast.info(`${t('toast.ER')}`)
-        return false 
-       }
-       if(!meeting){
-        toast.info(`${t('toast.EM')}`)
-        return false 
-       }
+        if (!targetAudience) {
+            toast.info(`${t('toast.TA')}`)
+            return false
+        }
+        if (!targetAge) {
+            toast.info(`${t('toast.TAG')}`)
+            return false
+        }
+
+        if (!eventName) {
+            toast.info(`${t('toast.EN')}`)
+            return false
+        }
+
+        if (!intention) {
+            toast.info(`${t('toast.EI')}`)
+            return false
+        }
+        if (!registrationSystem) {
+            toast.info(`${t('toast.ER')}`)
+            return false
+        }
+        if (!meeting) {
+            toast.info(`${t('toast.EM')}`)
+            return false
+        }
         return true;
     }
 
@@ -215,7 +213,7 @@ const ClientQuestionnaire = ({t}) => {
         setMeeting("")
         setTouch("Email")
     }
-  
+
     return (
         <>
             <Layout navWithBackground>
@@ -226,19 +224,19 @@ const ClientQuestionnaire = ({t}) => {
                         <div className="grid">
                             <div>
                                 <label>{t('CLIENTQUEST.compN')}*</label>
-                                <input type="text" className="form-input" placeholder={t('CLIENTQUEST.compN')} value={companyName}  onChange={(e) => {setCompanyName(e.target.value)}}/>
+                                <input type="text" className="form-input" placeholder={t('CLIENTQUEST.compN')} value={companyName} onChange={(e) => { setCompanyName(e.target.value) }} />
                             </div>
                             <div>
                                 <label>{t('CLIENTQUEST.contE')}*</label>
-                                <input type="text" className="form-input" placeholder={t('CLIENTQUEST.contE')} value={contactEmail} onChange={(e) => {setContactEmail(e.target.value)}} />
+                                <input type="text" className="form-input" placeholder={t('CLIENTQUEST.contE')} value={contactEmail} onChange={(e) => { setContactEmail(e.target.value) }} />
                             </div>
                             <div>
                                 <label>{t('CLIENTQUEST.contN')}*</label>
-                                <input type="text" className="form-input" placeholder={t('CLIENTQUEST.contN')} value={contactNumber} onChange={(e) => {setContactNumber(e.target.value)}}/>
+                                <input type="text" className="form-input" placeholder={t('CLIENTQUEST.contN')} value={contactNumber} onChange={(e) => { setContactNumber(e.target.value) }} />
                             </div>
                             <div>
                                 <label>{t('CLIENTQUEST.personN')}*</label>
-                                <input type="text" className="form-input" placeholder={t('CLIENTQUEST.personN')} value={personName} onChange={(e) => {setPersonName(e.target.value)}}/>
+                                <input type="text" className="form-input" placeholder={t('CLIENTQUEST.personN')} value={personName} onChange={(e) => { setPersonName(e.target.value) }} />
                             </div>
                         </div>
                         <div className="sub-section">
@@ -249,7 +247,7 @@ const ClientQuestionnaire = ({t}) => {
                         <div className="grid">
                             <div>
                                 <label>{t('EVENTQUEST.eventType')}*</label>
-                                <select className="form-input" value= {typeEvents} onChange={(e) => {setTypeEvents(e.target.value)}} >
+                                <select className="form-input" value={typeEvents} onChange={(e) => { setTypeEvents(e.target.value) }} >
                                     <option value="Family Day">{t('EVENTQUEST.eventTypeChoice1')}</option>
                                     <option value="Young Employee">{t('EVENTQUEST.eventTypeChoice2')}</option>
                                     <option value="Public Events">{t('EVENTQUEST.eventTypeChoice3')}</option>
@@ -260,7 +258,7 @@ const ClientQuestionnaire = ({t}) => {
                             </div>
                             <div>
                                 <label>{t('EVENTQUEST.eventHeld')}*</label>
-                                <select className="form-input" value= {whereEventsSelected} onChange={(e) => {setWhereEventsSelected(e.target.value)}} >
+                                <select className="form-input" value={whereEventsSelected} onChange={(e) => { setWhereEventsSelected(e.target.value) }} >
                                     <option value="Out-door">{t('EVENTQUEST.eventHeldChoice1')}</option>
                                     <option value="Work place">{t('EVENTQUEST.eventHeldChoice2')}</option>
                                     <option value="Hotel">{t('EVENTQUEST.eventHeldChoice3')}</option>
@@ -268,52 +266,52 @@ const ClientQuestionnaire = ({t}) => {
                                     <option value="In-door">{t('EVENTQUEST.eventHeldChoice5')}</option>
                                     <option value="Other">{t('EVENTQUEST.eventHeldChoice6')}</option>
                                 </select>
-                                {(whereEventsSelected=="Other")?
-                                <input type="text" className="form-input" placeholder={`${t('EVENTQUEST.eventHeld')}*`} value= {whereEventsDetails} onChange={(e) => {setWhereEventsDetails(e.target.value)}} /> 
-                                :
-                                <div></div>
-                            }
+                                {(whereEventsSelected == "Other") ?
+                                    <input type="text" className="form-input" placeholder={`${t('EVENTQUEST.eventHeld')}*`} value={whereEventsDetails} onChange={(e) => { setWhereEventsDetails(e.target.value) }} />
+                                    :
+                                    <div></div>
+                                }
                                 {/* <input type="text" className="form-input" placeholder="Where would you like the Event to be held?*" /> */}
                             </div>
                             <div>
                                 <label>{t('EVENTQUEST.eventLong')}*</label>
-                                <input type="text" className="form-input" placeholder={t('EVENTQUEST.eventLong')} value= {howLongEvents} onChange={(e) => {setHowLongEvents(e.target.value)}} />
+                                <input type="text" className="form-input" placeholder={t('EVENTQUEST.eventLong')} value={howLongEvents} onChange={(e) => { setHowLongEvents(e.target.value) }} />
                             </div>
                             <div>
                                 <label>{t('EVENTQUEST.eventDate')}*</label>
-                                <input type="date" className="form-input" value= {eventDate} onChange={(e) => {setEventDate(e.target.value)}}  />
+                                <input type="date" className="form-input" value={eventDate} onChange={(e) => { setEventDate(e.target.value) }} />
                             </div>
                             <div>
                                 <label>{t('EVENTQUEST.eventBudget')}*</label>
-                                <select className="form-input" value={rangeBudgetSelected} onChange={(e) => {setRangeBudgetSelected(e.target.value)}}>
+                                <select className="form-input" value={rangeBudgetSelected} onChange={(e) => { setRangeBudgetSelected(e.target.value) }}>
                                     <option value="0 - 100.000 SR">0 - 100.000 SR</option>
                                     <option value="100.000 - 500.000 SR">100.000 - 500.000 SR</option>
                                     <option value="500.000 - 1.000.000 SR">500.000 - 1.000.000 SR</option>
                                     <option value="Other">{t('EVENTQUEST.eventBudgetChoice4')}</option>
                                 </select>
-                                {(rangeBudgetSelected=="Other")?
-                                <input type="text" className="form-input" placeholder={`${t('EVENTQUEST.eventBudget')}*`} value={rangeBudgetDetails} onChange={(e) => {setRangeBudgetDetails(e.target.value)}} /> 
-                                :
-                                <div></div>
+                                {(rangeBudgetSelected == "Other") ?
+                                    <input type="text" className="form-input" placeholder={`${t('EVENTQUEST.eventBudget')}*`} value={rangeBudgetDetails} onChange={(e) => { setRangeBudgetDetails(e.target.value) }} />
+                                    :
+                                    <div></div>
                                 }
                                 {/* <input type="text" className="form-input" placeholder="What is the project range budget?*" /> */}
                             </div>
                             <div></div>
                             <div>
                                 <label>{t('EVENTQUEST.eventGoal')}</label>
-                                <textarea className="form-input" placeholder={t('EVENTQUEST.eventGoal')} value= {eventGoal} onChange={(e) => {setEventGoal(e.target.value)}} ></textarea>
+                                <textarea className="form-input" placeholder={t('EVENTQUEST.eventGoal')} value={eventGoal} onChange={(e) => { setEventGoal(e.target.value) }} ></textarea>
                             </div>
                             <div>
                                 <label>{t('EVENTQUEST.eventChallenges')}</label>
-                                <textarea className="form-input" placeholder={t('EVENTQUEST.eventChallenges')} value= {challenges} onChange={(e) => {setChallenges(e.target.value)}} ></textarea>
+                                <textarea className="form-input" placeholder={t('EVENTQUEST.eventChallenges')} value={challenges} onChange={(e) => { setChallenges(e.target.value) }} ></textarea>
                             </div>
                             <div>
                                 <label>{t('EVENTQUEST.eventAtmosphere')}</label>
-                                <textarea className="form-input" placeholder={t('EVENTQUEST.eventAtmosphere')} value= {atmosphere} onChange={(e) => {setAtmosphere(e.target.value)}} ></textarea>
+                                <textarea className="form-input" placeholder={t('EVENTQUEST.eventAtmosphere')} value={atmosphere} onChange={(e) => { setAtmosphere(e.target.value) }} ></textarea>
                             </div>
                             <div>
                                 <label>{t('EVENTQUEST.eventSimilar')}</label>
-                                <textarea className="form-input" placeholder={t('EVENTQUEST.eventSimilar')} value= {similarEvent} onChange={(e) => {setSimilarEvent(e.target.value)}} ></textarea>
+                                <textarea className="form-input" placeholder={t('EVENTQUEST.eventSimilar')} value={similarEvent} onChange={(e) => { setSimilarEvent(e.target.value) }} ></textarea>
                             </div>
                         </div>
 
@@ -324,11 +322,11 @@ const ClientQuestionnaire = ({t}) => {
                         <div className="grid">
                             <div>
                                 <label>{t('AUDIENCEQUEST.number')}*</label>
-                                <input type="number" className="form-input" placeholder={t('AUDIENCEQUEST.number')} value= {numberAudiences} onChange={(e) => {setNumberAudiences(e.target.value)}}  />
+                                <input type="number" className="form-input" placeholder={t('AUDIENCEQUEST.number')} value={numberAudiences} onChange={(e) => { setNumberAudiences(e.target.value) }} />
                             </div>
                             <div>
                                 <label>{t('AUDIENCEQUEST.invite')}*</label>
-                                <select className="form-input" value= {invitationMethod} onChange={(e) => {setInvitationMethod(e.target.value)}} >
+                                <select className="form-input" value={invitationMethod} onChange={(e) => { setInvitationMethod(e.target.value) }} >
                                     <option value="E-Invitation">{t('AUDIENCEQUEST.inviteChoice1')}</option>
                                     <option value="Through Social media platform">{t('AUDIENCEQUEST.inviteChoice2')}</option>
                                     <option value="Printing Invitation">{t('AUDIENCEQUEST.inviteChoice3')}</option>
@@ -336,7 +334,7 @@ const ClientQuestionnaire = ({t}) => {
                             </div>
                             <div>
                                 <label>{t('AUDIENCEQUEST.food')}*</label>
-                                <select className="form-input" value= {foodOption} onChange={(e) => {setFoodOption(e.target.value)}} >
+                                <select className="form-input" value={foodOption} onChange={(e) => { setFoodOption(e.target.value) }} >
                                     <option value="Open Buffet">{t('AUDIENCEQUEST.foodChoice1')}</option>
                                     <option value="Trucks & Booths">{t('AUDIENCEQUEST.foodChoice2')}</option>
                                     <option value="Snaks">{t('AUDIENCEQUEST.foodChoice3')}</option>
@@ -347,7 +345,7 @@ const ClientQuestionnaire = ({t}) => {
                             </div>
                             <div>
                                 <label>{t('AUDIENCEQUEST.target')}*</label>
-                                <select className="form-input" value= {targetAudience} onChange={(e) => {setTargetAudience(e.target.value)}}>
+                                <select className="form-input" value={targetAudience} onChange={(e) => { setTargetAudience(e.target.value) }}>
                                     <option value="Kids">{t('AUDIENCEQUEST.targetChoice1')}</option>
                                     <option value="Families">{t('AUDIENCEQUEST.targetChoice2')}</option>
                                     <option value="Mixed">{t('AUDIENCEQUEST.targetChoice3')}</option>
@@ -357,16 +355,16 @@ const ClientQuestionnaire = ({t}) => {
                             </div>
                             <div>
                                 <label>{t('AUDIENCEQUEST.age')}*</label>
-                                <textarea className="form-input" placeholder={t('AUDIENCEQUEST.age')} value= {targetAge} onChange={(e) => {setTargetAge(e.target.value)}}></textarea>
+                                <textarea className="form-input" placeholder={t('AUDIENCEQUEST.age')} value={targetAge} onChange={(e) => { setTargetAge(e.target.value) }}></textarea>
                             </div>
                             <div></div>
                             <div>
                                 <div className="flex ai-c">
-                                    <input type="checkbox"  checked={"true"?specialGuestChecked:"false"} onChange={(e) => {setSpecialGuestChecked(!specialGuestChecked)}}/>
+                                    <input type="checkbox" checked={"true" ? specialGuestChecked : "false"} onChange={(e) => { setSpecialGuestChecked(!specialGuestChecked) }} />
                                     <label>{t('AUDIENCEQUEST.guest')}</label>
                                 </div>
                                 <label>{t('AUDIENCEQUEST.details')}</label>
-                                <input type="text" className="form-input" placeholder={t('AUDIENCEQUEST.details')} value= {specialGuestDetails} onChange={(e) => {setSpecialGuestDetails(e.target.value)}}  />
+                                <input type="text" className="form-input" placeholder={t('AUDIENCEQUEST.details')} value={specialGuestDetails} onChange={(e) => { setSpecialGuestDetails(e.target.value) }} />
                             </div>
                         </div>
 
@@ -377,12 +375,12 @@ const ClientQuestionnaire = ({t}) => {
                         <div className="grid">
                             <div>
                                 <label>{t('EVENTDETAILSQUEST.name')}*</label>
-                                <input type="text" className="form-input" placeholder={t('EVENTDETAILSQUEST.name')} value={eventName} onChange={(e) => {setEventName(e.target.value)}} />
+                                <input type="text" className="form-input" placeholder={t('EVENTDETAILSQUEST.name')} value={eventName} onChange={(e) => { setEventName(e.target.value) }} />
                             </div>
                             <div></div>
                             <div>
                                 <label>{t('EVENTDETAILSQUEST.elements')}*</label>
-                                <select className="form-input" value={elementsSelected} onChange={(e) => {setElementsSelected(e.target.value)}}>
+                                <select className="form-input" value={elementsSelected} onChange={(e) => { setElementsSelected(e.target.value) }}>
                                     <option value="Logistics">{t('EVENTDETAILSQUEST.elementsChoice1')}</option>
                                     <option value="Activities">{t('EVENTDETAILSQUEST.elementsChoice2')}</option>
                                     <option value="Valet">{t('EVENTDETAILSQUEST.elementsChoice3')}</option>
@@ -391,16 +389,16 @@ const ClientQuestionnaire = ({t}) => {
                                     <option value="Stage & Shows">{t('EVENTDETAILSQUEST.elementsChoice6')}</option>
                                 </select>
                                 <label>{t('EVENTDETAILSQUEST.details')}</label>
-                                <textarea className="form-input" placeholder={t('EVENTDETAILSQUEST.details')} value={elementsDetails} onChange={(e) => {setElementsDetails(e.target.value)}} ></textarea>
+                                <textarea className="form-input" placeholder={t('EVENTDETAILSQUEST.details')} value={elementsDetails} onChange={(e) => { setElementsDetails(e.target.value) }} ></textarea>
                             </div>
                             <div></div>
                             <div>
                                 <label>{t('EVENTDETAILSQUEST.intention')}*</label>
-                                <textarea className="form-input" placeholder={t('EVENTDETAILSQUEST.intention')} value={intention} onChange={(e) => {setIntention(e.target.value)}}></textarea>
+                                <textarea className="form-input" placeholder={t('EVENTDETAILSQUEST.intention')} value={intention} onChange={(e) => { setIntention(e.target.value) }}></textarea>
                             </div>
                             <div>
                                 <label>{t('EVENTDETAILSQUEST.registration')}*</label>
-                                <textarea className="form-input" placeholder={t('EVENTDETAILSQUEST.registration')} value={registrationSystem} onChange={(e) => {setRegistrationSystem(e.target.value)}}></textarea>
+                                <textarea className="form-input" placeholder={t('EVENTDETAILSQUEST.registration')} value={registrationSystem} onChange={(e) => { setRegistrationSystem(e.target.value) }}></textarea>
                             </div>
                         </div>
 
@@ -411,16 +409,16 @@ const ClientQuestionnaire = ({t}) => {
                         <div className="grid">
                             <div>
                                 <div className="flex ai-c">
-                                    <input type="checkbox" checked={"true"?previousClientSelected:"false"} onChange={(e) => {setPreviousClientSelected(!previousClientSelected)}}/>
+                                    <input type="checkbox" checked={"true" ? previousClientSelected : "false"} onChange={(e) => { setPreviousClientSelected(!previousClientSelected) }} />
                                     <label>{t('OTHERDETAILSQUEST.prevclient')}*</label>
                                 </div>
                                 <label>{t('OTHERDETAILSQUEST.details')}</label>
-                                <textarea className="form-input" placeholder={t('OTHERDETAILSQUEST.details')} value= {previousClientDetails} onChange={(e) => {setPreviousClientDetails(e.target.value)}} />
+                                <textarea className="form-input" placeholder={t('OTHERDETAILSQUEST.details')} value={previousClientDetails} onChange={(e) => { setPreviousClientDetails(e.target.value) }} />
                             </div>
                             <div></div>
                             <div>
                                 <label>{t('OTHERDETAILSQUEST.hear')}*</label>
-                                <select className="form-input" value={hearAboutUS} onChange={(e) => {setHearAboutUS(e.target.value)}}>
+                                <select className="form-input" value={hearAboutUS} onChange={(e) => { setHearAboutUS(e.target.value) }}>
                                     <option value="Through Friends">{t('OTHERDETAILSQUEST.hearChoice1')}</option>
                                     <option value="Through Social media platform">{t('OTHERDETAILSQUEST.hearChoice2')}</option>
                                     <option value="Website">{t('OTHERDETAILSQUEST.hearChoice3')}</option>
@@ -429,20 +427,20 @@ const ClientQuestionnaire = ({t}) => {
                             <div></div>
                             <div>
                                 <label>{t('OTHERDETAILSQUEST.meeting')}*</label>
-                                <textarea className="form-input" placeholder={t('OTHERDETAILSQUEST.meeting')} value={meeting} onChange={(e) => {setMeeting(e.target.value)}} />
+                                <textarea className="form-input" placeholder={t('OTHERDETAILSQUEST.meeting')} value={meeting} onChange={(e) => { setMeeting(e.target.value) }} />
                             </div>
                             <div></div>
                             <div>
                                 <label>{t('OTHERDETAILSQUEST.touch')}</label>
-                                <select className="form-input" value={touch} onChange={(e) => {setTouch(e.target.value)}}>
+                                <select className="form-input" value={touch} onChange={(e) => { setTouch(e.target.value) }}>
                                     <option value="Email">{t('OTHERDETAILSQUEST.touchChoice1')}</option>
                                     <option value="Phone Number">{t('OTHERDETAILSQUEST.touchChoice2')}</option>
                                 </select>
                             </div>
                         </div>
-                        <div align="right" style={{marginTop:20}}>
-                             <button className="btn" disabled={disable}>{t('JOINUS.sendapp')}</button>
-                        </div>                       
+                        <div align="right" style={{ marginTop: 20 }}>
+                            <button className="btn" disabled={disable}>{t('JOINUS.sendapp')}</button>
+                        </div>
                     </form>
                 </section>
             </Layout>

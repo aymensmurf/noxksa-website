@@ -8,6 +8,7 @@ import { SERVER_URL } from '../../utils/consts';
 const Album = ({ title, mainImg,id }) => {
     const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
+<<<<<<< HEAD
     const [img ,setImg]=useState([])
 /*
     const images=[]
@@ -20,9 +21,22 @@ const Album = ({ title, mainImg,id }) => {
             
             images.push({thumbnail:link,src:link ,thumbnailWidth: 320,
                 thumbnailHeight: 212,isSelected:true})   
+=======
+    const [img, setImg] = useState([])
+    const images = []
+
+    useEffect(() => {
+        for (let i = 0; i < IMAGES.length; i++) {
+            const link = `${SERVER_URL}/uploads/${IMAGES[i].link}`
+
+            images.push({
+                thumbnail: link, src: link, thumbnailWidth: 320,
+                thumbnailHeight: 212, isSelected: true
+            })
+>>>>>>> 50b7ed3394908e64abb361f2413f7e59f990c871
         }
-        console.log(images)
         setImg(images)
+<<<<<<< HEAD
         }, []);
   
     
@@ -54,6 +68,34 @@ const Album = ({ title, mainImg,id }) => {
             */}
             
             
+=======
+    }, []);
+
+
+
+    return (
+        <>
+            <div className="album" onClick={() => setIsOpen(true)}>
+
+                <Image src={mainImg} alt={title} width={264} height={256} objectFit="cover" />
+                <h4>{title}</h4>
+
+
+
+
+
+
+
+            </div>
+
+            {isOpen &&
+                <Gallery images={img} backdropClosesModal={true} lightboxWillClose={() => setIsOpen(false)} isOpen />
+
+            }
+
+
+
+>>>>>>> 50b7ed3394908e64abb361f2413f7e59f990c871
             <style jsx>{`
                 .album {
                     text-align: center;

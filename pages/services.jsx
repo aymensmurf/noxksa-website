@@ -28,11 +28,10 @@ const Services = () => {
             .then(({ status, data }) => {
                 if (status === 200) {
                    setServices(data.data)
-                   console.log(data)
                 }
             })
             .catch(err => {
-                console.log('err', err)
+                console.error('err', err)
             })
     };
     return (
