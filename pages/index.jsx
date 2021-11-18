@@ -38,7 +38,7 @@ const Index = () => {
                 }
             })
             .catch(err => {
-                console.log('err', err)
+                console.error('err', err)
             })
     };
 
@@ -58,7 +58,7 @@ const Index = () => {
                 }
             })
             .catch(err => {
-                console.log('err', err)
+                console.error('err', err)
             })
     };
     return (

@@ -4,39 +4,39 @@ import Image from 'next/image';
 import Modal from '../shared/Modal';
 import FileDropZone from '../shared/FileDropZone';
 import { toast } from 'react-toastify';
-import { API_URL,EMAIL_FORMAT } from '../../utils/consts';
+import { API_URL, EMAIL_FORMAT } from '../../utils/consts';
 import { withTranslation } from '../../i18n'
 
-const JoinUs = ({isRTL,t}) => {
+const JoinUs = ({ isRTL, t }) => {
     const [isEmployeeModalOpen, setIsEmployeeModalOpen] = useState(false);
     const [isOrganizerModalOpen, setIsOrganizerModalOpen] = useState(false);
     const [file, setFile] = useState("");
-    const [fullName,setFullName]=useState("");
-    const [mobileNumber,setMobileNumber]=useState("");
-    const [email,setEmail]=useState("");
-    const [nationality,setNationality]=useState("");
-    const [region,setRegion]=useState("");
-    const [gender,setGender]=useState("male");
-    const [dateOfBirth,setDateOfBirth]=useState("");
-    const [languages,setLanguages]=useState("");
-    const [isExperiences,setIsexperiences]=useState("");
+    const [fullName, setFullName] = useState("");
+    const [mobileNumber, setMobileNumber] = useState("");
+    const [email, setEmail] = useState("");
+    const [nationality, setNationality] = useState("");
+    const [region, setRegion] = useState("");
+    const [gender, setGender] = useState("male");
+    const [dateOfBirth, setDateOfBirth] = useState("");
+    const [languages, setLanguages] = useState("");
+    const [isExperiences, setIsexperiences] = useState("");
     const [disableEmployeeButton, setDisableEmployeeButton] = useState(false);
     const [disableOrganizerButton, setDisableOrganizerButton] = useState(false);
 
-   
-    
+
+
     const handleEmployeeSubmit = async e => {
         e.preventDefault();
-        if(isEmployeeValid()){
-            let data = new FormData();            
-            data.append('files',file)
+        if (isEmployeeValid()) {
+            let data = new FormData();
+            data.append('files', file)
             data.append('fullname', fullName);
             data.append('mobileNumber', mobileNumber);
             data.append('email', email);
             data.append('nationality', nationality);
-            data.append('region',region)
-            data.append('dateBirth',dateOfBirth)
-            data.append('gender',gender)
+            data.append('region', region)
+            data.append('dateBirth', dateOfBirth)
+            data.append('gender', gender)
             const config = {
                 method: 'POST',
                 url: `${API_URL}/employees/`,
@@ -45,9 +45,7 @@ const JoinUs = ({isRTL,t}) => {
             setDisableEmployeeButton(true)
             axios(config)
                 .then(({ status, data }) => {
-                    console.log(status)
-                    console.log(data)
-                    toast.success(`${t('toast.SUCCESS')}`)                
+                    toast.success(`${t('toast.SUCCESS')}`)
                     initEmployee();
                     setIsEmployeeModalOpen(false)
                 })
@@ -60,29 +58,29 @@ const JoinUs = ({isRTL,t}) => {
                         }
                     }
                 })
-                .finally(()=>{
+                .finally(() => {
                     setDisableEmployeeButton(false)
 
                 })
-        }   
+        }
     }
 
 
 
     const handleOrganizerSubmit = async e => {
         e.preventDefault();
-        if(isOrganizerValid()){
-            let data = new FormData();            
-            data.append('files',file)
+        if (isOrganizerValid()) {
+            let data = new FormData();
+            data.append('files', file)
             data.append('fullname', fullName);
             data.append('mobileNumber', mobileNumber);
             data.append('email', email);
             data.append('nationality', nationality);
-            data.append('region',region)
-            data.append('dateBirth',dateOfBirth)
-            data.append('gender',gender)
-            data.append('experience',isExperiences)
-            data.append('languages',languages)
+            data.append('region', region)
+            data.append('dateBirth', dateOfBirth)
+            data.append('gender', gender)
+            data.append('experience', isExperiences)
+            data.append('languages', languages)
             const config = {
                 method: 'POST',
                 url: `${API_URL}/organizers/`,
@@ -91,14 +89,12 @@ const JoinUs = ({isRTL,t}) => {
             setDisableOrganizerButton(true)
             axios(config)
                 .then(({ status, data }) => {
-                    console.log(status)
-                    console.log(data)
-                    toast.success('your application has been successfully send ')                
+                    toast.success('your application has been successfully send ')
                     initOrganizer();
                     setIsOrganizerModalOpen(false)
-               
-               
-               
+
+
+
                 })
                 .catch(err => {
                     if (err.response) {
@@ -109,15 +105,15 @@ const JoinUs = ({isRTL,t}) => {
                         }
                     }
                 })
-                .finally(()=>{
+                .finally(() => {
                     setDisableOrganizerButton(false)
                 })
-        }   
+        }
     }
 
 
     const handleFileDrop = files => {
-        setFile(files[0]);      
+        setFile(files[0]);
     }
 
     const handleCloseEmployeeModal = () => {
@@ -128,7 +124,7 @@ const JoinUs = ({isRTL,t}) => {
         setIsOrganizerModalOpen(false);
 
     }
-    const initEmployee=() => {
+    const initEmployee = () => {
         setFullName("")
         setEmail("")
         setMobileNumber("")
@@ -139,7 +135,7 @@ const JoinUs = ({isRTL,t}) => {
         setFile("")
     }
 
-    const initOrganizer=() => {
+    const initOrganizer = () => {
         initEmployee()
         setLanguages("")
         setIsexperiences("")
@@ -160,7 +156,7 @@ const JoinUs = ({isRTL,t}) => {
             toast.info(`${t('toast.email')}`)
             return false;
         }
-      
+
         if (!nationality) {
             toast.info(`${t('toast.nationality')}`)
             return false;
@@ -182,7 +178,7 @@ const JoinUs = ({isRTL,t}) => {
 
         if (!languages) {
             toast.info(`${t('toast.languages')}`)
-            return false;   
+            return false;
         }
 
         if (!isExperiences) {
@@ -190,15 +186,15 @@ const JoinUs = ({isRTL,t}) => {
             return false;
         }
 
-        if(!file){
+        if (!file) {
             toast.info(`${t('toast.file')}`)
             return false;
         }
 
         return true;
     }
-    
-    const isEmployeeValid = () => {  
+
+    const isEmployeeValid = () => {
 
         if (!fullName) {
             toast.info(`${t('toast.fullName')}`)
@@ -215,7 +211,7 @@ const JoinUs = ({isRTL,t}) => {
             toast.info(`${t('toast.email')}`)
             return false;
         }
-        
+
         if (!nationality) {
             toast.info(`${t('toast.nationality')}`)
             return false;
@@ -235,7 +231,7 @@ const JoinUs = ({isRTL,t}) => {
             return false;
         }
 
-        if(!file){
+        if (!file) {
             toast.info(`${t('toast.file')}`)
             return false;
         }
@@ -251,8 +247,8 @@ const JoinUs = ({isRTL,t}) => {
                 <h2>{t('JOINUS.JOINUS')}</h2>
 
                 <div className="options flex ai-c jc-c flex-wrap">
-                    <button onClick={() => { setIsEmployeeModalOpen(true),initEmployee()}}>{t('JOINUS.EMP')}</button>
-                    <button onClick={() => { setIsOrganizerModalOpen(true),initOrganizer() }}>{t('JOINUS.ORG')}</button>
+                    <button onClick={() => { setIsEmployeeModalOpen(true), initEmployee() }}>{t('JOINUS.EMP')}</button>
+                    <button onClick={() => { setIsOrganizerModalOpen(true), initOrganizer() }}>{t('JOINUS.ORG')}</button>
                 </div>
 
                 <Image src="/img/team.png" alt="Join Us" width={1250} height={518} objectFit="contain" />
@@ -262,28 +258,28 @@ const JoinUs = ({isRTL,t}) => {
                 title={t('JOINUS.JOINUS')}
                 isModalOpen={isEmployeeModalOpen}
                 handleClose={handleCloseEmployeeModal}
-               
-            
+
+
             >
                 <form onSubmit={e => handleEmployeeSubmit(e)}>
                     <div className="grid">
                         <div>
                             <label >{t('JOINUS.fullname')}*</label>
-                            <input type="text"  value={fullName} className="form-input" placeholder={t('JOINUS.fullname')} onChange={e => { setFullName(e.target.value); }}/>
+                            <input type="text" value={fullName} className="form-input" placeholder={t('JOINUS.fullname')} onChange={e => { setFullName(e.target.value); }} />
                         </div>
                         <div>
                             <label >{t('JOINUS.phone')}*</label>
-                            <input type="text"  value={mobileNumber} className="form-input" placeholder={t('JOINUS.phone')} onChange={e => { setMobileNumber(e.target.value); }}/>
+                            <input type="text" value={mobileNumber} className="form-input" placeholder={t('JOINUS.phone')} onChange={e => { setMobileNumber(e.target.value); }} />
                         </div>
                     </div>
                     <div>
                         <label >{t('JOINUS.email')}*</label>
-                        <input type="email"  value={email} className="form-input" placeholder="john.smith@noxksa.com" onChange={e => { setEmail(e.target.value); }} />
+                        <input type="email" value={email} className="form-input" placeholder="john.smith@noxksa.com" onChange={e => { setEmail(e.target.value); }} />
                     </div>
                     <div className="grid">
                         <div>
                             <label >{t('JOINUS.nation')}*</label>
-                            <input type="text" name="nationality" value={nationality} className="form-input" placeholder={t('JOINUS.nation')} onChange={e => { setNationality(e.target.value); }}/>
+                            <input type="text" name="nationality" value={nationality} className="form-input" placeholder={t('JOINUS.nation')} onChange={e => { setNationality(e.target.value); }} />
                         </div>
                         <div>
                             <label >{t('JOINUS.region')}*</label>
@@ -300,7 +296,7 @@ const JoinUs = ({isRTL,t}) => {
                         </div>
                         <div>
                             <label >{t('JOINUS.birth')}*</label>
-                            <input type="date"value={dateOfBirth} className="form-input" placeholder={t('JOINUS.birth')} onChange={e => { setDateOfBirth(e.target.value); }}/>
+                            <input type="date" value={dateOfBirth} className="form-input" placeholder={t('JOINUS.birth')} onChange={e => { setDateOfBirth(e.target.value); }} />
                         </div>
                     </div>
 
@@ -310,9 +306,9 @@ const JoinUs = ({isRTL,t}) => {
                             <FileDropZone file={file} isRTL={isRTL} handleDrop={handleFileDrop} />
                         </div>
                     </div>
-                    <div align="right" style={{marginTop:20}}>
-                    <button className="btn" disabled={disableEmployeeButton}>{t('JOINUS.sendapp')}</button>
-                    </div>               
+                    <div align="right" style={{ marginTop: 20 }}>
+                        <button className="btn" disabled={disableEmployeeButton}>{t('JOINUS.sendapp')}</button>
+                    </div>
                 </form>
             </Modal>
 
@@ -320,7 +316,7 @@ const JoinUs = ({isRTL,t}) => {
                 title={t('JOINUS.JOINUS')}
                 isModalOpen={isOrganizerModalOpen}
                 handleClose={handleCloseOrganizerModal}
-                
+
             >
                 <form onSubmit={e => handleOrganizerSubmit(e)}>
                     <div className="grid">
@@ -330,43 +326,43 @@ const JoinUs = ({isRTL,t}) => {
                         </div>
                         <div>
                             <label >{t('JOINUS.phone')}*</label>
-                            <input type="text" className="form-input" placeholder={t('JOINUS.phone')} value={mobileNumber} onChange={e => { setMobileNumber(e.target.value); }}/>
+                            <input type="text" className="form-input" placeholder={t('JOINUS.phone')} value={mobileNumber} onChange={e => { setMobileNumber(e.target.value); }} />
                         </div>
                     </div>
                     <div>
                         <label >{t('JOINUS.email')}*</label>
-                        <input type="email"  className="form-input" value={email} placeholder="john.smith@noxksa.com" onChange={e => { setEmail(e.target.value); }} />
+                        <input type="email" className="form-input" value={email} placeholder="john.smith@noxksa.com" onChange={e => { setEmail(e.target.value); }} />
                     </div>
                     <div className="grid">
                         <div>
                             <label >{t('JOINUS.nation')}*</label>
-                            <input type="text"  className="form-input" value={nationality} placeholder={t('JOINUS.nation')} onChange={e => { setNationality(e.target.value); }}/>
+                            <input type="text" className="form-input" value={nationality} placeholder={t('JOINUS.nation')} onChange={e => { setNationality(e.target.value); }} />
                         </div>
                         <div>
                             <label >{t('JOINUS.region')}*</label>
-                            <input type="text"  className="form-input" placeholder={t('JOINUS.region')} value={region} onChange={e => { setRegion(e.target.value); }} />
+                            <input type="text" className="form-input" placeholder={t('JOINUS.region')} value={region} onChange={e => { setRegion(e.target.value); }} />
                         </div>
                     </div>
                     <div className="grid">
                         <div>
                             <label >{t('JOINUS.gender')}*</label>
-                            <select  className="form-input" value={gender} onChange={(e) => setGender(e.target.value)}    >
+                            <select className="form-input" value={gender} onChange={(e) => setGender(e.target.value)}    >
                                 <option value="male">{t('JOINUS.male')}</option>
                                 <option value="female">{t('JOINUS.female')}</option>
                             </select>
                         </div>
                         <div>
                             <label>{t('JOINUS.birth')}*</label>
-                            <input type="date" className="form-input" value={dateOfBirth} placeholder={t('JOINUS.birth')} onChange={e => { setDateOfBirth(e.target.value); }}/>
+                            <input type="date" className="form-input" value={dateOfBirth} placeholder={t('JOINUS.birth')} onChange={e => { setDateOfBirth(e.target.value); }} />
                         </div>
                     </div>
                     <div>
                         <label >{t('JOINUS.lang')}*</label>
-                        <input type="text" className="form-input" value={languages} placeholder={t('JOINUS.lang')} onChange={e => { setLanguages(e.target.value); }}/>
+                        <input type="text" className="form-input" value={languages} placeholder={t('JOINUS.lang')} onChange={e => { setLanguages(e.target.value); }} />
                     </div>
                     <div>
                         <label>{t('JOINUS.exp')}*</label>
-                        <input type="text" value={isExperiences} className="form-input" placeholder={t('JOINUS.exp')} onChange={e => { setIsexperiences(e.target.value); }}/>
+                        <input type="text" value={isExperiences} className="form-input" placeholder={t('JOINUS.exp')} onChange={e => { setIsexperiences(e.target.value); }} />
                     </div>
 
                     <div>
@@ -375,9 +371,9 @@ const JoinUs = ({isRTL,t}) => {
                             <FileDropZone file={file} isRTL={isRTL} handleDrop={handleFileDrop} />
                         </div>
                     </div>
-                    <div align="right" style={{marginTop:20}}>
-                    <button className="btn" disabled={disableOrganizerButton}>{t('JOINUS.sendapp')}</button>
-                    </div>                                   
+                    <div align="right" style={{ marginTop: 20 }}>
+                        <button className="btn" disabled={disableOrganizerButton}>{t('JOINUS.sendapp')}</button>
+                    </div>
                 </form>
             </Modal>
 
@@ -449,5 +445,5 @@ const JoinUs = ({isRTL,t}) => {
     )
 }
 
-  
+
 export default withTranslation('common')(JoinUs);
