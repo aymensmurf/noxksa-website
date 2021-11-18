@@ -4,7 +4,6 @@ import axios from 'axios';
 import { API_URL } from '../utils/consts';
 import { i18n } from '../i18n';
 import Image from 'next/image';
-import { i18n } from '../i18n'
 
 const Services = () => {
     const [services,setServices]=useState([])
