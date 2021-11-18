@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Gallery from 'react-grid-gallery';
+import { useRouter } from 'next/router'
+
 import { SERVER_URL } from '../../utils/consts';
 
-const Album = ({ title, mainImg, IMAGES }) => {
+const Album = ({ title, mainImg,id }) => {
+    const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
     const [img ,setImg]=useState([])
+/*
     const images=[]
 
     useEffect(() => {
@@ -15,39 +19,39 @@ const Album = ({ title, mainImg, IMAGES }) => {
             console.log(link)
             
             images.push({thumbnail:link,src:link ,thumbnailWidth: 320,
-                thumbnailHeight: 212,isSelected:true})
-        
-            
-         
-            
-           
+                thumbnailHeight: 212,isSelected:true})   
         }
         console.log(images)
         setImg(images)
         }, []);
   
     
-  
+  */
+        const handleViewAlbum = id => {
+            router.push({
+                pathname: '/albums/[id]',
+                query: { id },
+      })
+        }
+    
+    
+    
+    
     return (
         <>  
-            <div className="album" onClick={() => setIsOpen(true)}>
+            <div className="album" onClick={() => {handleViewAlbum(id)}}>
                 
                      <Image src={mainImg} alt={title} width={264} height={256} objectFit="cover" />
-                <h4>{title}</h4>
-                     
-               
-           
-                
-
-                
+                <h4>{title}</h4>               
 
             </div>
 
-            {isOpen &&
+        {/*  {isOpen &&
+
                 <Gallery images={img} backdropClosesModal={true} lightboxWillClose={()=>setIsOpen(false)} isOpen />
 
                 }
-
+            */}
             
             
             <style jsx>{`

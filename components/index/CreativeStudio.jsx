@@ -21,12 +21,12 @@ const CreativeStudio = ({isRTL,creativeStudio,t}) => {
                 }
                 <div className="container" style={{ marginTop: 60 , direction: `${isRTL ? 'rtl' : 'ltr'}`}} >
                     <div className="flex ai-c flex-wrap" style={{ gap: 30 }}>
-                        {creativeStudio.map(({ title,links }, i) => (
+                        {creativeStudio.map(({_id, title,links, }, i) => (
                             isRTL?
-                                <Album key={i} title={title.ar} mainImg={`${SERVER_URL}/uploads/${links[parseInt(Math.random()* (links.length))].link}`} IMAGES={links}/>
+                                <Album key={i} title={title.ar} mainImg={`${SERVER_URL}/uploads/${links[parseInt(Math.random()* (links.length))].link}`} id={_id}/>
 
                                 :
-                                <Album key={i} title={title.en} mainImg={`${SERVER_URL}/uploads/${links[parseInt(Math.random() * (links.length))].link}`} IMAGES={links}/>
+                                <Album key={i} title={title.en} mainImg={`${SERVER_URL}/uploads/${links[parseInt(Math.random() * (links.length))].link}`} id={_id}/>
                                
                         ))}
                     </div>

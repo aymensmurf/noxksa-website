@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_URL } from '../utils/consts';
 import { i18n } from '../i18n'
+import Image from 'next/image';
+import Link from "next/link"
+
 
 const Events = () => {
     const [isRTL, setIsRTL] = useState(false)
@@ -40,13 +43,32 @@ const Events = () => {
             <Layout navWithBackground>
                 <section className="container">
                     {
-                        events.map(({ _id, description ,title,subCategories}, i) => (
+                        events.map(({ _id, description ,title,link,subCategories}, i) => (
                             <div key={_id}>
-                            <h2 className={`colors${i%4}`} >{isRTL?title.ar:title.en}</h2>
+                            <h2 className={`colors${i%4}`}>  {isRTL?title.ar:title.en}
+                            {  link ?
+                             <a href={link}>
+                               <Image src="/img/link.svg"  width={40} height={30} objectFit="contain" /> 
+                              </a>  
+                                :
+                                <div></div>                                
+
+                            }
+                            </h2>
+
+                           
+
                             <p>{isRTL?description.ar:description.en}</p>
                             {subCategories && subCategories.map(({ _id, description ,title}, i) => (
                                <div key={_id+i} style={{ marginLeft: "40px" }}>
-                                   <h4 className={`colors${i%4}`}>{isRTL?title.ar:title.en}</h4>
+                                   <h4 className={`colors${i%4}`}>{isRTL?title.ar:title.en}
+                                        {link ?
+                                        
+                                                <Image src="/img/link.svg" alt="NOX Entertainment" href={link} width={40} height={30} objectFit="contain" />
+                                                :
+                                                <div></div>
+                                        }
+                                    </h4>
                                    <p>{isRTL?description.ar:description.en}</p>
                                </div>    
                             ))
