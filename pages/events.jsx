@@ -9,28 +9,28 @@ import Link from "next/link"
 
 const Events = () => {
     const [isRTL, setIsRTL] = useState(false)
-    const [events,setEvents]=useState([])
+    const [events, setEvents] = useState([])
     useEffect(() => {
         getEvents()
-        
+
     }, []);
 
     useEffect(() => {
         let isRTL = i18n.language === 'ar' ? true : false;
-        setIsRTL(isRTL)        
-    },[i18n.language]);
+        setIsRTL(isRTL)
+    }, [i18n.language]);
 
     const getEvents = () => {
         const config = {
             method: 'get',
             url: `${API_URL}/services/type/event`,
-            
+
         };
 
         axios(config)
             .then(({ status, data }) => {
                 if (status === 200) {
-                   setEvents(data.data)
+                    setEvents(data.data)
                 }
             })
             .catch(err => {
@@ -40,44 +40,38 @@ const Events = () => {
     return (
         <>
             <Layout navWithBackground>
-                <section className="container">
+                <section className="container" style={{ position: 'relative', zIndex: 98 }}>
+                    <p>No need to say about Our events cause we always aim to make you happy at the end with the customized event that satisfies your need with full pack  of our logestics of stage shows and the way of production and surely with branding your event and so on </p>
+
                     {
-                        events.map(({ _id, description ,title,link,subCategories}, i) => (
+                        events.map(({ _id, description, title, link, subCategories }, i) => (
                             <div key={_id}>
-                            <h2 className={`colors${i%4}`}>  {isRTL?title.ar:title.en}
-                            {  link ?
-                             <a href={link}>
-                               <Image src="/img/link.svg"  width={40} height={30} objectFit="contain" /> 
-                              </a>  
-                                :
-                                <div></div>                                
+                                <a href={link || '#'} target="_blank" rel="noopener noreferrer">
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                                        <h2 className={`colors${i % 4}`}>  {isRTL ? title.ar : title.en}</h2>
+                                        {link && <Image src="/img/link.svg" width={40} height={30} objectFit="contain" />}
+                                    </div>
+                                </a>
 
-                            }
-                            </h2>
+                                <p>{isRTL ? description.ar : description.en}</p>
 
-                           
+                                {subCategories && subCategories.map(({ _id, description, title, link }, i) => (
+                                    <div key={_id + i} style={{ marginLeft: "40px" }}>
 
-                            <p>{isRTL?description.ar:description.en}</p>
-                            {subCategories && subCategories.map(({ _id, description ,title}, i) => (
-                               <div key={_id+i} style={{ marginLeft: "40px" }}>
-                                   <h4 className={`colors${i%4}`}>{isRTL?title.ar:title.en}
-                                        {link ?
-                                        
-                                                <Image src="/img/link.svg" alt="NOX Entertainment" href={link} width={40} height={30} objectFit="contain" />
-                                                :
-                                                <div></div>
-                                        }
-                                    </h4>
-                                   <p>{isRTL?description.ar:description.en}</p>
-                               </div>    
-                            ))
-                            }
-                            </div>                            
+                                        <a href={link || '#'} target="_blank" rel="noopener noreferrer">
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                                                <h4 className={`colors${i % 4}`}>{isRTL ? title.ar : title.en}</h4>
+                                                {link && <Image src="/img/link.svg" width={20} height={20} objectFit="contain" />}
+                                            </div>
+                                        </a>
+
+                                        <p>{isRTL ? description.ar : description.en}</p>
+                                    </div>
+                                ))}
+                            </div>
                         ))
                     }
                     {/*
-                    <p>No need to say about Our events cause we always aim to make you happy at the end with the customized event that satisfies your need with full pack  of our logestics of stage shows and the way of production and surely with branding your event and so on </p>
-
                     <h2>Stage Services</h2>
                     <p>One of our logistics is stage and all that it requires with full set <br />Such as : lights and sounds and all logistics Services.</p>
 
