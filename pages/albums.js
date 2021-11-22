@@ -44,13 +44,8 @@ const CreativeStudio = () => {
                 <section >
                     <div className="container" style={{ marginTop: 60, direction: `${isRTL ? 'rtl' : 'ltr'}` }} >
                         <div className="flex ai-c flex-wrap" style={{ gap: 30 }}>
-                            {albums.map(({ title, links }, i) => (
-                                isRTL ?
-                                    <Album key={i} title={title.ar} mainImg={`${SERVER_URL}/uploads/${links[parseInt(Math.random() * (links.length))].link}`} IMAGES={links} />
-
-                                    :
-                                    <Album key={i} title={title.en} mainImg={`${SERVER_URL}/uploads/${links[parseInt(Math.random() * (links.length))].link}`} IMAGES={links} />
-
+                            {albums.map(({_id,title, links }, i) => (
+                                <Album key={i} title={isRTL ? title.ar : title.en} mainImg={`${SERVER_URL}/uploads/${links[parseInt(Math.random() * (links.length))].link}`} id={_id} />
                             ))}
                         </div>
                     </div>
@@ -62,6 +57,7 @@ const CreativeStudio = () => {
                     padding-bottom: 160px;
                     min-height: calc(100vh - 187px);
                 }
+              
             `}</style>
         </>
     )

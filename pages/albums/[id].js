@@ -43,7 +43,7 @@ const Album = ({ data }) => {
                 <section style={{ position: 'relative', zIndex: 98 }} >
 
                     <div className="container" style={{ marginTop: 60 }} >
-                        <h1>{isRTL?data.title.ar:data.title.en}</h1>
+                        <h1 style={{color:"rgb(0, 121, 145)"}}>{isRTL?data.title.ar:data.title.en}</h1>
                         <p style={{ marginTop: 20 }}>{isRTL?data.description.ar:data.description.en}</p>
 
                         {data.links && data.links.length > 0 && (
@@ -96,6 +96,7 @@ const Album = ({ data }) => {
                     gap: 10px;
                     margin-top: 30px;
                 }
+    
             `}</style>
         </>
     )

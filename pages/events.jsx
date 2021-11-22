@@ -2,12 +2,10 @@ import Layout from "../layout/Layout";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_URL } from '../utils/consts';
-import { i18n } from '../i18n'
+import { i18n, withTranslation } from '../i18n'
 import Image from 'next/image';
-import Link from "next/link"
 
-
-const Events = () => {
+const Events = ({t}) => {
     const [isRTL, setIsRTL] = useState(false)
     const [events, setEvents] = useState([])
     useEffect(() => {
@@ -39,9 +37,9 @@ const Events = () => {
     };
     return (
         <>
-            <Layout navWithBackground>
+            <Layout navWithBackground >
                 <section className="container" style={{ position: 'relative', zIndex: 98 }}>
-                    <p>No need to say about Our events cause we always aim to make you happy at the end with the customized event that satisfies your need with full pack  of our logestics of stage shows and the way of production and surely with branding your event and so on </p>
+                    <p>{t('EVENTS.description')}</p>
 
                     {
                         events.map(({ _id, description, title, link, subCategories }, i) => (
@@ -86,19 +84,22 @@ const Events = () => {
                     padding-top: 200px;
                     padding-bottom: 60px;
                     min-height: calc(100vh - 187px)
+
+                }
+                a   {
+                    direction: ${isRTL ? 'rtl' : 'ltr'};
+
                 }
 
                 h2 {
                     font-weight: 400;
                     font-size: 2rem;
-                    direction: ${isRTL ? 'rtl' : 'ltr'};
 
                 }
 
                 h4 {
                     font-weight: 200;
                     font-size: 1rem;
-                    direction: ${isRTL ? 'rtl' : 'ltr'};
 
                 }
 
@@ -110,10 +111,11 @@ const Events = () => {
                     margin-bottom: 20px;
                     direction: ${isRTL ? 'rtl' : 'ltr'};
 
+
                 }
             `}</style>
         </>
     )
 }
 
-export default Events;
+export default withTranslation('common')(Events)

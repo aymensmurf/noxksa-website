@@ -403,7 +403,7 @@ const ClientQuestionnaire = ({ t }) => {
                         </div>
 
                         <div className="sub-section" style={{ backgroundColor: 'rgb(255, 197, 129)' }}>
-                            <h2>{t('EVENTDETAILSQUEST.title')}</h2>
+                            <h2>{t('OTHERDETAILSQUEST.title')}</h2>
                         </div>
 
                         <div className="grid">
