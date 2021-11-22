@@ -13,6 +13,7 @@ import { i18n } from '../../i18n'
 
 const Album = ({ data }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [currentImage, setCurrentImage] = useState(0);
     const [img, setImg] = useState([])
     const [isRTL, setIsRTL] = useState(false)
     const images=[]
@@ -50,7 +51,7 @@ const Album = ({ data }) => {
                             <div className="grid">
                                 {data.links.map((link, i) => (
                                     link.type === 'upload' ? (
-                                        <img onClick={() => { setIsOpen(true) }}
+                                        <img onClick={() => { setIsOpen(true),setCurrentImage(i) }}
                                             key={i}
                                             src={`${SERVER_URL}/uploads/${link.link}`}
                                             alt=""
@@ -64,13 +65,16 @@ const Album = ({ data }) => {
                                             height="300px"
                                         />
                                     )
+
                                 ))}
 
-                                {isOpen &&
+{isOpen &&
 
-                                <Gallery images={img} showLightboxThumbnails={true} backdropClosesModal={true} lightboxWillClose={()=>setIsOpen(false)} isOpen />
+<Gallery images={img} currentImage={currentImage} showLightboxThumbnails={true} backdropClosesModal={true} lightboxWillClose={()=>setIsOpen(false)} isOpen />
 
-                                }
+}
+
+                             
                         </div>
                         )}
 

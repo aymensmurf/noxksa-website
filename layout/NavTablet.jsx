@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { i18n, withTranslation } from '../i18n'
 
-const NavTablet = ({ navWithBackground }) => {
+const NavTablet = ({ navWithBackground,t }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+    const [isRTL, setIsRTL] = useState(false)
     useEffect(() => {
+        let isRTL = i18n.language === 'ar' ? true : false;
+        setIsRTL(isRTL)
         let doc = document.documentElement;
         let w = window;
 
@@ -48,11 +51,11 @@ const NavTablet = ({ navWithBackground }) => {
         };
 
         window.addEventListener('scroll', checkScroll);
-    }, [])
+    },[i18n.language])
 
     return (
         <>
-            <nav id="main-nav-tablet">
+            <nav id="main-nav-tablet" style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
                 <a href="/">
                     <Image src="/img/logo.png" alt="NOX Entertainment" width={212} height={60} objectFit="contain" />
                 </a>
@@ -68,12 +71,14 @@ const NavTablet = ({ navWithBackground }) => {
             </nav>
 
             <div id="menu">
-                <a href="/#about-us"><h3>About Us</h3></a>
-                <a href="/#our-clients"><h3>Our Clients</h3></a>
-                <a href="/#our-services"><h3>Our Services</h3></a>
-                <a href="/#creative-studio"><h3>Creative Studio</h3></a>
-                <a href="/#join-the-team"><h3>Join The Team</h3></a>
-                <a href="/#contact-us"><h3>Contact Us</h3></a>
+                <a href="/#about-us"><h3>{t('Nav.ABOUTUS')}</h3></a>
+                <a href="/#our-clients"><h3>{t('Nav.OURCLIENTS')}</h3></a>
+                <a href="/#our-services"><h3>{t('Nav.OURSERVICES')}</h3></a>
+                <a href="/#creative-studio"><h3>{t('Nav.CREATIVESTUDIO')}</h3></a>
+                <a href="/#join-the-team"><h3>{t('Nav.JOINTHETEAM')}</h3></a>
+                <a href="/#contact-us"><h3>{t('Nav.CONTACTUS')}</h3></a>
+                <a href="/client-questionnaire"><h3>{t('Nav.QUESTIONNAIRE')}</h3></a>
+                <li className="circle" onClick={() => i18n.changeLanguage(isRTL ? 'en' : 'ar')} >{isRTL ? 'EN' : 'AR'}</li>
             </div>
 
             <style jsx>{`
@@ -118,9 +123,23 @@ const NavTablet = ({ navWithBackground }) => {
                     line-height: 36px;
                     margin-top: 30px;
                 }
+
+                .circle {
+                    width: 55px;
+                    height: 55px;
+                    border-radius: 50%;
+                    margin-top: 30px;
+                    border-style: solid;
+                    border-color: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    cursor: pointer;
+                    border-width: 1px;
+                }
             `}</style>
         </>
     )
 }
-
-export default NavTablet;
+export default withTranslation('common')(NavTablet)
