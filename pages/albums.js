@@ -29,7 +29,16 @@ const CreativeStudio = () => {
         axios(config)
             .then(({ status, data }) => {
                 if (status === 200) {
+                    for (let i=0;i<data.data.length;i++){
+                        for (let j in data.data[i].links){
+                            if (data.data[i].links[j].type=="link"){
+                                data.data[i].links.splice(j,1)
+                            }
+                        }
+                    }
                     setAlbums(data.data)
+
+                    console.log(albums)
                 }
             })
             .catch(err => {
