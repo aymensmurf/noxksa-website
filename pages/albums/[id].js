@@ -102,9 +102,30 @@ const Album = ({ data }) => {
                 }
                 @media only screen and (max-width: 1026px) {
                     .grid {
-                        grid-template-columns: 1fr;
+                        grid-template-columns: 4fr;
                     }
                 }
+                @media only screen and (max-width: 906px) {
+                    .grid {
+                        grid-template-columns: 3fr;
+                    }
+                }
+                @media only screen and (max-width: 730px) {
+
+                    .grid {
+                        grid-template-columns: 2fr;
+                    }
+
+                   
+                }
+
+                @media only screen and (max-width: 441px) {
+                    .grid{
+                        grid-template-columns: 1fr;
+
+                    }
+                }
+
     
             `}</style>
         </>
