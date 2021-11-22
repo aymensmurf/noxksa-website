@@ -100,6 +100,11 @@ const Album = ({ data }) => {
                     gap: 10px;
                     margin-top: 30px;
                 }
+                @media only screen and (max-width: 1026px) {
+                    .grid {
+                        grid-template-columns: 1fr;
+                    }
+                }
     
             `}</style>
         </>
