@@ -21,8 +21,10 @@ const CreativeStudio = ({ isRTL, creativeStudio, t }) => {
                 }
                 <div className="container" style={{ marginTop: 60, direction: `${isRTL ? 'rtl' : 'ltr'}` }} >
                     <div className="flex ai-c flex-wrap" style={{ gap: 30 }}>
+                        
                         {creativeStudio.map(({ _id, title, links, }, i) => (
-                            <Album key={i} title={isRTL ? title.ar : title.en} mainImg={`${SERVER_URL}/uploads/${links[parseInt(Math.random() * (links.length))].link}`} id={_id} />
+                            <Album key={i} title={isRTL ? title.ar : title.en} mainImg={`${SERVER_URL}/uploads/${links[parseInt(Math.random() * (links.length -1))].link}`} id={_id} />
+                        
                         ))}
                     </div>
                 </div>
