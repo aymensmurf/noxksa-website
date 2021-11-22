@@ -8,6 +8,11 @@ import { withTranslation } from '../../i18n'
 
 
   const OurClients = ({isRTL,clients,t}) => {
+    const getClickableLink = link => {
+        return link.startsWith("http://") || link.startsWith("https://") ?
+          link
+          : `http://${link}`;
+      };
     return (
         <>
             <a name="our-clients" />
@@ -22,7 +27,7 @@ import { withTranslation } from '../../i18n'
                 <div className="container flex jc-c ai-c flex-wrap" style={{ gap: 30, marginTop: 110 , direction: `${isRTL ? 'rtl' : 'ltr'}`}}>
                     {
                         clients.map(({ _id, link ,img}, i) => (
-                        <a href={link} key={_id}>
+                        <a href={getClickableLink(link)} key={_id}>
                          <Image src={`${SERVER_URL}/uploads/${img}`}   alt="x" width={170} height="100%" objectFit='contain' />
                         </a>
                         ))
