@@ -8,49 +8,52 @@ const NavTablet = ({ navWithBackground,t }) => {
     useEffect(() => {
         let isRTL = i18n.language === 'ar' ? true : false;
         setIsRTL(isRTL)
-        let doc = document.documentElement;
-        let w = window;
-
-        let prevScroll = w.scrollY || doc.scrollTop;
-        let curScroll;
-        let direction = 0;
-        let prevDirection = 0;
-
-        let header = document.getElementById('main-nav-tablet');
-
-        let checkScroll = function () {
-            curScroll = w.scrollY || doc.scrollTop;
-
-            if (curScroll <= 40) {
-                header.classList.remove('bg-color');
-            }
-
-            if (curScroll > prevScroll) {
-                direction = 2;
-            }
-            else if (curScroll < prevScroll) {
-                direction = 1;
-            }
-
-            if (direction !== prevDirection) {
-                toggleHeader(direction, curScroll);
-            }
-
-            prevScroll = curScroll;
-        };
-
-        let toggleHeader = function (direction, curScroll) {
-            if (direction === 2 && curScroll > 40) {
-                header.classList.add('hide');
-                prevDirection = direction;
-            } else if (direction === 1) {
-                header.classList.remove('hide');
-                header.classList.add('bg-color');
-                prevDirection = direction;
-            }
-        };
-
-        window.addEventListener('scroll', checkScroll);
+            let doc = document.documentElement;
+            let w = window;
+    
+            let prevScroll = w.scrollY || doc.scrollTop;
+            let curScroll;
+            let direction = 0;
+            let prevDirection = 0;
+    
+            let header = document.getElementById('main-nav-tablet');
+    
+            let checkScroll = function () {
+                curScroll = w.scrollY || doc.scrollTop;
+    
+                if (curScroll <= 40) {
+                    header.classList.remove('bg-color');
+                }
+    
+                if (curScroll > prevScroll) {
+                    direction = 2;
+                }
+                else if (curScroll < prevScroll) {
+                    direction = 1;
+                }
+    
+                if (direction !== prevDirection) {
+                    toggleHeader(direction, curScroll);
+                }
+    
+                prevScroll = curScroll;
+            };
+    
+            let toggleHeader = function (direction, curScroll) {
+                if (direction === 2 && curScroll > 40) {
+                    header.classList.add('hide');
+                    prevDirection = direction;
+                } else if (direction === 1 ) {
+                    header.classList.remove('hide');
+                    header.classList.add('bg-color');
+                    prevDirection = direction;
+                }
+            };
+    
+            window.addEventListener('scroll', checkScroll);
+            
+        
+      
     },[i18n.language])
 
     return (
@@ -86,13 +89,13 @@ const NavTablet = ({ navWithBackground,t }) => {
                     position: fixed;
                     top: 0;
                     width: 100%;
-                    z-index: 99;
                     padding: 20px 30px;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                     transition: all .5s ease;
                     background-color: ${navWithBackground ? '#46356A' : 'transparent'};
+                    z-index:100
                 }
                 
                 #main-nav-tablet.hide {
@@ -115,6 +118,7 @@ const NavTablet = ({ navWithBackground,t }) => {
                     background-color: #46356A;
                     min-height: ${isMenuOpen ? '100vh' : '0vh'};
                     top: ${isMenuOpen ? '0' : '-100vh'};
+                    z-index:99
                 }
 
                 h3 {
