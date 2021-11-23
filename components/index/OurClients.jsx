@@ -16,7 +16,7 @@ import { withTranslation } from '../../i18n'
     return (
         <>
             <a name="our-clients" />
-            <section>
+            <section style={{ position: 'relative', zIndex: 98 }}>
 
                 {isRTL?
                 <BannerLeft title={t('OURCLIENTS.CLIENTS')} />
@@ -24,12 +24,14 @@ import { withTranslation } from '../../i18n'
                 :
                 <BannerRight  title={t('OURCLIENTS.CLIENTS')} />
                 }
-                <div className="container flex jc-c ai-c flex-wrap" style={{ gap: 30, marginTop: 110 , direction: `${isRTL ? 'rtl' : 'ltr'}`}}>
+                <div className="container flex jc-c ai-c flex-wrap" style={{ gap: 30, marginTop: 110 , direction: `${isRTL ? 'rtl' : 'ltr'}`}} >
                     {
                         clients.map(({ _id, link ,img}, i) => (
-                        <a href={getClickableLink(link)} key={_id}>
+                        <div key={_id}>
+                        <a href={link?getClickableLink(link):'#'} target="_blank" rel="noopener noreferrer">
                          <Image src={`${SERVER_URL}/uploads/${img}`}   alt="x" width={170} height="100%" objectFit='contain' />
                         </a>
+                        </div>
                         ))
 
                     }
