@@ -15,14 +15,14 @@ function MyApp({ Component, pageProps }) {
 			<Component {...pageProps} />
 
 			<Script src='https://www.googletagmanager.com/gtag/js?id=UA-225237314-1'></Script>
-			<Script>
+			<Script id='UA-225237314-1'>
 				{`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
 
-          gtag('config', 'UA-225237314-1');
-        `}
+					gtag('config', 'UA-225237314-1');
+				`}
 			</Script>
 		</>
 	);
