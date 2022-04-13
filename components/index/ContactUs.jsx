@@ -3,20 +3,20 @@ import BannerRight from '../shared/BannerRight'
 import BannerLeft from '../shared/BannerLeft'
 import { withTranslation } from '../../i18n'
 
-const ContactUs = ({isRTL,t}) => {
+const ContactUs = ({ isRTL, t }) => {
     return (
         <>
             <a name="contact-us" />
             <section>
-                {isRTL?
-                <BannerLeft title={t('CONTACTUS.contactus')} />
+                {isRTL ?
+                    <BannerLeft title={t('CONTACTUS.contactus')} />
 
-                :
-                <BannerRight title={t('CONTACTUS.contactus')} />
+                    :
+                    <BannerRight title={t('CONTACTUS.contactus')} />
 
                 }
 
-                <div className="container" style={{ marginTop: 60,direction: `${isRTL ? 'rtl' : 'ltr'}`}}>
+                <div className="container" style={{ marginTop: 60, direction: `${isRTL ? 'rtl' : 'ltr'}` }}>
                     <div className="grid">
                         <div>
                             <iframe src="https://maps.google.com/maps?q=Technology%20Fundamentals%20Trading%20Company&amp;t=m&amp;z=18&amp;output=embed&amp;iwloc=near" />
@@ -32,6 +32,10 @@ const ContactUs = ({isRTL,t}) => {
                                 <div className="flex ai-c">
                                     <Icon src="/img/icons/phone.png" alt="Phone" />
                                     <p>920033680</p>
+                                </div>
+                                <div className="flex ai-c">
+                                    <Icon src="/img/icons/email.png" alt="Email" />
+                                    <p>Info@noxksa.com</p>
                                 </div>
                             </div>
                             <div>
@@ -113,5 +117,5 @@ const Icon = ({ src, alt }) => (
         <Image className="icon" src={src} alt={alt} width={40} height={40} objectFit="contain" />
     </>
 )
-  
+
 export default withTranslation('common')(ContactUs);
