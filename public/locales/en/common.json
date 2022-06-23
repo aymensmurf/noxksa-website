@@ -1,198 +1,187 @@
 {
-   
     "LANG": {
         "ARABIC": "Arabic",
         "ENGLISH": "English"
     },
-    "Nav":{
-        "ABOUTUS":"About Us",
-        "OURCLIENTS":"Our Clients",
-        "OURSERVICES":"Our Services",
-        "CREATIVESTUDIO":"Studio",
-        "JOINTHETEAM":"Join Us",
-        "CONTACTUS":"Contact Us",
-        "QUESTIONNAIRE":"Questionnaire"
+    "Nav": {
+        "ABOUTUS": "About Us",
+        "OURCLIENTS": "Our Clients",
+        "OURSERVICES": "Our Services",
+        "CREATIVESTUDIO": "Studio",
+        "JOINTHETEAM": "Join Us",
+        "CONTACTUS": "Contact Us",
+        "QUESTIONNAIRE": "Questionnaire"
     },
-    "HOME":{
-        "Most":"The most",
-        "Enter":"Entertainment",
-        "All":"All for you",
-        "WORDS" :["Services", "Programs", "Events"]
-
+    "HOME": {
+        "Most": "The most",
+        "Enter": "Entertainment",
+        "All": "All for you"
     },
-    "OURCLIENTS":{
-
-        "CLIENTS":"Our Clients"
+    "OURCLIENTS": {
+        "CLIENTS": "Our Clients"
     },
-
-    "OURSERVICES":{
-        "SERVICES":"Our Services",
-        "READY":"Our ready",
-        "Enter":"Entertainment",
-        "programs":"Programs",
-        "SHOWS":"Show All Services",
-        "SHOWP":"Show All Programs",
-        "SHOWE":"Show All Events"
+    "OURSERVICES": {
+        "SERVICES": "Our Services",
+        "READY": "Our ready",
+        "Enter": "Entertainment",
+        "programs": "Programs",
+        "SHOWS": "Show All Services",
+        "SHOWP": "Show All Programs",
+        "SHOWE": "Show All Events"
     },
-    "ABOUTUS":{
-        "whoweare":"Who we are",
-        "p1":"NOX by Ktheeb Is a company specialized in creating entertainment, established in 2017 Specialized in creating concepts and building complete entertainment.",
-        "p2":"Through a short period of time the company made an outstanding model in transportable entertainment throughout the Kingdom of Saudi Arabia.",
-        "p3":"Since 2017 and until this day the company has grown along-side its employees with their capabilities and the creativity spread throughout the department,creating exceptional entertainment contents."
+    "ABOUTUS": {
+        "whoweare": "Who we are",
+        "p1": "NOX by Ktheeb Is a company specialized in creating entertainment, established in 2017 Specialized in creating concepts and building complete entertainment.",
+        "p2": "Through a short period of time the company made an outstanding model in transportable entertainment throughout the Kingdom of Saudi Arabia.",
+        "p3": "Since 2017 and until this day the company has grown along-side its employees with their capabilities and the creativity spread throughout the department,creating exceptional entertainment contents."
     },
-    "JOINUS":{
-        "JOINUS":"Join Us",
-        "EMP":"Employee",
-        "ORG":"Organizer",
-        "fullname":"Full Name",
-        "phone":"Mobile number",
-        "email":"Email",
-        "nation":"Nationality",
-        "region":"Region",
-        "gender":"Gender",
-        "birth":"Date of Birth",
-        "resume":"Upload your Resume",
-        "lang":"What languages do you speak?",
-        "exp":"Do You Have any Experiences in this role?",
-        "male":"male",
-        "female":"female",
-        "sendapp":"Send Your Application"
-
-
+    "JOINUS": {
+        "JOINUS": "Join Us",
+        "EMP": "Employee",
+        "ORG": "Organizer",
+        "fullname": "Full Name",
+        "phone": "Mobile number",
+        "email": "Email",
+        "nation": "Nationality",
+        "region": "Region",
+        "gender": "Gender",
+        "birth": "Date of Birth",
+        "resume": "Upload your Resume",
+        "lang": "What languages do you speak?",
+        "exp": "Do You Have any Experiences in this role?",
+        "male": "male",
+        "female": "female",
+        "sendapp": "Send Your Application"
     },
-    "CREATIVESTUDIO":{
-        "STUDIO":"Creative Studio"
+    "CREATIVESTUDIO": {
+        "STUDIO": "Creative Studio"
     },
-    "CONTACTUS":{
-        "contactus":"Contact Us",
-        "followus":"Follow Us",
-        "office":"Our Office"
-
+    "CONTACTUS": {
+        "contactus": "Contact Us",
+        "followus": "Follow Us",
+        "office": "Our Office"
     },
-    "FOOTER":{
-        "footer":"© Copyright 2020 Ktheeb Company. All Rights Reserved."
+    "FOOTER": {
+        "footer": "© Copyright 2020 Ktheeb Company. All Rights Reserved."
     },
-    "EVENTS":{
-       "description":"No need to say about Our events cause we always aim to make you happy at the end with the customized event that satisfies your need with full pack  of our logestics of stage shows and the way of production and surely with branding your event and so on."
+    "EVENTS": {
+        "description": "No need to say about Our events cause we always aim to make you happy at the end with the customized event that satisfies your need with full pack  of our logestics of stage shows and the way of production and surely with branding your event and so on."
     },
-    "CLIENTQUEST":{
-        "title":"Client Questionnaire",
-        "compN":"Company Name",
-        "contE":"Contact Email",
-        "contN":"Contact Number",
-        "personN":"Person Name"
-
+    "CLIENTQUEST": {
+        "title": "Client Questionnaire",
+        "compN": "Company Name",
+        "contE": "Contact Email",
+        "contN": "Contact Number",
+        "personN": "Person Name"
     },
-    "EVENTQUEST":{
-        "title":"Event Overview",
-        "eventType":"What type of Events are you planning for?",
-        "eventHeld":"Where would you like the Event to be held?",
-        "eventLong":"How long would you like the event to run?",
-        "eventDate":"What is the Event Date?",
-        "eventBudget":"What is the project range budget?",
-        "eventGoal":"What is your main goal from this event?",
-        "eventChallenges":"Do you have any concerns or potential challenges in mind?",
-        "eventAtmosphere":"What is the identity and overall atmosphere?",
-        "eventSimilar":"Have you been to other similar event before? Positive/Negative?",
-        "eventTypeChoice1":"Family Day",
-        "eventTypeChoice2":"Young Employee",
-        "eventTypeChoice3":"Public Events",
-        "eventTypeChoice4":"Internal Events",
-        "eventTypeChoice5":"Annual Events",
-        "eventTypeChoice6":"Other",
-        "eventHeldChoice1":"Out-door",
-        "eventHeldChoice2":"Work place",
-        "eventHeldChoice3":"Hotel",
-        "eventHeldChoice4":"Resort",
-        "eventHeldChoice5":"In-door",
-        "eventHeldChoice6":"Other",
-        "eventBudgetChoice1":"0 - 100.000 SR",
-        "eventBudgetChoice2":"100.000 - 500.000 SR",
-        "eventBudgetChoice3":"500.000 - 1.000.000 SR",
-        "eventBudgetChoice4":"Other"
+    "EVENTQUEST": {
+        "title": "Event Overview",
+        "eventType": "What type of Events are you planning for?",
+        "eventHeld": "Where would you like the Event to be held?",
+        "eventLong": "How long would you like the event to run?",
+        "eventDate": "What is the Event Date?",
+        "eventBudget": "What is the project range budget?",
+        "eventGoal": "What is your main goal from this event?",
+        "eventChallenges": "Do you have any concerns or potential challenges in mind?",
+        "eventAtmosphere": "What is the identity and overall atmosphere?",
+        "eventSimilar": "Have you been to other similar event before? Positive/Negative?",
+        "eventTypeChoice1": "Family Day",
+        "eventTypeChoice2": "Young Employee",
+        "eventTypeChoice3": "Public Events",
+        "eventTypeChoice4": "Internal Events",
+        "eventTypeChoice5": "Annual Events",
+        "eventTypeChoice6": "Other",
+        "eventHeldChoice1": "Out-door",
+        "eventHeldChoice2": "Work place",
+        "eventHeldChoice3": "Hotel",
+        "eventHeldChoice4": "Resort",
+        "eventHeldChoice5": "In-door",
+        "eventHeldChoice6": "Other",
+        "eventBudgetChoice1": "0 - 100.000 SR",
+        "eventBudgetChoice2": "100.000 - 500.000 SR",
+        "eventBudgetChoice3": "500.000 - 1.000.000 SR",
+        "eventBudgetChoice4": "Other"
     },
-    "AUDIENCEQUEST":{
-        "title":"Audience Overview",
-        "number":"What is expected number of attendees?",
-        "invite":"How would you like to invite the audience?",
-        "food":"What food option would you like to offer the audience?",
-        "target":"Who is the main target audience for this event?",
-        "age":"What is the target age?",
-        "guest":"Will be there a special guest?",
-        "details":"More details",
-        "inviteChoice1":"E-Invitation",
-        "inviteChoice2":"Through Social media platform",
-        "inviteChoice3":"Printing Invitation",
-        "foodChoice1":"Open Buffet",
-        "foodChoice2":"Trucks & Booths",
-        "foodChoice3":"Snacks",
-        "foodChoice4":"Coffee Break",
-        "foodChoice5":"Seated",
-        "foodChoice6":"Other",
-        "targetChoice1":"Kids",
-        "targetChoice2":"Families",
-        "targetChoice3":"Mixed",
-        "targetChoice4":"Women",
-        "targetChoice5":"Men"        
+    "AUDIENCEQUEST": {
+        "title": "Audience Overview",
+        "number": "What is expected number of attendees?",
+        "invite": "How would you like to invite the audience?",
+        "food": "What food option would you like to offer the audience?",
+        "target": "Who is the main target audience for this event?",
+        "age": "What is the target age?",
+        "guest": "Will be there a special guest?",
+        "details": "More details",
+        "inviteChoice1": "E-Invitation",
+        "inviteChoice2": "Through Social media platform",
+        "inviteChoice3": "Printing Invitation",
+        "foodChoice1": "Open Buffet",
+        "foodChoice2": "Trucks & Booths",
+        "foodChoice3": "Snacks",
+        "foodChoice4": "Coffee Break",
+        "foodChoice5": "Seated",
+        "foodChoice6": "Other",
+        "targetChoice1": "Kids",
+        "targetChoice2": "Families",
+        "targetChoice3": "Mixed",
+        "targetChoice4": "Women",
+        "targetChoice5": "Men"
     },
-    "EVENTDETAILSQUEST":{
-        "title":"Event Details",
-        "name":"What is the event name?",
-        "elements":"What is the most important elements you want to see at the event?",
-        "details":"More details",
-        "intention":"Do you intend to have MC, live entertainment or speakers?",
-        "registration":"What registration system do you prefer to provide?",
-        "elementsChoice1":"Logistics",
-        "elementsChoice2":"Activities",
-        "elementsChoice3":"Valet",
-        "elementsChoice4":"Documentation",
-        "elementsChoice5":"Catering",
-        "elementsChoice6":"Stage & Shows"       
+    "EVENTDETAILSQUEST": {
+        "title": "Event Details",
+        "name": "What is the event name?",
+        "elements": "What is the most important elements you want to see at the event?",
+        "details": "More details",
+        "intention": "Do you intend to have MC, live entertainment or speakers?",
+        "registration": "What registration system do you prefer to provide?",
+        "elementsChoice1": "Logistics",
+        "elementsChoice2": "Activities",
+        "elementsChoice3": "Valet",
+        "elementsChoice4": "Documentation",
+        "elementsChoice5": "Catering",
+        "elementsChoice6": "Stage & Shows"
     },
-    "OTHERDETAILSQUEST":{
-        "title":"Other Details",
-        "prevclient":"Are you a previous client?",
-        "details":"More details",
-        "hear":"How did you hear about us?",
-        "hearChoice1":"Through Friends",
-        "hearChoice2":"Through Social media platform",
-        "hearChoice3":"Website",
-        "meeting":"Do you prefer to have a meeting with us?",
-        "touch":"How do you prefer to get in touch with us ?",
-        "touchChoice1":"Email",
-        "touchChoice2":"Phone Number"
+    "OTHERDETAILSQUEST": {
+        "title": "Other Details",
+        "prevclient": "Are you a previous client?",
+        "details": "More details",
+        "hear": "How did you hear about us?",
+        "hearChoice1": "Through Friends",
+        "hearChoice2": "Through Social media platform",
+        "hearChoice3": "Website",
+        "meeting": "Do you prefer to have a meeting with us?",
+        "touch": "How do you prefer to get in touch with us ?",
+        "touchChoice1": "Email",
+        "touchChoice2": "Phone Number"
     },
-    "toast":{
-        "CN":"company Name is required",
-        "CE":"contact Email is required",
-        "CNU":"contact Number is required",
-        "PN":"person Name is required",
-        "TE":"What type of Events are you planning for is required",
-        "EH":"Where would you like the Event to be held is required",
-        "HE":"How long would you like the event to run is required",
-        "ED":"What is the Event Date",
-        "RB":"What is the project range budget is required",
-        "NA":"What is expected number of attendees is required",
-        "FO":"What food option would you like to offer the audience is required",
-        "TA":"Who is the main target audience for this event is required",
-        "TAG":"What is the target age is required",
-        "EN":"What is the event name is required",
-        "EI":"Do you intend to have MC, live entertainment or speakers is required",
-        "ER":"What registration system do you prefer to provide is required",
-        "EM":"Do you prefer to have a meeting with us is required",
-        "SUCCESS":"your form has been successfully send",
-        "fullName":"Fullname is required",
-        "mobileNumber":"MobileNumber is required",
-        "email":"Email is required",
-        "nationality":"Nationality is required",
-        "region":"Region is required",
-        "gender":"Gender is required",
-        "dateOfBirth":"DateOfBirth is required",
-        "languages":"Languages is required",
-        "isExperiences":"Experiences is required",
-        "file":"Resume is required",
-        "errorEmail":"contact Email is not valid"
-
+    "toast": {
+        "CN": "company Name is required",
+        "CE": "contact Email is required",
+        "CNU": "contact Number is required",
+        "PN": "person Name is required",
+        "TE": "What type of Events are you planning for is required",
+        "EH": "Where would you like the Event to be held is required",
+        "HE": "How long would you like the event to run is required",
+        "ED": "What is the Event Date",
+        "RB": "What is the project range budget is required",
+        "NA": "What is expected number of attendees is required",
+        "FO": "What food option would you like to offer the audience is required",
+        "TA": "Who is the main target audience for this event is required",
+        "TAG": "What is the target age is required",
+        "EN": "What is the event name is required",
+        "EI": "Do you intend to have MC, live entertainment or speakers is required",
+        "ER": "What registration system do you prefer to provide is required",
+        "EM": "Do you prefer to have a meeting with us is required",
+        "SUCCESS": "your form has been successfully send",
+        "fullName": "Fullname is required",
+        "mobileNumber": "MobileNumber is required",
+        "email": "Email is required",
+        "nationality": "Nationality is required",
+        "region": "Region is required",
+        "gender": "Gender is required",
+        "dateOfBirth": "DateOfBirth is required",
+        "languages": "Languages is required",
+        "isExperiences": "Experiences is required",
+        "file": "Resume is required",
+        "errorEmail": "contact Email is not valid"
     }
- 
 }
